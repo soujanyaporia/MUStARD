@@ -9,9 +9,9 @@ Sample instance from the dataset. Each instance is alloted one identifier (e.g. 
 | ----------------------- |:------------------------------------------------------------------------------:  | 
 | `utterance`             | The text of the target utterance to classify.                                    | 
 | `speaker`               | Speaker of the target utterance.                                                 | 
-| `context`               |  List of utterances (in chronological order) preceding the target utterance.     | 
+| `context`               | List of utterances (in chronological order) preceding the target utterance.     | 
 | `context_speakers`      | Respective speakers of the context utterances.                                   | 
-| `sarcasm`               |  Label for sarcasm tag.                                                          | 
+| `sarcasm`               | Label for sarcasm tag.                                                          | 
 
 Sample format in json:   
 
