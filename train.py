@@ -29,7 +29,7 @@ def train(model_name=None):
     results=[]
     for fold, (train_index, test_index) in enumerate(data.getStratifiedKFold()):
         config.fold = fold+1
-        print("Present Fold: "+config.fold)
+        print("Present Fold: {}".format(config.fold))
 
         # Prepare data
         train_input, train_output = data.getSplit(train_index)
@@ -80,5 +80,5 @@ def printResult(model_name=None):
 
 if __name__ == "__main__":
     
-    # train(model_name="text_GRU")
+    train(model_name="text_GRU")
     printResult(model_name="text_GRU")
