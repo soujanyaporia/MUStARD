@@ -1,5 +1,6 @@
 
 import os
+import sys
 import re
 import json
 import pickle
@@ -8,6 +9,14 @@ import nltk
 import numpy as np
 from collections import defaultdict
 from sklearn.model_selection import StratifiedKFold
+
+
+def pickle_loader(filename):
+    if sys.version_info[0] < 3:
+        return pickle.load(open(filename, 'rb'))
+    else:
+        return pickle.load(open(filename, 'rb'), encoding="latin1")
+
 
 class DataLoader:
 
@@ -49,7 +58,7 @@ class DataLoader:
         '''
         Returns train/test indices for k-folds
         '''
-        self.split_indices = pickle.load(open(self.INDICES_FILE, 'rb'))
+        self.split_indices = pickle_loader(self.INDICES_FILE)
         return self.split_indices
 
 
@@ -125,7 +134,7 @@ class DataHelper:
             os.makedirs(os.path.dirname(filename))
 
         if os.path.exists(filename):
-            self.model = pickle.load(open(filename, "rb"))
+            self.model = pickle_loader(filename)
             self.embed_dim = len(self.model[self.PAD_TOKEN])
         else:
             self.model = model = {}
