@@ -8,7 +8,7 @@ import numpy as np
 from config import Config
 from data_loader import DataLoader
 from data_loader import DataHelper
-from models import text_GRU
+from models import text_GRU, text_CNN
 
 # Desired graphics card selection
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
@@ -42,7 +42,12 @@ def train(model_name=None):
         train_output = datahelper.toOneHot(mode="train")
         test_output = datahelper.toOneHot(mode="test")
 
-        model = text_GRU(config)
+        if model_name == "text_GRU":
+            model = text_GRU(config)
+        elif model_name == "text_CNN":
+            model = text_CNN(config)
+
+
         summary = model.getModel(datahelper.getEmbeddingMatrix())
         model.train(train_input, train_output)
         result_dict, result_str = model.test(test_input, test_output)
@@ -80,5 +85,5 @@ def printResult(model_name=None):
 
 if __name__ == "__main__":
     
-    train(model_name="text_GRU")
-    printResult(model_name="text_GRU")
+    train(model_name="text_CNN")
+    printResult(model_name="text_CNN")
