@@ -7,6 +7,7 @@ import pickle
 
 import nltk
 import numpy as np
+from beeprint import pp
 from collections import defaultdict
 from sklearn.model_selection import StratifiedKFold
 
@@ -86,6 +87,7 @@ class DataHelper:
     PAD_TOKEN = "<PAD>"
 
     GLOVE_MODELS = "./data/temp/glove_dict_{}.p"
+    GLOVE_MODELS_CONTEXT = "./data/temp/glove_dict_context_{}.p"
 
 
     def __init__(self, train_input, train_output, test_input, test_output, config):
@@ -95,32 +97,49 @@ class DataHelper:
         self.test_input = test_input
         self.test_output = test_output
 
-        self.createVocab()
+        self.createVocab(config.use_context)
         print("vocab size: " + str(len(self.vocab)))
 
-        self.loadGloveModel(config.word_embedding_path)
+        self.loadGloveModel(config.word_embedding_path, config.use_context)
         self.createEmbeddingMatrix()
 
 
 
-    def getData(self, data, ID=None):
-        return [instance[ID] for instance in data]
+    def getData(self, ID=None, mode=None, error_message=None):
+
+        if mode == "train":
+            return [instance[ID] for instance in self.train_input]
+        elif mode == "test":
+            return [instance[ID] for instance in self.test_input]
+        else:
+            print(error_message)
+            exit()
 
 
 
-    def createVocab(self):
+    def createVocab(self, use_context=False):
 
         self.vocab = vocab = defaultdict(lambda:0)
-        utterances = self.getData(self.train_input, self.UTT_ID)
+        utterances = self.getData(self.UTT_ID, mode="train")
 
         for utterance in utterances:
             clean_utt = self.clean_str(utterance)
             utt_words = nltk.word_tokenize(clean_utt)
             for word in utt_words:
-                vocab[word] += 1
+                vocab[word.lower()] += 1
+
+        if use_context:
+            context_utterances = self.getData(self.CONTEXT_ID, mode="train")
+            for context in context_utterances:
+                for c_utt in context:
+                    clean_utt = self.clean_str(c_utt)
+                    utt_words = nltk.word_tokenize(clean_utt)
+                    for word in utt_words:
+                        vocab[word.lower()] += 1
 
 
-    def loadGloveModel(self, gloveFile):
+
+    def loadGloveModel(self, gloveFile, use_context=False):
         '''
         Loads the Glove pre-trained model
         '''
@@ -128,7 +147,8 @@ class DataHelper:
         print("Loading glove model")
 
         # if model already exists:
-        filename = self.GLOVE_MODELS.format(self.config.fold)
+        filename = self.GLOVE_MODELS_CONTEXT if use_context else self.GLOVE_MODELS
+        filename = filename.format(self.config.fold)
 
         if not os.path.exists(os.path.dirname(filename)):
             os.makedirs(os.path.dirname(filename))
@@ -147,7 +167,7 @@ class DataHelper:
                 except:
                     print("Here", word)
                     continue
-                if word in self.vocab: model[word] = embedding
+                if word in self.vocab: model[word.lower()] = embedding
                 self.embed_dim = len(splitLine[1:])
             model[self.UNK_TOKEN] = np.zeros(self.embed_dim)
             model[self.PAD_TOKEN] = np.zeros(self.embed_dim)
@@ -205,47 +225,105 @@ class DataHelper:
         return string.strip().lower()
 
 
+    def wordToIndex(self, utterance):
+
+        word_indices = [self.word_idx_map.get(word, self.UNK_ID) for word in nltk.word_tokenize(self.clean_str(utterance))]
+
+        #padding to max_sent_length
+        word_indices = word_indices[:self.config.max_sent_length]
+        word_indices = word_indices + [self.PAD_ID]*(self.config.max_sent_length - len(word_indices))
+        assert(len(word_indices) == self.config.max_sent_length)
+        return word_indices
+
     def vectorizeUtterance(self, mode=None):
 
-        if mode == "train":
-            utterances = self.getData(self.train_input, self.UTT_ID)
-        elif mode == "test":
-            utterances = self.getData(self.test_input, self.UTT_ID)
-        else:
-            print("Set mode properly for vectorizeUtterance method() : mode = train/test")
-            exit()
+        
+        utterances = self.getData(self.UTT_ID, mode, 
+                                  "Set mode properly for vectorizeUtterance method() : mode = train/test")
 
         vector_utt = []
         for utterance in utterances:
-
-            word_indices = [self.word_idx_map.get(word, self.UNK_ID) for word in utterance.split(" ")]
-            
-            #padding to max_sent_length
-            word_indices = word_indices[:self.config.max_sent_length]
-            word_indices = word_indices + [self.PAD_ID]*(self.config.max_sent_length - len(word_indices))
-            assert(len(word_indices) == self.config.max_sent_length)
+            word_indices = self.wordToIndex(utterance)
             vector_utt.append(word_indices)
+
         return vector_utt
 
+    def contextMask(self, mode=None):
 
-    def toOneHot(self, mode=None):
-        '''
-        Returns one hot label version of [train/test]_output
-        '''
+        contexts = self.getData(self.CONTEXT_ID, mode, 
+                                "Set mode properly for contextMask method() : mode = train/test")
 
+
+    def getAuthor(self, mode=None):
+
+        authors = self.getData(self.SPEAKER_ID, mode, 
+                               "Set mode properly for contextMask method() : mode = train/test")
+
+        # Create dictionary for speaker
+
+        if mode=="train":
+            author_list = set()
+            author_list.add("PERSON")
+
+            for author in authors:
+                author = author.strip()
+                if "PERSON" not in author:
+                    author_list.add(author)
+
+            self.author_ind={author:ind for ind, author in enumerate(author_list)}
+            self.UNK_AUTHOR_ID = self.author_ind["PERSON"]
+            self.config.num_authors = len(self.author_ind)
+        
+        # Convert authors into author_ids
+        authors = [self.author_ind.get(author.strip(), self.UNK_AUTHOR_ID) for author in authors]
+        authors = self.toOneHot(authors, len(self.author_ind))
+        return authors
+        
+
+    def vectorizeContext(self, mode=None):
+
+        dummy_sent = [self.PAD_ID]*self.config.max_sent_length
+
+        contexts = self.getData(self.CONTEXT_ID, mode, 
+                                "Set mode properly for vectorizeContext method() : mode = train/test")
+
+        vector_context = []
+        for context in contexts:
+            local_context = []
+            for utterance in context[-self.config.max_context_length:]: # taking latest (max_context_length) sentences
+                #padding to max_sent_length
+                word_indices = self.wordToIndex(utterance)
+                local_context.append(word_indices)
+            for _ in range(self.config.max_context_length - len(local_context)):
+                local_context.append(dummy_sent[:])
+            local_context = np.array(local_context)
+            vector_context.append(local_context)
+
+        return np.array(vector_context)
+
+
+    def oneHotOutput(self, mode=None, size=None):
+        '''
+        Returns one hot encoding of the output
+        '''
         if mode == "train":
-            labels = self.train_output
+            labels = self.toOneHot(self.train_output, size)
         elif mode == "test":
-            labels = self.test_output
+            labels = self.toOneHot(self.test_output, size)
         else:
             print("Set mode properly for toOneHot method() : mode = train/test")
             exit()
+        return labels
 
-        oneHotLabel = np.zeros((len(labels), self.config.num_classes))
-        oneHotLabel[range(len(labels)),labels] = 1
+    def toOneHot(self, data, size=None):
+        '''
+        Returns one hot label version of data
+        '''
+        oneHotData = np.zeros((len(data), size))
+        oneHotData[range(len(data)),data] = 1
         
-        assert(np.array_equal(labels, np.argmax(oneHotLabel, axis=1)))
-        return oneHotLabel
+        assert(np.array_equal(data, np.argmax(oneHotData, axis=1)))
+        return oneHotData
 
 
 
