@@ -106,11 +106,11 @@
             "None at all?"
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "LEONARD",
-            "PERSON1",
+            "PERSON",
             "LEONARD",
-            "PERSON1",
+            "PERSON",
             "LEONARD"
         ],
         "sarcasm": false
@@ -182,13 +182,13 @@
             "Yeah, you, too.\nLeonard, I didn't know you played the cello."
         ],
         "context_speakers": [
-            "PERSON1",
-            "PERSON1",
+            "PERSON",
+            "PERSON",
             "LEONARD",
-            "PERSON1",
+            "PERSON",
             "LEONARD",
-            "PERSON1",
-            "PERSON1",
+            "PERSON",
+            "PERSON",
             "PENNY"
         ],
         "sarcasm": true
@@ -221,7 +221,7 @@
             "Do you really need the Honorary Justice League of American membership card?",
             "It's been in every wallet I've owned since I was five.",
             "Why?",
-            "It says, \"Keep this on your PERSON1 at all times.\"",
+            "It says, \"Keep this on your person at all times.\"",
             "It's right here under Batman's signature.",
             "and this is Leonard and Sheldon's apartment.",
             "Guess whose parents just got broadband."
@@ -455,7 +455,8 @@
             "Of course. Out of respect.",
             "So, how do you explain the ten years before Penny?",
             "Who were you respecting then?",
-            "Well, I've dated plenty of women. There was Joyce Kim, Leslie Winkle"
+            "Well, I've dated plenty of women.",
+            "There was Joyce Kim, Leslie Winkle"
         ],
         "context_speakers": [
             "HOWARD",
@@ -483,8 +484,8 @@
             "SHELDON",
             "PENNY",
             "SHELDON",
-            "PERSON1",
-            "PERSON1",
+            "PERSON",
+            "PERSON",
             "SHELDON",
             "SHELDON",
             "PENNY"
@@ -565,7 +566,7 @@
             "I just finished reading your paper reconciling the black hole information paradox with your theory of string-network condensates, and it just took my breath away."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "PERSON"
         ],
         "sarcasm": true
@@ -647,9 +648,9 @@
         ],
         "context_speakers": [
             "HOWARD",
-            "PERSON1",
+            "PERSON",
             "HOWARD",
-            "PERSON1",
+            "PERSON",
             "LEONARD",
             "HOWARD"
         ],
@@ -663,7 +664,7 @@
             "Oh, my God, what did you do?"
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "LEONARD"
         ],
         "sarcasm": false
@@ -723,7 +724,7 @@
             "Where did you get the stethoscope and the blood pressure cuff?"
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "SHELDON",
             "SHELDON",
             "PERSON"
@@ -738,7 +739,7 @@
             "What?"
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "SHELDON"
         ],
         "sarcasm": true
@@ -791,7 +792,7 @@
             "I know, I've been offering to show you around for a year and a half. You always said you had yoga."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "LEONARD",
             "PENNY",
             "LEONARD"
@@ -870,7 +871,7 @@
     },
     "1_2119": {
         "utterance": "Kind of makes you feel more alive, doesn't it?",
-        "speaker": "PERSON",
+        "speaker": "LESLIE",
         "context": [
             "but wait to be captured or killed.",
             "That's the worst part, the waiting.",
@@ -879,7 +880,7 @@
         ],
         "context_speakers": [
             "HOWARD",
-            "PERSON1",
+            "PERSON",
             "HOWARD",
             "PERSON"
         ],
@@ -1000,7 +1001,7 @@
         ],
         "context_speakers": [
             "PENNY",
-            "PERSON1",
+            "PERSON",
             "PENNY",
             "PERSON"
         ],
@@ -1304,7 +1305,8 @@
             "We did it. We have the west coast feed of hbo.",
             "Ooh,real sex.",
             "Big deal. Every time I watch that show, it's old women putting condoms on cucumbers.",
-            "All right,let's see what's on the east coast feed."
+            "All right,let's see what's on the east coast feed.",
+            "Dune."
         ],
         "context_speakers": [
             "RAJ",
@@ -1333,7 +1335,7 @@
     },
     "1_3256": {
         "utterance": "I'm sorry, fiddling with yourself in the bathtub is a real class act.",
-        "speaker": "PERSON",
+        "speaker": "KATEE",
         "context": [
             "So nice you could join me this evening.",
             "You're looking lovely as always.",
@@ -1344,15 +1346,14 @@
         "context_speakers": [
             "HOWARD",
             "HOWARD",
-            "PERSON1",
-            "PERSON1",
+            "PERSON",
             "HOWARD"
         ],
         "sarcasm": true
     },
     "1_3259": {
         "utterance": "No, I mean Princess Leia. Of course I mean Bernadette. She's a wonderful girl and she really likes you.",
-        "speaker": "PERSON",
+        "speaker": "KATEE",
         "context": [
             "Thank you.",
             "So, shall we get started?",
@@ -1364,9 +1365,9 @@
         "context_speakers": [
             "HOWARD",
             "HOWARD",
-            "PERSON1",
+            "PERSON",
             "HOWARD",
-            "PERSON1",
+            "PERSON",
             "HOWARD"
         ],
         "sarcasm": true
@@ -1444,7 +1445,7 @@
         "context_speakers": [
             "BERNADETTE",
             "LEONARD",
-            "BERNADETTE",
+            "BERNATTE",
             "LEONARD"
         ],
         "sarcasm": false
@@ -1457,7 +1458,7 @@
             "Oh,it's not a problem."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "PENNY"
         ],
         "sarcasm": false
@@ -1494,7 +1495,8 @@
         "utterance": "I understand your point, but given a choice, Jews always go with Chinese food.",
         "speaker": "HOWARD",
         "context": [
-            "There's a 39.95 lover's special at P.F. Chang's.",
+            "There's a",
+            "39.95 lover's special at P.F. Chang's.",
             "Egg rolls, dumplings, bottomless wok, and you get your picture taken on the big marble horse out front.",
             "Given that Saint Valentine was a third century Roman priest who was stoned and beheaded, wouldn't a more appropriate celebration of the evening be taking one's steady gal to witness a brutal murder?"
         ],
@@ -1555,7 +1557,7 @@
             "PENNY",
             "SHELDON",
             "PENNY",
-            "PERSON1",
+            "PERSON",
             "SHELDON"
         ],
         "sarcasm": false
@@ -1672,7 +1674,7 @@
     },
     "1_3911": {
         "utterance": "That's very thoughtful, but I think I'll finish my coffee first.",
-        "speaker": "PERSON",
+        "speaker": "ELIZABETH",
         "context": [
             "And shake twice for Texas.",
             "Something his mother taught him.",
@@ -1693,17 +1695,16 @@
             "Thank you. Raj, keep an eye out for the other one.",
             "Hey, guys, this is my friend Zack.",
             "Hey.",
-            "Hello.",
-            "Whoa! Is that the laser? It's bitchin'.",
+            "Hello. Whoa! Is that the laser? It's bitchin'.",
             "Yes."
         ],
         "context_speakers": [
             "HOWARD",
             "SHELDON",
             "PENNY",
-            "PERSON1",
+            "PERSON",
             "SHELDON",
-            "PERSON1",
+            "PERSON",
             "SHELDON"
         ],
         "sarcasm": true
@@ -1741,12 +1742,11 @@
         "speaker": "SHELDON",
         "context": [
             "and a super executive ant farm with glow-in-the-dark sand?",
-            "Yes",
             "- What if he buys his own desk?",
             "Yeah, what if I buy my own desk?",
             "- That's ridiculous.",
             "- Why?",
-            "Because",
+            "Because\u2026",
             "Yes?",
             "It's my office."
         ],
@@ -1772,7 +1772,12 @@
         ],
         "context_speakers": [
             "HOWARD",
-            "PENNY"
+            "PENNY",
+            "HOWARD",
+            "HOWARD",
+            "HOWARD",
+            "PENNY",
+            "HOWARD"
         ],
         "sarcasm": false
     },
@@ -1805,9 +1810,9 @@
             "And here is my Justice League membership card. But that doesn't prove I know Batman."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "SHELDON",
-            "PERSON1",
+            "PERSON",
             "SHELDON"
         ],
         "sarcasm": false
@@ -1891,12 +1896,11 @@
             "Yeah, okay, I think this ends the ex-boyfriend portion of our evening."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "PENNY",
-            "PERSON1",
-            "PERSON1",
+            "PERSON",
             "PENNY",
-            "PERSON1",
+            "PERSON",
             "PENNY"
         ],
         "sarcasm": false
@@ -1913,10 +1917,9 @@
             "Ah, not yet. I want to talk science with the science dudes."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "LEONARD",
-            "PENNY",
-            "PERSON1",
+            "PERSON",
             "PENNY",
             "PERSON"
         ],
@@ -1930,7 +1933,7 @@
             "Where do they keep the Archies?"
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "PERSON"
         ],
         "sarcasm": true
@@ -1950,10 +1953,10 @@
         "context_speakers": [
             "RAJ",
             "LEONARD",
-            "PERSON1",
+            "PERSON",
             "LEONARD",
-            "PERSON1",
-            "PERSON1",
+            "PERSON",
+            "PERSON",
             "LEONARD"
         ],
         "sarcasm": true
@@ -1970,7 +1973,7 @@
         "context_speakers": [
             "SHELDON",
             "HOWARD",
-            "PERSON1",
+            "PERSON",
             "RAJ"
         ],
         "sarcasm": false
@@ -2080,7 +2083,7 @@
         "context_speakers": [
             "HOWARD",
             "SHELDON",
-            "PERSON1",
+            "PERSON",
             "SHELDON",
             "RAJ",
             "PERSON"
@@ -2098,7 +2101,7 @@
             "So, Penny, Leonard tells me you're an actress. That must be pretty exciting."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "AMY",
             "PENNY",
             "AMY",
@@ -2126,7 +2129,6 @@
             "RAJ",
             "LEONARD",
             "SHELDON",
-            "SHELDON",
             "PERSON"
         ],
         "sarcasm": true
@@ -2139,7 +2141,8 @@
             "Wise.",
             "There you go. Just like recovering alcoholics drink in the Caribbean.",
             "Hi, bestie.",
-            "Oh. Hi, Amy.  How you been?",
+            "Oh. Hi, Amy.",
+            "How you been?",
             "Fine. From this angle, I can see up your nose."
         ],
         "context_speakers": [
@@ -2153,7 +2156,7 @@
         "sarcasm": true
     },
     "1_5169": {
-        "utterance": "I'm not saying that you're not fun. You're the most fun PERSON1 I know.",
+        "utterance": "I'm not saying that you're not fun. You're the most fun person I know.",
         "speaker": "AMY",
         "context": [
             "Your flaring nostrils indicate otherwise.",
@@ -2285,7 +2288,7 @@
         ],
         "context_speakers": [
             "HOWARD",
-            "PERSON1",
+            "PERSON",
             "HOWARD",
             "PERSON"
         ],
@@ -2301,7 +2304,7 @@
         ],
         "context_speakers": [
             "HOWARD",
-            "PERSON1",
+            "PERSON",
             "HOWARD"
         ],
         "sarcasm": false
@@ -2323,7 +2326,6 @@
             "HOWARD",
             "LEONARD",
             "HOWARD",
-            "HOWARD",
             "PENNY",
             "SHELDON"
         ],
@@ -2342,9 +2344,9 @@
         ],
         "context_speakers": [
             "PENNY",
-            "PERSON1",
+            "PERSON",
             "PENNY",
-            "PERSON1",
+            "PERSON",
             "LEONARD",
             "RAJ"
         ],
@@ -2403,8 +2405,7 @@
             "Damn right, you're sorry!",
             "And you tell Howard there's never been anything between us!",
             "I will. Hey, Bernadette?",
-            "What?!",
-            "Do you think I have a shot with Penny?"
+            "What?!\nDo you think I have a shot with Penny?"
         ],
         "context_speakers": [
             "BERNADETTE",
@@ -2511,7 +2512,6 @@
             "SHELDON",
             "PENNY",
             "LEONARD",
-            "PENNY",
             "SHELDON"
         ],
         "sarcasm": false
@@ -2551,7 +2551,6 @@
             "PENNY",
             "AMY",
             "AMY",
-            "AMY",
             "SHELDON",
             "SHELDON",
             "PENNY"
@@ -2562,7 +2561,7 @@
         "utterance": "You see betrayal in others, but not yourself.",
         "speaker": "SHELDON",
         "context": [
-            "What choice did I have?\nShe went behind my back and turned my own mother against me.",
+            "What choice did I have? She went behind my back and turned my own mother against me.",
             "Wow. You're not only our first astronaut.\nYou're also the first one of us to kick a girl out of bed.",
             "You're like a rock star.",
             "Little bit.",
@@ -2608,9 +2607,9 @@
             "You write your sins on a clay pigeon, they fire 'em up in the air, and you pulverize them with a 12-gauge shotgun full of our Lord's forgiveness."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "LEONARD",
-            "PERSON1",
+            "PERSON",
             "PERSON"
         ],
         "sarcasm": true
@@ -2631,8 +2630,8 @@
             "SHELDON",
             "SHELDON",
             "RAJ",
-            "PERSON1",
-            "PERSON1"
+            "PERSON",
+            "PERSON"
         ],
         "sarcasm": false
     },
@@ -2647,8 +2646,8 @@
         ],
         "context_speakers": [
             "PENNY",
-            "PERSON1",
-            "PERSON1",
+            "PERSON",
+            "PERSON",
             "SHELDON"
         ],
         "sarcasm": false
@@ -2743,7 +2742,7 @@
             "Just do it!",
             "Oh, God!\nOne... two...\nthree!",
             "Trick or treat, bubbeleh.",
-            "What?"
+            "What?\n(laughing)"
         ],
         "context_speakers": [
             "SHELDON",
@@ -2751,8 +2750,7 @@
             "SHELDON",
             "BERNADETTE",
             "SHELDON",
-            "HOWARD",
-            "SHELDON"
+            "HOWARD"
         ],
         "sarcasm": false
     },
@@ -2874,9 +2872,9 @@
         "context_speakers": [
             "SHELDON",
             "LEONARD",
-            "PERSON1",
-            "PERSON1",
-            "PERSON1",
+            "PERSON",
+            "PERSON",
+            "PERSON",
             "PERSON"
         ],
         "sarcasm": true
@@ -2938,7 +2936,7 @@
     },
     "1_6645": {
         "utterance": "Well, that wady took high-wes pictures of my junk wast night for Cwaigswist.",
-        "speaker": "PERSON1",
+        "speaker": "BARRY",
         "context": [
             "(chimes) Wisten to me.\nNot westauwant; westauwant.",
             "(chimes) I don't know what you mean by \"not westauwant; westauwant.\"",
@@ -2954,7 +2952,7 @@
         "sarcasm": false
     },
     "1_6648": {
-        "utterance": "You mean for a PERSON1 whose neck massages feel like an eagle is trying to carry you to its nest?",
+        "utterance": "You mean for a person whose neck massages feel like an eagle is trying to carry you to its nest?",
         "speaker": "LEONARD",
         "context": [
             "This is amazing.\nHow did you even get this idea?",
@@ -2981,8 +2979,7 @@
             "Okay, um... how about \"Crash\"? \nHoward \"Crash\" Wolowitz."
         ],
         "context_speakers": [
-            "RAJ",
-            "HOWARD",
+            "RAJ  HOWARD",
             "RAJ",
             "HOWARD",
             "RAJ"
@@ -3086,6 +3083,7 @@
             "LEONARD",
             "SHELDON",
             "HOWARD",
+            "HOWARD",
             "HOWARD"
         ],
         "sarcasm": true
@@ -3101,7 +3099,7 @@
         ],
         "context_speakers": [
             "RAJ",
-            "PERSON1",
+            "PERSON",
             "RAJ",
             "RAJ"
         ],
@@ -3135,8 +3133,7 @@
             "and she makes me Froot Loops.",
             "Go with gay story, people are more accepting of that.",
             "Actually, Froot Loops just got married to a girl.",
-            "Congratulations.",
-            "Thanks, we decided to do it before the launch.",
+            "Congratulations. \nThanks, we decided to do it before the launch.",
             "You and Mrs. Loops have a big wedding?"
         ],
         "context_speakers": [
@@ -3299,10 +3296,10 @@
         ],
         "context_speakers": [
             "SHELDON",
-            "PERSON1",
+            "PERSON",
             "PENNY",
             "PENNY",
-            "PERSON1",
+            "PERSON",
             "PENNY"
         ],
         "sarcasm": false
@@ -3320,10 +3317,10 @@
             "Where are we going?"
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "PENNY",
             "PENNY",
-            "PERSON1",
+            "PERSON",
             "PENNY",
             "PENNY",
             "LEONARD"
@@ -3348,7 +3345,7 @@
             "SHELDON",
             "LEONARD",
             "SHELDON",
-            "PERSON1",
+            "PERSON",
             "SHELDON"
         ],
         "sarcasm": false
@@ -3391,7 +3388,7 @@
     },
     "1_7494": {
         "utterance": "that sounds a little funny to an American ear.",
-        "speaker": "PERSON",
+        "speaker": "STUART",
         "context": [
             "Wow, so you guys are like buds now?",
             "Oh, yeah, we hang out all the time.",
@@ -3401,14 +3398,14 @@
         "context_speakers": [
             "HOWARD",
             "RAJ",
-            "PERSON1",
+            "PERSON",
             "RAJ"
         ],
         "sarcasm": false
     },
     "1_7504": {
         "utterance": "\"To Stuart, your comic book store is out of this world. Just like the guy in this picture was.\"",
-        "speaker": "PERSON",
+        "speaker": "STUART",
         "context": [
             "Oh, hey, Stuart, I got you a little souvenir from my trip to space.",
             "Well, Howard, that's very nice of you.",
@@ -3417,7 +3414,7 @@
         ],
         "context_speakers": [
             "HOWARD",
-            "PERSON1",
+            "PERSON",
             "LEONARD",
             "HOWARD"
         ],
@@ -3464,7 +3461,7 @@
         "sarcasm": false
     },
     "1_7641": {
-        "utterance": "She was just so sad all the time. Yeah, I was the only PERSON1 who could cheer her up. Well, me and Ben and Jerry.",
+        "utterance": "She was just so sad all the time. Yeah, I was the only person who could cheer her up. Well, me and Ben and Jerry.",
         "speaker": "HOWARD",
         "context": [
             "You are now the only woman in my life who I'll see naked in the bathroom.",
@@ -3561,7 +3558,7 @@
     },
     "1_7953": {
         "utterance": "Why don't you ask Scotty to beam you up?",
-        "speaker": "PERSON",
+        "speaker": "WAITRESS",
         "context": [
             "Hello.",
             "Uh, four glasses of water, please.",
@@ -3580,8 +3577,7 @@
         "utterance": "No, just me, her and a couple of the big wigs. It's part of a bonus she got.",
         "speaker": "HOWARD",
         "context": [
-            "Here you go  .",
-            "Great. Come on in.",
+            "Here you go.\nGreat. Come on in.",
             "What, you don't say thank you?",
             "It's my suitcase.\nI lent it to you two years ago.",
             "Well, then, I should tell you I broke the wheel and the handle.",
@@ -3633,7 +3629,8 @@
         "utterance": "Trust me, you're not Jewish. That's how they get you.",
         "speaker": "HOWARD",
         "context": [
-            "Rajesh!\nYou up?\nYou ready for breakfast?",
+            "Rajesh!\nYou up?",
+            "You ready for breakfast?",
             "Oh, boy. Breakfast.",
             "Okay, Raj, listen to me.\nYou need to get out of there.",
             "But I have a cream sherry hangover and I smell blintzes.",
@@ -3641,7 +3638,7 @@
             "Oh, Howard, stop."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "RAJ",
             "HOWARD",
             "RAJ",
@@ -3652,7 +3649,7 @@
     },
     "1_8136": {
         "utterance": "Yeah, I'm really looking forward to it. In fact, there's no place I would rather be than here.",
-        "speaker": "PERSON",
+        "speaker": "STUART",
         "context": [
             "It's nice that all the people who are lonely on Valentine's Day can come here tonight and be together."
         ],
@@ -3667,7 +3664,8 @@
         "context": [
             "But if someday you decide you want to get married, you have to propose to me.",
             "Really?",
-            "Yes.\nIt's all on you.",
+            "Yes.",
+            "It's all on you.",
             "But I got to tell you, when the time comes, I want the whole nine yards.",
             "I want you down on one knee, flowers.\nI want to be swept off my feet.",
             "Yeah, you got it."
@@ -3734,6 +3732,7 @@
             "SHELDON",
             "LEONARD",
             "PENNY",
+            "PENNY",
             "SHELDON",
             "PENNY",
             "SHELDON",
@@ -3758,7 +3757,6 @@
             "RAJ",
             "HOWARD",
             "RAJ",
-            "RAJ",
             "HOWARD",
             "RAJ"
         ],
@@ -3766,7 +3764,7 @@
     },
     "1_8452": {
         "utterance": "I think I'm gonna go. Thank you for the burrito and the pork rinds and the 20-minute lecture on why monster trucks are better than regular trucks.",
-        "speaker": "PERSON",
+        "speaker": "LUCY",
         "context": [
             "Probably because I didn't read the instructions.\nNo wrapper's going to tell me what to do.",
             "Unless his name is Jay-Z.",
@@ -3778,9 +3776,9 @@
         "context_speakers": [
             "RAJ",
             "RAJ",
-            "PERSON1",
+            "PERSON",
             "RAJ",
-            "PERSON1",
+            "PERSON",
             "RAJ"
         ],
         "sarcasm": true
@@ -3859,7 +3857,6 @@
         "context_speakers": [
             "PENNY",
             "AMY",
-            "AMY",
             "SHELDON"
         ],
         "sarcasm": true
@@ -3919,8 +3916,8 @@
         ],
         "context_speakers": [
             "LEONARD",
-            "PERSON1",
-            "PERSON1",
+            "PERSON",
+            "PERSON",
             "LEONARD",
             "SHELDON",
             "LEONARD",
@@ -3960,9 +3957,9 @@
         ],
         "context_speakers": [
             "SHELDON",
-            "PERSON1",
+            "PERSON",
             "SHELDON",
-            "PERSON1",
+            "PERSON",
             "PERSON"
         ],
         "sarcasm": false
@@ -4007,7 +4004,7 @@
     },
     "1_9963": {
         "utterance": "What do you think I was gonna do at home?",
-        "speaker": "PERSON",
+        "speaker": "STUART",
         "context": [
             "Koothrappali murder mystery dinner.",
             "I'm leaving.",
@@ -4021,7 +4018,7 @@
             "AMY",
             "RAJ",
             "BERNADETTE",
-            "AMY",
+            "ANY",
             "PENNY"
         ],
         "sarcasm": false
@@ -4082,9 +4079,9 @@
             "A few months."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "SHELDON",
-            "PERSON1",
+            "PERSON",
             "SHELDON",
             "PERSON"
         ],
@@ -4106,9 +4103,9 @@
         "context_speakers": [
             "AMY",
             "PENNY",
-            "PERSON1",
+            "PERSON",
             "PENNY",
-            "PERSON1",
+            "PERSON",
             "PENNY",
             "AMY",
             "PENNY"
@@ -4122,7 +4119,7 @@
             "it's important to the story that my boobs be the last things to turn ape.",
             "It's sweet that he thinks there's a story.",
             "Oh, and there's not even a bathroom on set.\nI have to go to the gas station across the street.",
-            "I mean, I was dressed like half an ape and still not even close to the most disgusting PERSON1 in there.",
+            "I mean, I was dressed like half an ape and still not even close to the most disgusting person in there.",
             "Leonard, I could use your assistance.",
             "Sure. What's up?"
         ],
@@ -4229,8 +4226,7 @@
         "context_speakers": [
             "BERNADETTE",
             "BERNADETTE",
-            "PERSON1",
-            "SHELDON",
+            "PERSON",
             "SHELDON",
             "SHELDON",
             "PERSON"
@@ -4307,7 +4303,7 @@
             "And when I say love\" I meant as a friend.\nAnd, uh, way too soon, right?"
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "PENNY",
             "RAJ",
             "RAJ",
@@ -4330,8 +4326,7 @@
             "PENNY",
             "RAJ",
             "PENNY",
-            "PERSON1",
-            "PERSON1",
+            "PERSON",
             "PENNY"
         ],
         "sarcasm": false
@@ -4462,10 +4457,10 @@
         ],
         "context_speakers": [
             "SHELDON",
-            "PERSON1",
-            "PERSON1",
+            "PERSON",
+            "PERSON",
             "HOWARD",
-            "PERSON1",
+            "PERSON",
             "SHELDON",
             "PERSON"
         ],
@@ -4481,9 +4476,9 @@
             "What'd you get? What'd you get?"
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "LEONARD",
-            "PERSON1",
+            "PERSON",
             "SHELDON"
         ],
         "sarcasm": false
@@ -4502,9 +4497,10 @@
         "context_speakers": [
             "HOWARD",
             "LEONARD",
+            "PENNY",
             "RAJ",
             "PENNY",
-            "PERSON1",
+            "PERSON",
             "PENNY"
         ],
         "sarcasm": true
@@ -4614,8 +4610,7 @@
         "context_speakers": [
             "HOWARD",
             "BERNADETTE",
-            "HOWARD",
-            "BERNADETTE"
+            "HOWARD"
         ],
         "sarcasm": true
     },
@@ -4625,7 +4620,8 @@
         "context": [
             "Wow. I don't know which hurts worse-- my nose or my heart.",
             "Well, I'm done speaking to you.",
-            "Don't be like that.\nYou two need to talk this out.",
+            "Don't be like that.",
+            "You two need to talk this out.",
             "Yeah, 'cause you sound really funny.",
             "Sheldon, I'm sorry I didn't tell you about the surgery, but you were worried about nothing."
         ],
@@ -4794,7 +4790,6 @@
         "context_speakers": [
             "AMY",
             "PENNY",
-            "PENNY",
             "SHELDON",
             "PENNY",
             "SHELDON",
@@ -4916,8 +4911,8 @@
             "So, where is it?"
         ],
         "context_speakers": [
-            "PERSON1",
-            "PERSON1",
+            "PERSON",
+            "PERSON",
             "BERNADETTE"
         ],
         "sarcasm": false
@@ -4943,14 +4938,14 @@
     },
     "1_11885": {
         "utterance": "Yeah, turns out half a dozen menorahs really sets a mood.",
-        "speaker": "PERSON",
+        "speaker": "STUART",
         "context": [
             "Glad you guys could make it.",
             "Of course.",
             "Wow, it looks really pretty in here."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "LEONARD",
             "PENNY"
         ],
@@ -5038,12 +5033,12 @@
         ],
         "context_speakers": [
             "HOWARD",
-            "RAJ",
+            "Raj",
             "PENNY",
             "RAJ",
             "PENNY",
             "AMY",
-            "BERNADETTE"
+            "BERNADETE"
         ],
         "sarcasm": false
     },
@@ -5104,7 +5099,7 @@
             "Ooh. Hot date?"
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "RAJ"
         ],
         "sarcasm": false
@@ -5147,6 +5142,43 @@
         ],
         "sarcasm": false
     },
+    "2_223": {
+        "utterance": "I guess he wants to do a little dance, you know, make a little love. Well pretty much get down to that.",
+        "speaker": "CHANDLER",
+        "context": [
+            "Hey who is this Casey?",
+            "Oh some guy she met in the movies",
+            "Oh really? What does he want with her?"
+        ],
+        "context_speakers": [
+            "ROSS",
+            "PHOEBE",
+            "ROSS"
+        ],
+        "sarcasm": true
+    },
+    "2_370": {
+        "utterance": "You have to stop the Q-Tip when there is resistance",
+        "speaker": "CHANDLER",
+        "context": [
+            "My family's been going to him forever. He did my first suit when I was 15. No wait 16. Excuse me, 15\u00c9 Alright when was 1990?"
+        ],
+        "context_speakers": [
+            "JOEY"
+        ],
+        "sarcasm": true
+    },
+    "2_556": {
+        "utterance": "Joey if I go first, I want to be looking for my keys",
+        "speaker": "CHANDLER",
+        "context": [
+            "When their pets pass on, they want them sort of laid out like they are sleeping. But, occassionally theres a person who wants them in a pose like chasing their tail or uh, jumping to catch a frizbee."
+        ],
+        "context_speakers": [
+            "PERSON"
+        ],
+        "sarcasm": true
+    },
     "2_484": {
         "utterance": "Yes yes it is! In Prison!!",
         "speaker": "ROSS",
@@ -5174,6 +5206,36 @@
         ],
         "sarcasm": true
     },
+    "2_498": {
+        "utterance": "Uh, so how many cameras are actually on you.",
+        "speaker": "CHANDLER",
+        "context": [
+            "Where's Monica?",
+            "Over here Dad",
+            "How to you zoom out? There she is",
+            "Some girl ate Monica",
+            "Shut up, the camera adds 10 pounds."
+        ],
+        "context_speakers": [
+            "PERSON1",
+            "MONICA",
+            "PERSON2",
+            "JOEY",
+            "MONICA"
+        ],
+        "sarcasm": true
+    },
+    "2_494": {
+        "utterance": "But younger than some buildings!",
+        "speaker": "CHANDLER",
+        "context": [
+            "I know Richard's really nice and everything, it's just that we don't know him really well you know, plus he is old \u00c9 er than some people."
+        ],
+        "context_speakers": [
+            "CHANDLER"
+        ],
+        "sarcasm": true
+    },
     "2_477": {
         "utterance": "And then and then you clicked it again, she's dressed. She is a business woman, she is walking down the street and oh oh oh she's naked.",
         "speaker": "CHANDLER",
@@ -5185,7 +5247,7 @@
             "RACHEL",
             "CHANDLER"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_35": {
         "utterance": "Oh no don\u00d5t go. I have scared you. I have said too much. I am hopeless and awkward and desperate for love.",
@@ -5194,26 +5256,9 @@
             "I am not divorced yet. Chandler, you know you just invited me over here for pasta and all of a sudden you are talking about moving in together. I wasn't even that hungry. Its getting really late and I should just umm."
         ],
         "context_speakers": [
-            "PERSON"
+            "JANICE"
         ],
         "sarcasm": false
-    },
-    "2_597": {
-        "utterance": "Because I am too afraid.",
-        "speaker": "CHANDLER",
-        "context": [
-            "If you ask me, as long as this job, there is nothing pushing you to get another one. You need the fear",
-            "Fear?",
-            "He is right, if you quit this job, you then have motivation to go after  a job you really want.",
-            "Well then how come you are still at a job that you hate? I mean why don't you quit and get the fear?"
-        ],
-        "context_speakers": [
-            "JOEY",
-            "RACHEL",
-            "CHANDLER",
-            "RACHEL"
-        ],
-        "sarcasm": true
     },
     "2_279": {
         "utterance": "Sounds like she has got the whole package!",
@@ -5256,18 +5301,7 @@
             "ROSS",
             "CHANDLER"
         ],
-        "sarcasm": true
-    },
-    "2_621": {
-        "utterance": "Huh uh, liked what she saw eh? Dug my action did she? Checking out the Chan-chan man.",
-        "speaker": "CHANDLER",
-        "context": [
-            "Okay, my boss Joanna when you left, she started asking questions about you."
-        ],
-        "context_speakers": [
-            "RACHEL"
-        ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_464": {
         "utterance": "Oh, uh, no thanks. I just had an M&M.",
@@ -5291,11 +5325,11 @@
         ],
         "context_speakers": [
             "CHANDLER",
-            "PERSON1",
+            "PERSON",
             "CHANDLER",
             "PERSON"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_574": {
         "utterance": "You can't do anything.",
@@ -5314,7 +5348,7 @@
             "JOEY",
             "CHANDLER"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_409": {
         "utterance": "I'll catch you guys later.",
@@ -5326,10 +5360,10 @@
         ],
         "context_speakers": [
             "CHANDLER",
-            "PERSON1",
+            "RACHEL COLLEAGUE",
             "CHANDLER"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_549": {
         "utterance": "Really?",
@@ -5340,7 +5374,7 @@
         "context_speakers": [
             "MONICA"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_598": {
         "utterance": "Our balcony? Seriously? That's so funny because I told Monica we should put lights on our balcony. - And she said - \"No no, its too cold, nobody will go out there.\"  - I said \"Maybe if we put some lights out there they will\".",
@@ -5364,6 +5398,17 @@
         ],
         "sarcasm": true
     },
+    "2_374": {
+        "utterance": "Janice? Janice?",
+        "speaker": "CHANDLER",
+        "context": [
+            "Will you get me a white zinfandel and glass of red for Janice."
+        ],
+        "context_speakers": [
+            "PERSON"
+        ],
+        "sarcasm": true
+    },
     "2_297": {
         "utterance": "I am sorry, it was a one time thing. I was very drunk and it was someone else's subconscious",
         "speaker": "CHANDLER",
@@ -5379,7 +5424,7 @@
             "CHANDLER",
             "ROSS"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_286": {
         "utterance": "And sometimes I would want you to steal third, and I'll go like this.",
@@ -5420,19 +5465,6 @@
         ],
         "sarcasm": true
     },
-    "2_349": {
-        "utterance": "Cookie?",
-        "speaker": "CHANDLER",
-        "context": [
-            "Are you okay sweetie?",
-            "I just feel like someone reached down my throat, grabbed my small intestine, pulled it out my mouth and tied it around my neck."
-        ],
-        "context_speakers": [
-            "MONICA",
-            "ROSS"
-        ],
-        "sarcasm": true
-    },
     "2_472": {
         "utterance": "And I just won a million dollars!",
         "speaker": "CHANDLER",
@@ -5443,6 +5475,17 @@
             "ROSS"
         ],
         "sarcasm": false
+    },
+    "2_227": {
+        "utterance": "You sure he is going to be able to crack that code?",
+        "speaker": "CHANDLER",
+        "context": [
+            "Well, despite the yummy bagels and palpable tension, I have got pants that need to be altered."
+        ],
+        "context_speakers": [
+            "CHANDLER"
+        ],
+        "sarcasm": true
     },
     "2_226": {
         "utterance": "These people find out that a spelling game is going over there, there will be nobody left at our party.",
@@ -5513,7 +5556,7 @@
         "context_speakers": [
             "RACHEL"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_389": {
         "utterance": "Huh! Whats dufus speled backwards?",
@@ -5558,7 +5601,26 @@
             "CHANDLER",
             "RACHEL"
         ],
-        "sarcasm": false
+        "sarcasm": true
+    },
+    "2_84": {
+        "utterance": "If that doesn't keep kids in school, what will?",
+        "speaker": "CHANDLER",
+        "context": [
+            "Two week straight and she hasn't smoked since.",
+            "So how did you guys meet?",
+            "Oh I was in Mrs. Knight's oh I mean Alice, I was in her Home ED class.",
+            "And he was my best student.",
+            "Yes she was my best teacher."
+        ],
+        "context_speakers": [
+            "RACHEL",
+            "MONICA",
+            "PERSON1",
+            "PERSON2",
+            "PERSON1"
+        ],
+        "sarcasm": true
     },
     "2_322": {
         "utterance": "Hey, my father's house does that.",
@@ -5571,7 +5633,7 @@
             "PHOEBE",
             "RACHEL"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_416": {
         "utterance": "Were you so late because you were burying this woman?",
@@ -5582,7 +5644,7 @@
         "context_speakers": [
             "ROSS"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_124": {
         "utterance": "I am so confused as to what we have been doing so far.",
@@ -5599,7 +5661,18 @@
             "CHANDLER",
             "MONICA"
         ],
-        "sarcasm": false
+        "sarcasm": true
+    },
+    "2_206": {
+        "utterance": "A tshirt that says - I don't belong here.",
+        "speaker": "CHANDLER",
+        "context": [
+            "Hey guys, what should I wear to a Nick's game?"
+        ],
+        "context_speakers": [
+            "MONICA"
+        ],
+        "sarcasm": true
     },
     "2_204": {
         "utterance": "Oh Oh, I am convinced!",
@@ -5626,7 +5699,7 @@
             "CHANDLER",
             "MONICA"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_380": {
         "utterance": "Oh just like give a minute to wake up for this \u00c9 Ha ha! You lost the ring. You the worst best man ever!",
@@ -5637,7 +5710,7 @@
         "context_speakers": [
             "JOEY"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_622": {
         "utterance": "Pheebs, you may know this, you know strange things. What is the boiling point of brain?",
@@ -5661,7 +5734,7 @@
             "JOEY",
             "ROSS"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_456": {
         "utterance": "And you are gonna make them all disappear.",
@@ -5691,6 +5764,39 @@
         ],
         "sarcasm": true
     },
+    "2_152": {
+        "utterance": "Your makeup?",
+        "speaker": "ROSS",
+        "context": [
+            "Are you referring to my man's bag? At first it I thought it just look good. But its practical too, check it out! Its got compartments for all your stuff. Your wallet, your key, your addressbook."
+        ],
+        "context_speakers": [
+            "JOEY"
+        ],
+        "sarcasm": true
+    },
+    "2_15": {
+        "utterance": "I'm sorry man there is never a good time to have to .. Stop catching on fire.",
+        "speaker": "CHANDLER",
+        "context": [
+            "When I had insurance I could get hit by a bus or catch on fire, it wouldn't matter. Now I got to be careful?"
+        ],
+        "context_speakers": [
+            "JOEY"
+        ],
+        "sarcasm": true
+    },
+    "2_421": {
+        "utterance": "Joey's got a really bad hernia but its nothing that a laser eye surgery wont fix",
+        "speaker": "CHANDLER",
+        "context": [
+            "Thank you, but it would take me forever to pay  you that money back and I don't want that hanging on my head. Besides, soon as my insurance kicks in I' ll all the free operations I want. T'll probably start with that laser eye surgery."
+        ],
+        "context_speakers": [
+            "JOEY"
+        ],
+        "sarcasm": true
+    },
     "2_586": {
         "utterance": "See now that I see crying over, but Bambi, is a cartoon.",
         "speaker": "CHANDLER",
@@ -5711,16 +5817,39 @@
         "context_speakers": [
             "PERSON"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
-    "2_309": {
-        "utterance": "I mean nothing bad's gonna Go down?",
+    "2_39": {
+        "utterance": "Oh hurry up, I want to sign that.",
         "speaker": "CHANDLER",
         "context": [
-            "Okay, but you know, we are safe right?"
+            "But that reminds me, sign this.",
+            "What is it?",
+            "Its nothing, just that you can't sue the city incase you scrap your knee or your know get your head blown off."
         ],
         "context_speakers": [
-            "CHANDLER"
+            "PERSON",
+            "ROSS",
+            "PERSON"
+        ],
+        "sarcasm": true
+    },
+    "2_66": {
+        "utterance": "Nice jon Joe, you are quite the craftsman!",
+        "speaker": "CHANDLER",
+        "context": [
+            "What are you doing?",
+            "Key is stuck in the lock.",
+            "I could fix it hold on hold on, watch out watch out.",
+            "It still doesn't work!",
+            "I am not finished."
+        ],
+        "context_speakers": [
+            "JOEY",
+            "CHANDLER",
+            "JOEY",
+            "CHANDLER",
+            "JOEY"
         ],
         "sarcasm": true
     },
@@ -5735,7 +5864,26 @@
             "CHANDLER",
             "JOEY"
         ],
-        "sarcasm": false
+        "sarcasm": true
+    },
+    "2_345": {
+        "utterance": "Oh I left them in my bulldozer .. I don't have tools!",
+        "speaker": "CHANDLER",
+        "context": [
+            "It isnt working",
+            "We have to unscrew the chain",
+            "Hurry, I can't feel my ears",
+            "Can you ever feel your ears?",
+            "Interesting"
+        ],
+        "context_speakers": [
+            "JOEY",
+            "MONICA",
+            "JOEY",
+            "CHANDLER",
+            "JOEY"
+        ],
+        "sarcasm": true
     },
     "2_581": {
         "utterance": "We were wondering what was taking so long with the gift, but now we understand you were doing this.",
@@ -5744,6 +5892,27 @@
             "Quack quack, quack quack, quack quack."
         ],
         "context_speakers": [
+            "JOEY"
+        ],
+        "sarcasm": true
+    },
+    "2_518": {
+        "utterance": "Oh tons. I am quite the woodsman.",
+        "speaker": "CHANDLER",
+        "context": [
+            "Okay, lets find these birds.",
+            "Wait wait, you hear that? There are in the table?",
+            "That can't be good",
+            "We have to get them out of there",
+            "how?",
+            "Maybe we can lure them out, you know of any bird calls?"
+        ],
+        "context_speakers": [
+            "CHANDLER",
+            "JOEY",
+            "CHANDLER",
+            "JOEY",
+            "CHANDLER",
             "JOEY"
         ],
         "sarcasm": true
@@ -5757,7 +5926,42 @@
         "context_speakers": [
             "JOEY"
         ],
-        "sarcasm": false
+        "sarcasm": true
+    },
+    "2_567": {
+        "utterance": "Well yes Ross, pressing my third nipple opens the delivery entrance to the magical land of Narnia.",
+        "speaker": "CHANDLER",
+        "context": [
+            "So uh, does it do anything uh special?"
+        ],
+        "context_speakers": [
+            "ROSS"
+        ],
+        "sarcasm": true
+    },
+    "2_115": {
+        "utterance": "I am sorry, we don\u00d5t have your sheep.",
+        "speaker": "CHANDLER",
+        "context": [
+            "Hey"
+        ],
+        "context_speakers": [
+            "RACHEL"
+        ],
+        "sarcasm": true
+    },
+    "2_183": {
+        "utterance": "No, rabies.",
+        "speaker": "CHANDLER",
+        "context": [
+            "What what?",
+            "Hey, shaving?"
+        ],
+        "context_speakers": [
+            "CHANDLER",
+            "JOEY"
+        ],
+        "sarcasm": true
     },
     "2_104": {
         "utterance": "Was that place the sun?",
@@ -5809,7 +6013,7 @@
             "JOEY",
             "CHANDLER"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_433": {
         "utterance": "I was saying the actual words",
@@ -5839,7 +6043,7 @@
             "ROSS",
             "JOEY"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_1": {
         "utterance": "Yes you can. You're thinking about time, you can't go back in time.",
@@ -5852,7 +6056,7 @@
             "CHANDLER",
             "MONICA"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_168": {
         "utterance": "Did I wake you?",
@@ -5882,7 +6086,7 @@
             "MONICA",
             "PHOEBE"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_2": {
         "utterance": "That\u00d5s a good one too Pheebs, now all that I have to do is find a plane load of people whose resolution is to plummet to their deaths",
@@ -5900,6 +6104,17 @@
         "speaker": "CHANDLER",
         "context": [
             "What an interesting approach to guitar instruction."
+        ],
+        "context_speakers": [
+            "CHANDLER"
+        ],
+        "sarcasm": true
+    },
+    "2_487": {
+        "utterance": "And Hornswoggle? What? Are you dating a character from \"Fraggle Rock\"? Ahh.",
+        "speaker": "CHANDLER",
+        "context": [
+            "I can't take it any more! So you win, okay? Pheebs? Flying a jet? Better make it a spaceship so that you can get back to your home planet! And Ross, phone call for you today. Tom Jones, he wants his pants back!"
         ],
         "context_speakers": [
             "CHANDLER"
@@ -5930,7 +6145,7 @@
             "CHANDLER",
             "ROSS"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_148": {
         "utterance": "Hey, that's Joincidence with a C",
@@ -5941,7 +6156,20 @@
         "context_speakers": [
             "PHOEBE"
         ],
-        "sarcasm": false
+        "sarcasm": true
+    },
+    "2_532": {
+        "utterance": "The Jamestown colony of Virginia. You see King George is giving us the land, so.",
+        "speaker": "CHANDLER",
+        "context": [
+            "Rach rach, we gotta settle",
+            "Settle what?"
+        ],
+        "context_speakers": [
+            "CHANDLER",
+            "RACHEL"
+        ],
+        "sarcasm": true
     },
     "2_443": {
         "utterance": "Dear god, this parachute is a knapsack",
@@ -5960,22 +6188,50 @@
             "CHANDLER",
             "MONICA"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
-    "2_480": {
-        "utterance": "Well sure but can you play it on a plane?",
+    "2_475": {
+        "utterance": "Oh yeah ok, including the waffles last week, you now owe me, seventeen zillion dollars.",
         "speaker": "CHANDLER",
         "context": [
-            "He remembered",
-            "Remembered what?",
-            "It was like months ago, we were walking by this antique store and I saw this pin in the window and I told him it was just like one my grandmother had when I was a little girl. Oh can't believe he remembered."
+            "Hey, Chan. Can you help me out here, I promise I'll pay you back."
         ],
         "context_speakers": [
-            "RACHEL",
-            "PHOEBE",
-            "RACHEL"
+            "JOEY"
         ],
-        "sarcasm": false
+        "sarcasm": true
+    },
+    "2_92": {
+        "utterance": "No, no, I am just looking for a man to draw on me with chalk.",
+        "speaker": "CHANDLER",
+        "context": [
+            "Anybody know a good tailor?",
+            "You needs some clothes altered?"
+        ],
+        "context_speakers": [
+            "CHANDLER",
+            "JOEY"
+        ],
+        "sarcasm": true
+    },
+    "2_258": {
+        "utterance": "I am telling you, when she leaned back, I could see her brain",
+        "speaker": "CHANDLER",
+        "context": [
+            "Hey",
+            "So how was Joan?",
+            "Broke up with her",
+            "Why",
+            "Don't tell me, because of the big nostril thing?"
+        ],
+        "context_speakers": [
+            "CHANDLER",
+            "MONICA",
+            "CHANDLER",
+            "MONICA",
+            "ROSS"
+        ],
+        "sarcasm": true
     },
     "2_376": {
         "utterance": "Me? I am gonna die alone!",
@@ -6029,32 +6285,6 @@
         ],
         "sarcasm": false
     },
-    "2_580": {
-        "utterance": "Its my game, you want the job or not?",
-        "speaker": "CHANDLER",
-        "context": [
-            "Would you sleep with somebody to get a great job?",
-            "I don't know, who would I have to sleep with?"
-        ],
-        "context_speakers": [
-            "CHANDLER",
-            "RACHEL"
-        ],
-        "sarcasm": true
-    },
-    "2_19": {
-        "utterance": "Uh. Okay just show me one of them",
-        "speaker": "CHANDLER",
-        "context": [
-            "Oh and give me five more. Five more! Five more and I will flash you.",
-            "One, Two, two and a half"
-        ],
-        "context_speakers": [
-            "MONICA",
-            "CHANDLER"
-        ],
-        "sarcasm": false
-    },
     "2_221": {
         "utterance": "See Joe that's why your parents told you not to jump on your bed!",
         "speaker": "CHANDLER",
@@ -6064,7 +6294,7 @@
         "context_speakers": [
             "JOEY"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_369": {
         "utterance": "I just have to do one thing, really quickly, its not a big thing \u00c9 GET UP||",
@@ -6088,8 +6318,7 @@
             "CHANDLER",
             "JOEY",
             "CHANDLER",
-            "JOEY",
-            "CHANDLER",
+            "JOEY CHANDLER",
             "JOEY",
             "CHANDLER",
             "JOEY",
@@ -6104,29 +6333,18 @@
             "Someone in there?"
         ],
         "context_speakers": [
-            "PERSON"
+            "GUNTHER"
         ],
         "sarcasm": true
     },
-    "2_616": {
-        "utterance": "I'll go.",
+    "2_457": {
+        "utterance": "Yes, we all know how cruel a parent can be, about the flatness of a child's pillow.",
         "speaker": "CHANDLER",
         "context": [
-            "But, if you do come to dinner, I'll love you like I do in that black thing that you like"
+            "I just don't wanna give them any more ammunition than they already have."
         ],
         "context_speakers": [
-            "RACHEL"
-        ],
-        "sarcasm": true
-    },
-    "2_14": {
-        "utterance": "Stay out of my freezer",
-        "speaker": "CHANDLER",
-        "context": [
-            "I honestly don't know if I am hungry or horny"
-        ],
-        "context_speakers": [
-            "ROSS"
+            "MONICA"
         ],
         "sarcasm": true
     },
@@ -6143,6 +6361,17 @@
         ],
         "sarcasm": true
     },
+    "2_174": {
+        "utterance": "Oh! Satan's minions at work again?",
+        "speaker": "CHANDLER",
+        "context": [
+            "And there's five hundred extra dollars in my account."
+        ],
+        "context_speakers": [
+            "PHOEBE"
+        ],
+        "sarcasm": true
+    },
     "2_490": {
         "utterance": "Maybe it's a contest, you know? Like \"Collect all five\".",
         "speaker": "CHANDLER",
@@ -6151,6 +6380,28 @@
         ],
         "context_speakers": [
             "PHOEBE"
+        ],
+        "sarcasm": true
+    },
+    "2_430": {
+        "utterance": "I guess you would know that or else we would be in a predicament room",
+        "speaker": "CHANDLER",
+        "context": [
+            "Listen it's kind of an emergency"
+        ],
+        "context_speakers": [
+            "CHANDLER"
+        ],
+        "sarcasm": true
+    },
+    "2_434": {
+        "utterance": "We can? Ok I am trying that.",
+        "speaker": "CHANDLER",
+        "context": [
+            "You guys can pee standing up."
+        ],
+        "context_speakers": [
+            "RACHEL"
         ],
         "sarcasm": true
     },
@@ -6165,11 +6416,46 @@
         ],
         "sarcasm": true
     },
+    "2_392": {
+        "utterance": "Ah you see perfect might be a problem. Had you said co-dependent or self-destructive.",
+        "speaker": "CHANDLER",
+        "context": [
+            "Because I met somebody who would be perfect for you."
+        ],
+        "context_speakers": [
+            "CHANDLER COLLEAGUE"
+        ],
+        "sarcasm": true
+    },
+    "2_187": {
+        "utterance": "That's so funny because you look more like Joey Tribbiani man slash woman.",
+        "speaker": "CHANDLER",
+        "context": [
+            "And this from cry for help department, are you wearing makeup?",
+            "Yes I am, as of today, I am official Joey Tribbiani actor slash model."
+        ],
+        "context_speakers": [
+            "CHANDLER",
+            "JOEY"
+        ],
+        "sarcasm": true
+    },
     "2_113": {
         "utterance": "No, no the actual cartoon character .. Of course the baloon.",
         "speaker": "CHANDLER",
         "context": [
             "The most unbelievable thing has happened. Underdog has gotten away."
+        ],
+        "context_speakers": [
+            "CHANDLER"
+        ],
+        "sarcasm": true
+    },
+    "2_323": {
+        "utterance": "That monkey has got a Ross on its ass!",
+        "speaker": "CHANDLER",
+        "context": [
+            "Hey!"
         ],
         "context_speakers": [
             "CHANDLER"
@@ -6187,18 +6473,67 @@
         ],
         "sarcasm": false
     },
+    "2_294": {
+        "utterance": "Oh, um, I don't care!",
+        "speaker": "CHANDLER",
+        "context": [
+            "How do I look?"
+        ],
+        "context_speakers": [
+            "JOEY"
+        ],
+        "sarcasm": true
+    },
     "2_359": {
         "utterance": "You know once you are inside, you don't have to knock anymore.",
         "speaker": "CHANDLER",
         "context": [
-            "Hey",
-            "Hey"
+            "Hey - Hey"
         ],
         "context_speakers": [
             "JOEY",
             "CHANDLER"
         ],
-        "sarcasm": false
+        "sarcasm": true
+    },
+    "2_141": {
+        "utterance": "We think it was trying to spell out monkey.",
+        "speaker": "CHANDLER",
+        "context": [
+            "He also found an M and an O."
+        ],
+        "context_speakers": [
+            "ROSS"
+        ],
+        "sarcasm": true
+    },
+    "2_283": {
+        "utterance": "Dee. The sarcastic sister from What's Happening.",
+        "speaker": "CHANDLER",
+        "context": [
+            "Could you want her more?",
+            "Who?"
+        ],
+        "context_speakers": [
+            "CHANDLER",
+            "ROSS"
+        ],
+        "sarcasm": true
+    },
+    "2_24": {
+        "utterance": "Uh, okay. The fifth dentist caved and not they're all recommending Trident?",
+        "speaker": "CHANDLER",
+        "context": [
+            "Who?",
+            "Dee, the sarcastic sister from What's Happening!!",
+            "Guys, guess what guess what guess what."
+        ],
+        "context_speakers": [
+            "ROSS",
+            "CHANDLER",
+            "RACHEL"
+        ],
+        "sarcasm": true
     },
     "2_197": {
         "utterance": "Ah your own brand of vigilante justice.",
@@ -6211,7 +6546,7 @@
             "JOEY",
             "RACHEL"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_493": {
         "utterance": "Did you tell her about the magical night that starts with the flush of every toilet?",
@@ -6241,7 +6576,20 @@
             "RACHEL",
             "ROSS"
         ],
-        "sarcasm": false
+        "sarcasm": true
+    },
+    "2_440": {
+        "utterance": "No its not big, not at all. Kind of the same lines as, I don't know, having a third nipple!",
+        "speaker": "MONICA",
+        "context": [
+            "You are dead meat",
+            "I didn't know it was a big secret."
+        ],
+        "context_speakers": [
+            "MONICA",
+            "CHANDLER"
+        ],
+        "sarcasm": true
     },
     "2_105": {
         "utterance": "Why? You never look down in the shower?  Oh please I am allowed one joke in the monkey is penis genre.",
@@ -6252,7 +6600,39 @@
         "context_speakers": [
             "ROSS"
         ],
-        "sarcasm": false
+        "sarcasm": true
+    },
+    "2_3": {
+        "utterance": "And I think my testicles may be in here too",
+        "speaker": "CHANDLER",
+        "context": [
+            "Do you guys have any exta ribbon?",
+            "Oh yeah sure, what do you need? We got lace, satin, sateen, rafia, gingam , felt."
+        ],
+        "context_speakers": [
+            "RACHEL",
+            "CHANDLER"
+        ],
+        "sarcasm": true
+    },
+    "2_71": {
+        "utterance": "That\u00d5s good, just keep rubbing your head. That will turn back time",
+        "speaker": "JOEY",
+        "context": [
+            "Oh so pretty, this must have cost him a fortune.",
+            "Oh c'mon Ross, remember back in college when he fell in love with Carol and bought the ridiculosly expensive crustal duck?",
+            "What did you just say?",
+            "Crustal duck.",
+            "No, no, no, the love part? Oh my god!"
+        ],
+        "context_speakers": [
+            "PHOEBE",
+            "CHANDLER",
+            "RACHEL",
+            "CHANDLER",
+            "RACHEL"
+        ],
+        "sarcasm": true
     },
     "2_20": {
         "utterance": "My duties?  All right.",
@@ -6263,9 +6643,9 @@
             "So let\u0100\u2019s talk a little bit about your duties."
         ],
         "context_speakers": [
-            "PERSON1",
+            "CHANDLER INTERVIEWER",
             "CHANDLER",
-            "PERSON"
+            "CHANDLER INTERVIEWER"
         ],
         "sarcasm": false
     },
@@ -6282,7 +6662,7 @@
             "JOEY",
             "RACHEL"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_602": {
         "utterance": "No way!",
@@ -6310,7 +6690,7 @@
             "RACHEL",
             "ROSS"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_172": {
         "utterance": "The whole thing! Can we go?",
@@ -6325,7 +6705,7 @@
             "CHANDLER",
             "JOEY"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_86": {
         "utterance": "Great! Okay, here.",
@@ -6338,7 +6718,7 @@
         "context_speakers": [
             "PHOEBE",
             "CHANDLER",
-            "PERSON"
+            "RING OWNER"
         ],
         "sarcasm": false
     },
@@ -6350,21 +6730,6 @@
         ],
         "context_speakers": [
             "PHOEBE"
-        ],
-        "sarcasm": true
-    },
-    "2_238": {
-        "utterance": "What\u0100\u2019s wrong with you?",
-        "speaker": "CHANDLER",
-        "context": [
-            "Hey! So Estelle lined up a bunch of auditions for me tomorrow and I\u2019ll have my health insurance back in no time.",
-            "That\u2019s great, but shouldn\u2019t you be on the toilet right now?",
-            "What?!"
-        ],
-        "context_speakers": [
-            "JOEY",
-            "CHANDLER",
-            "JOEY"
         ],
         "sarcasm": false
     },
@@ -6380,6 +6745,21 @@
             "PERSON1",
             "ROSS",
             "PERSON1"
+        ],
+        "sarcasm": false
+    },
+    "2_163": {
+        "utterance": "Oh boy, I just can't watch. It's too scary!",
+        "speaker": "RACHEL",
+        "context": [
+            "Oh umm, my big scene is coming up. Big scene coming up.",
+            "If you said, \"Big lima bean, bubbling up.\" Would she understand the difference?",
+            "Rach? What are you doing?"
+        ],
+        "context_speakers": [
+            "JOEY",
+            "CHANDLER",
+            "MONICA"
         ],
         "sarcasm": true
     },
@@ -6411,21 +6791,6 @@
             "PHOEBE",
             "JOEY"
         ],
-        "sarcasm": true
-    },
-    "2_452": {
-        "utterance": "I mean, was it Gina?",
-        "speaker": "MONICA",
-        "context": [
-            "Okay! You don\u2019t think I thought of that?",
-            "How can you not know which one?",
-            "I mean that\u2019s unbelievable."
-        ],
-        "context_speakers": [
-            "CHANDLER",
-            "PHOEBE",
-            "RACHEL"
-        ],
         "sarcasm": false
     },
     "2_267": {
@@ -6451,21 +6816,10 @@
         ],
         "context_speakers": [
             "JOEY",
-            "PERSON1",
+            "TREEGER",
             "JOEY"
         ],
-        "sarcasm": true
-    },
-    "2_603": {
-        "utterance": "I think you\u0100\u2019ve got concussion.",
-        "speaker": "PERSON",
-        "context": [
-            "And it\u0100\u2019s all because of you, wonderful, amazing you."
-        ],
-        "context_speakers": [
-            "ROSS"
-        ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_284": {
         "utterance": "What?  Why?",
@@ -6479,21 +6833,6 @@
             "CHANDLER",
             "MONICA",
             "CHANDLER"
-        ],
-        "sarcasm": true
-    },
-    "2_142": {
-        "utterance": "\"Ooo,\" what?",
-        "speaker": "RACHEL",
-        "context": [
-            "Oh yeah, I'm sure. And all of a sudden his hands weren't the problem anymore.",
-            "Was it...?",
-            "Oh, boy scouts could have camped under there."
-        ],
-        "context_speakers": [
-            "PHOEBE",
-            "MONICA",
-            "PHOEBE"
         ],
         "sarcasm": false
     },
@@ -6509,30 +6848,6 @@
             "JOEY",
             "ROSS",
             "CHANDLER"
-        ],
-        "sarcasm": true
-    },
-    "2_83": {
-        "utterance": "I'm sorry. I'm done. I'm done.",
-        "speaker": "RACHEL",
-        "context": [
-            "I'm-I'm really warm, so I'm going to be taking off my sweater. Now, I'm just letting you know that this is",
-            "Yep! That's hilarious!"
-        ],
-        "context_speakers": [
-            "RACHEL",
-            "ROSS"
-        ],
-        "sarcasm": true
-    },
-    "2_563": {
-        "utterance": "Thank you Ross.",
-        "speaker": "PHOEBE",
-        "context": [
-            "I did it! I rode a bike! I never thought I\u0100\u2019d be able to do that!"
-        ],
-        "context_speakers": [
-            "PHOEBE"
         ],
         "sarcasm": false
     },
@@ -6560,7 +6875,7 @@
         "context_speakers": [
             "JOEY"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_448": {
         "utterance": "Do you still wanna call \u0100\u2018em? I wanna call \u0100\u2018em.",
@@ -6575,7 +6890,7 @@
             "CHANDLER",
             "PHOEBE"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_79": {
         "utterance": "I\u0100\u2019m just gonna throw it out, it\u0100\u2019s probably just a bunch of shampoo and...",
@@ -6631,7 +6946,7 @@
         "context_speakers": [
             "JOEY"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_119": {
         "utterance": "Yeah. What-what should I do?",
@@ -6643,19 +6958,6 @@
         "context_speakers": [
             "ROSS",
             "MONICA"
-        ],
-        "sarcasm": true
-    },
-    "2_233": {
-        "utterance": "Umm, all right Wayne, level with me.",
-        "speaker": "JOEY",
-        "context": [
-            "Don\u0100\u2019t touch him!",
-            "Okay! All right."
-        ],
-        "context_speakers": [
-            "PERSON1",
-            "JOEY"
         ],
         "sarcasm": false
     },
@@ -6672,26 +6974,26 @@
             "ROSS",
             "RACHEL"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
-    "2_17": {
-        "utterance": "But I really think I can do it, I\u0100\u2019m just gonna need some help.",
-        "speaker": "PERSON",
+    "2_423": {
+        "utterance": "Like I have nothing better to do!",
+        "speaker": "MONICA",
         "context": [
-            "So forcing her to marry Bobby is gonna make that happen?",
-            "Maybe! Well! Well\u0100\u2026so-so uh, what kind of music does Numb Nuts\u0100\u2014Oh forget it! I can\u0100\u2019t!",
-            "Joey, I am scared to death about this."
+            "Richard!",
+            "Actually, I\u0100\u2019m not here to complement the chef.",
+            "Ohh\u0100\u2026 Oh, that\u0100\u2019s okay I hate when people come back to complement the chef."
         ],
         "context_speakers": [
-            "RACHEL",
-            "JOEY",
-            "PERSON"
+            "MONICA",
+            "RICHARD",
+            "MONICA"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_55": {
         "utterance": "Oh hey, great, you're up. Rachel, this is my sister Krista. Krista, this is Rachel.",
-        "speaker": "PERSON",
+        "speaker": "DANNY",
         "context": [
             "I'm really glad Monica asked us out.",
             "I'd love to ask you in, but uh, my sister's visiting and I think she's asleep on the couch.",
@@ -6699,7 +7001,7 @@
         ],
         "context_speakers": [
             "RACHEL",
-            "PERSON1",
+            "DANNY",
             "RACHEL"
         ],
         "sarcasm": false
@@ -6732,7 +7034,7 @@
             "CHANDLER",
             "PHOEBE"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_559": {
         "utterance": "What?!?!",
@@ -6745,7 +7047,7 @@
             "MONICA",
             "PHOEBE"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_444": {
         "utterance": "Ross-Ross, you have no idea what this means to me!",
@@ -6769,7 +7071,7 @@
         ],
         "context_speakers": [
             "CHANDLER",
-            "PERSON"
+            "AIRPORT COUNTER"
         ],
         "sarcasm": false
     },
@@ -6786,7 +7088,7 @@
             "CHANDLER",
             "PHOEBE"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_125": {
         "utterance": "I mean if you hadn\u0100\u2019t initiated it I-I-I know I would\u0100\u2019ve.",
@@ -6797,7 +7099,7 @@
         "context_speakers": [
             "ROSS"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_552": {
         "utterance": "DANGER",
@@ -6825,19 +7127,6 @@
             "JOEY",
             "RACHEL"
         ],
-        "sarcasm": true
-    },
-    "2_578": {
-        "utterance": "Oh, in my head he's done some pretty \"not-gay-stuff\"!",
-        "speaker": "RACHEL",
-        "context": [
-            "I don't know, but one of the extras sure did! Hey, listen Rach. Thanks again for coming down to watch my scenes!",
-            "Oh, please!Honey, just the fact that you want me here to support    you, I'm...OH MY GOD!Is that Christian Sanders? He's so gorgeous"
-        ],
-        "context_speakers": [
-            "JOEY",
-            "RACHEL"
-        ],
         "sarcasm": false
     },
     "2_107": {
@@ -6860,8 +7149,7 @@
         "speaker": "MONICA",
         "context": [
             "Oh! Right. Umm, maybe that\u0100\u2019s because I didn\u0100\u2019t send him an invitation.",
-            "Chandler! He\u0100\u2019s your father.  he should be at the wedding.",
-            "I don\u0100\u2019t even know the man. Okay? We\u0100\u2019re not that close. I haven\u0100\u2019t seen him in years."
+            "Chandler! He\u0100\u2019s your father.  he should be at the wedding. I don\u0100\u2019t even know the man. Okay? We\u0100\u2019re not that close. I haven\u0100\u2019t seen him in years."
         ],
         "context_speakers": [
             "CHANDLER",
@@ -6885,21 +7173,6 @@
         ],
         "sarcasm": false
     },
-    "2_354": {
-        "utterance": "Well yeah, but then I remembered I started it and there was this pep rally and I was, I was on top of the pyramid but anyway\u0100\u2014umm, what is this book about?",
-        "speaker": "RACHEL",
-        "context": [
-            "Okay.",
-            "So Pheebs, what is the book about?",
-            "I thought you said you read it in high school."
-        ],
-        "context_speakers": [
-            "PHOEBE",
-            "RACHEL",
-            "PHOEBE"
-        ],
-        "sarcasm": false
-    },
     "2_525": {
         "utterance": "Y'know what I mean, like dubbies?",
         "speaker": "RACHEL",
@@ -6910,7 +7183,7 @@
         ],
         "context_speakers": [
             "RACHEL",
-            "PERSON1",
+            "PERSON",
             "RACHEL"
         ],
         "sarcasm": false
@@ -6939,11 +7212,11 @@
             "That you enjoyed the occasional drink\u0100\u2026ing binge."
         ],
         "context_speakers": [
-            "PERSON1",
+            "JOANNA",
             "RACHEL",
-            "PERSON"
+            "JOANNA"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_486": {
         "utterance": "Anyway, they want to take us out Saturday night! What do you say?",
@@ -6958,7 +7231,7 @@
             "RACHEL",
             "JOEY"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_149": {
         "utterance": "Thank you.",
@@ -6980,7 +7253,7 @@
         "context_speakers": [
             "ROSS"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_12": {
         "utterance": "I studied for a year in Barcelona.",
@@ -6992,7 +7265,7 @@
         ],
         "context_speakers": [
             "ROSS",
-            "PERSON1",
+            "PERSON",
             "ROSS"
         ],
         "sarcasm": false
@@ -7006,9 +7279,8 @@
             "Oh. Well then shut me up."
         ],
         "context_speakers": [
-            "PERSON1",
-            "ROSS",
-            "ROSS"
+            "JANICE",
+            "ROSS JANICE"
         ],
         "sarcasm": true
     },
@@ -7025,21 +7297,6 @@
         ],
         "sarcasm": true
     },
-    "2_515": {
-        "utterance": "Hey.",
-        "speaker": "JOEY",
-        "context": [
-            "You do?",
-            "You don\u0100\u2019t?  Well, that\u0100\u2019s the difference between a professional and a layman.",
-            "That and arrogance."
-        ],
-        "context_speakers": [
-            "PHOEBE",
-            "MONICA",
-            "PHOEBE"
-        ],
-        "sarcasm": false
-    },
     "2_127": {
         "utterance": "When? Today? Some, not a lot.",
         "speaker": "JOEY",
@@ -7053,7 +7310,7 @@
             "JOEY",
             "CHANDLER"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_36": {
         "utterance": "The big deal is I don\u0100\u2019t want naked, greasy strangers in my apartment when I want to kick back with a puzzle\u0100\u2014beer! Cold beer.",
@@ -7081,7 +7338,7 @@
             "MONICA",
             "ROSS"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_295": {
         "utterance": "Nobody sees the king!",
@@ -7093,7 +7350,7 @@
         ],
         "context_speakers": [
             "MONICA",
-            "PERSON1",
+            "PERSON",
             "JOEY"
         ],
         "sarcasm": false
@@ -7108,10 +7365,10 @@
         ],
         "context_speakers": [
             "ROSS",
-            "PERSON1",
+            "PERSON",
             "ROSS"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_38": {
         "utterance": "It\u0100\u2019s not a real game! I made it up!",
@@ -7126,7 +7383,7 @@
             "CHANDLER",
             "ROSS"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_431": {
         "utterance": "I'm never gonna get to meet her anyway.",
@@ -7137,7 +7394,7 @@
         "context_speakers": [
             "JOEY"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_13": {
         "utterance": "All right, let\u0100\u2019s do it.",
@@ -7167,7 +7424,7 @@
     },
     "2_193": {
         "utterance": "Yeah, a slice of cheesecake and-and a date if you\u0100\u2019re given\u0100\u2019 \u0100\u2018em out.",
-        "speaker": "PERSON",
+        "speaker": "PETE",
         "context": [
             "You gotta help me out here, you gotta set me up, you gotta get me back in the game.",
             "Well, that shouldn\u0100\u2019t be a problem. I mean I work in fashion and all I meet are eligible straight men.",
@@ -7189,21 +7446,6 @@
         "context_speakers": [
             "ROSS"
         ],
-        "sarcasm": true
-    },
-    "2_211": {
-        "utterance": "I'm really gonna miss this apartment. Y'know, Ben-Ben took his first steps right over there.",
-        "speaker": "ROSS",
-        "context": [
-            "Okay, what is in here? Rocks?",
-            "No-no, this is my collection of fossil samples.",
-            "So, rocks."
-        ],
-        "context_speakers": [
-            "CHANDLER",
-            "ROSS",
-            "CHANDLER"
-        ],
         "sarcasm": false
     },
     "2_426": {
@@ -7217,18 +7459,16 @@
         ],
         "sarcasm": false
     },
-    "2_391": {
-        "utterance": "Yep! I sure know how to pick \u0100\u2018em, huh? Y'know I gave up a part on a soap for this!",
-        "speaker": "PERSON1",
+    "2_357": {
+        "utterance": "Stating the obvious, but thank you. And it\u0100\u2019s not weird is it.",
+        "speaker": "PHOEBE",
         "context": [
-            "I am hurt!  A plague on both your houses!",
-            "By the way, he dumped me tonight after he read my review.",
-            "Oh, classy."
+            "Yes. Great, let\u0100\u2019s begin.  How\u0100\u2019s the pressure?",
+            "Nice! Wow Phoebe you are good!"
         ],
         "context_speakers": [
-            "PERSON2",
-            "PERSON1",
-            "JOEY"
+            "PHOEBE",
+            "MONICA"
         ],
         "sarcasm": true
     },
@@ -7256,9 +7496,9 @@
             "Rach, are you okay?"
         ],
         "context_speakers": [
-            "PERSON1",
+            "MARK",
             "RACHEL",
-            "PERSON"
+            "MARK"
         ],
         "sarcasm": false
     },
@@ -7273,7 +7513,7 @@
             "CHANDLER",
             "JOEY"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_343": {
         "utterance": "So to sum up, I\u0100\u2019m Professor Geller.",
@@ -7284,29 +7524,7 @@
         "context_speakers": [
             "ROSS"
         ],
-        "sarcasm": true
-    },
-    "2_67": {
-        "utterance": "I applaud you.",
-        "speaker": "ROSS",
-        "context": [
-            "My name is Ross Geller. I'm one of the people who applied for the apartment. And I-I realize that the competition is fierce but\u0100\u2014I'm sorry. I, I can't help but notice you're naked and"
-        ],
-        "context_speakers": [
-            "ROSS"
-        ],
-        "sarcasm": true
-    },
-    "2_368": {
-        "utterance": "My turn? What-what are you talking about?",
-        "speaker": "MONICA",
-        "context": [
-            "But, when we were in high school I made out with James Farrell even when I knew that you liked him! Wow, that feels so good to get off my chest! Okay, you go!"
-        ],
-        "context_speakers": [
-            "RACHEL"
-        ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_334": {
         "utterance": "When they\u0100\u2019re hungry enough, they\u0100\u2019ll come in.",
@@ -7364,17 +7582,6 @@
         ],
         "sarcasm": true
     },
-    "2_184": {
-        "utterance": "leg",
-        "speaker": "MONICA",
-        "context": [
-            "Well, you might try accidentally breaking something valuable of hers, say her"
-        ],
-        "context_speakers": [
-            "PERSON"
-        ],
-        "sarcasm": false
-    },
     "2_225": {
         "utterance": "I don\u0100\u2019t know, something girlie.",
         "speaker": "ROSS",
@@ -7386,7 +7593,7 @@
             "ROSS",
             "PHOEBE"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_514": {
         "utterance": "What's going on?!  That's what's going on!!",
@@ -7397,24 +7604,9 @@
             "What is going on?"
         ],
         "context_speakers": [
-            "PERSON1",
+            "MARK",
             "ROSS",
-            "PERSON"
-        ],
-        "sarcasm": false
-    },
-    "2_331": {
-        "utterance": "I believe this belongs to the father of your baby.",
-        "speaker": "PHOEBE",
-        "context": [
-            "Go!",
-            "What? Hey wait a minute! Phoebe, how do you even know who the father is?",
-            "I may play the fool at times, but I\u0100\u2019m a little more than a pretty blond girl with an ass that won\u0100\u2019t quit."
-        ],
-        "context_speakers": [
-            "PHOEBE",
-            "RACHEL",
-            "PHOEBE"
+            "MARK"
         ],
         "sarcasm": false
     },
@@ -7442,7 +7634,22 @@
             "CHANDLER",
             "JOEY"
         ],
-        "sarcasm": false
+        "sarcasm": true
+    },
+    "2_575": {
+        "utterance": "Why? Because she can sing and play guitar and do both at the same time?",
+        "speaker": "PHOEBE",
+        "context": [
+            "Wow! This girl is good.",
+            "Oh-ho yeah! A song with rhyming words. Oo, I never thought of that before.",
+            "I like her."
+        ],
+        "context_speakers": [
+            "JOEY",
+            "PHOEBE",
+            "CHANDLER"
+        ],
+        "sarcasm": true
     },
     "2_339": {
         "utterance": "Thank you.",
@@ -7487,17 +7694,6 @@
         ],
         "sarcasm": false
     },
-    "2_483": {
-        "utterance": "well, we probably won't invite you to the wedding\u00c9",
-        "speaker": "PERSON",
-        "context": [
-            "It's brilliant! Goodbye Mike, we'll see you at the wedding, fella!"
-        ],
-        "context_speakers": [
-            "PERSON"
-        ],
-        "sarcasm": true
-    },
     "2_213": {
         "utterance": "Wait, wait, Chandler, this is what you're havin' for Thanksgiving dinner?",
         "speaker": "RACHEL",
@@ -7513,21 +7709,6 @@
         ],
         "sarcasm": false
     },
-    "2_46": {
-        "utterance": "Taurus?",
-        "speaker": "RACHEL",
-        "context": [
-            "You\u0100\u2019re an Aquarius, huh?",
-            "I bet you\u0100\u2019re a Gemini.",
-            "Nope."
-        ],
-        "context_speakers": [
-            "PERSON1",
-            "RACHEL",
-            "PERSON"
-        ],
-        "sarcasm": false
-    },
     "2_96": {
         "utterance": "I don\u0100\u2019t think so. Hello?  When you get in there",
         "speaker": "ROSS",
@@ -7539,7 +7720,7 @@
             "ROSS",
             "JOEY"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_188": {
         "utterance": "You had no relationship!!",
@@ -7553,19 +7734,6 @@
             "RACHEL",
             "MONICA",
             "RACHEL"
-        ],
-        "sarcasm": true
-    },
-    "2_298": {
-        "utterance": "Hey!",
-        "speaker": "JOEY",
-        "context": [
-            "Listen, I forgot your address, can you give me a call? Thanks, bye.",
-            "Hey!"
-        ],
-        "context_speakers": [
-            "PERSON1",
-            "JOEY"
         ],
         "sarcasm": false
     },
@@ -7586,7 +7754,7 @@
     },
     "2_177": {
         "utterance": "I can show you an ID if you want?",
-        "speaker": "PERSON",
+        "speaker": "BONNIE",
         "context": [
             "Um-hmm. Oh wait! This is Bonnie.",
             "Hi!",
@@ -7594,7 +7762,7 @@
         ],
         "context_speakers": [
             "PHOEBE",
-            "PERSON1",
+            "BONNIE",
             "RACHEL"
         ],
         "sarcasm": true
@@ -7610,7 +7778,7 @@
             "ROSS",
             "RACHEL"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_263": {
         "utterance": "Wow! Imagine what our kids would look like!",
@@ -7636,22 +7804,7 @@
             "He has the most amazing Porsche under there!"
         ],
         "context_speakers": [
-            "PERSON1",
-            "JOEY",
-            "PERSON"
-        ],
-        "sarcasm": true
-    },
-    "2_538": {
-        "utterance": "Joey!",
-        "speaker": "JOEY",
-        "context": [
-            "Excuse me?",
-            "It's me, Joey!",
-            "Do I know you?"
-        ],
-        "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "JOEY",
             "PERSON"
         ],
@@ -7682,9 +7835,9 @@
             "Look, I\u0100\u2026  Look, I\u0100\u2019m having a great time with you and I just don\u0100\u2019t want us to move to fast or put to much pressure on us."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "ROSS",
-            "PERSON1",
+            "PERSON",
             "ROSS"
         ],
         "sarcasm": false
@@ -7702,7 +7855,7 @@
             "CHANDLER",
             "PHOEBE"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_210": {
         "utterance": "When are you coming home?",
@@ -7713,8 +7866,8 @@
             "Okay."
         ],
         "context_speakers": [
-            "PERSON1",
-            "PERSON1",
+            "PERSON",
+            "PERSON",
             "RACHEL"
         ],
         "sarcasm": false
@@ -7729,14 +7882,14 @@
         ],
         "context_speakers": [
             "MONICA",
-            "PERSON1",
+            "PERSON",
             "RACHEL"
         ],
         "sarcasm": false
     },
     "2_162": {
         "utterance": "Ow, ow, ow, ow, leg cramp, leg cramp, leg cramp.",
-        "speaker": "PERSON",
+        "speaker": "CAROL",
         "context": [
             "No-no-no. I don't have a son named Jordie. We all agreed, my son's name is Jamie.",
             "Well, Jamie was the name of Susan's first girlfriend, so we went back to Jordie.",
@@ -7744,10 +7897,10 @@
         ],
         "context_speakers": [
             "ROSS",
-            "PERSON1",
+            "CAROL",
             "ROSS"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_437": {
         "utterance": "Oh yeah. First off all, chasing the Churo guy isn't jogging.",
@@ -7762,21 +7915,6 @@
             "CHANDLER",
             "JOEY"
         ],
-        "sarcasm": true
-    },
-    "2_329": {
-        "utterance": "Why do have a picture of Paulette in your pack?!",
-        "speaker": "PERSON",
-        "context": [
-            "What picture?!",
-            "The picture of my wife! In your pack!",
-            "You went through my personal property?"
-        ],
-        "context_speakers": [
-            "JOEY",
-            "PERSON1",
-            "JOEY"
-        ],
         "sarcasm": false
     },
     "2_341": {
@@ -7787,7 +7925,7 @@
             "Oh, I don\u0100\u2019t think I ever heard that story."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "CHANDLER"
         ],
         "sarcasm": true
@@ -7805,7 +7943,7 @@
             "PHOEBE",
             "MONICA"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_579": {
         "utterance": "No!",
@@ -7831,7 +7969,7 @@
             "PHOEBE",
             "CHANDLER"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_194": {
         "utterance": "And it came out, \"Squatternut buash?\"",
@@ -7872,7 +8010,7 @@
             "MONICA",
             "CHANDLER"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_435": {
         "utterance": "Me too! There\u0100\u2019s a game on Tuesday, do you wanna go?",
@@ -7883,39 +8021,9 @@
             "Yeah, big fan."
         ],
         "context_speakers": [
-            "PERSON1",
+            "JAKE",
             "JOEY",
-            "PERSON"
-        ],
-        "sarcasm": false
-    },
-    "2_22": {
-        "utterance": "Listen, oh I had to get you a whole new battery.",
-        "speaker": "ROSS",
-        "context": [
-            "Hi! Sorry I\u0100\u2019m late. Were you sleeping?",
-            "Ahh, nooo!!",
-            "Oh, great!"
-        ],
-        "context_speakers": [
-            "ROSS",
-            "PERSON1",
-            "ROSS"
-        ],
-        "sarcasm": false
-    },
-    "2_307": {
-        "utterance": "Yeah, sure.  All right, whose court is the ball in now?",
-        "speaker": "RACHEL",
-        "context": [
-            "Oh wow, you look great! Glad you could make it.",
-            "Oh well, y'know, the gala had to end sometime.",
-            "Don't go anywhere, I'll be right back."
-        ],
-        "context_speakers": [
-            "PERSON1",
-            "RACHEL",
-            "PERSON"
+            "JAKE"
         ],
         "sarcasm": false
     },
@@ -7928,7 +8036,7 @@
         "context_speakers": [
             "JOEY"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_564": {
         "utterance": "And, uh, I don't know if you got any of that, but I would really like a copy of the tape.",
@@ -7939,8 +8047,7 @@
             "Hi, um, I'm account number 7143457."
         ],
         "context_speakers": [
-            "CHANDLER",
-            "PERSON1",
+            "CHANDLER & JILL",
             "CHANDLER"
         ],
         "sarcasm": false
@@ -7967,21 +8074,21 @@
             "Well, I don\u0100\u2019t have to buy that, \"I\u0100\u2019m with stupid\" T-shirt anymore."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "JOEY",
             "CHANDLER"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_627": {
         "utterance": "Whoa, whoa, whoa.",
-        "speaker": "PERSON",
+        "speaker": "JULIO",
         "context": [
             "What?",
             "Y'know, so I don't read as many important books as you do, and I don't write trick poems that seem to be about one thing but are actually about something else. And y'know what, I get excited about stupid stuff, like when I my"
         ],
         "context_speakers": [
-            "PERSON1",
+            "JULIO",
             "MONICA"
         ],
         "sarcasm": false
@@ -8007,10 +8114,10 @@
         ],
         "context_speakers": [
             "ROSS",
-            "PERSON1",
+            "JEANINE",
             "ROSS"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_91": {
         "utterance": "Alright, I'm gonna go pick up a few things for the trip.",
@@ -8021,11 +8128,11 @@
             "Yeah, that's the same as \"it has something to do with wind\"."
         ],
         "context_speakers": [
-            "PERSON1",
+            "DAVID",
             "MONICA",
             "CHANDLER"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_560": {
         "utterance": "So now I have to go so he'll think that I'm totally ok with seeing him!",
@@ -8035,21 +8142,6 @@
         ],
         "context_speakers": [
             "PHOEBE"
-        ],
-        "sarcasm": false
-    },
-    "2_497": {
-        "utterance": "Ah, uh, I owe you a long overdue apology. I never should have broken up with you because you were overweight.",
-        "speaker": "CHANDLER",
-        "context": [
-            "Hello Skidmark.",
-            "It\u0100\u2019s a nickname, I\u0100\u2019ll explain later.",
-            "It\u0100\u2019s pretty clear."
-        ],
-        "context_speakers": [
-            "PERSON1",
-            "CHANDLER",
-            "MONICA"
         ],
         "sarcasm": true
     },
@@ -8076,36 +8168,10 @@
             "I know Mona, just hear me out. First of all, I\u0100\u2019m so sorry about my father yelling at you, but I heard you totally held your own."
         ],
         "context_speakers": [
-            "PERSON1",
+            "MONA",
             "RACHEL"
         ],
-        "sarcasm": true
-    },
-    "2_401": {
-        "utterance": "Okay, I\u0100\u2019m next.  Don\u0100\u2019t! Don\u0100\u2019t start another game! I said I\u0100\u2019m next! Phoebe!",
-        "speaker": "MONICA",
-        "context": [
-            "Oh, would you look at that Monica? I just knocked off all of your top scores, how sad."
-        ],
-        "context_speakers": [
-            "PHOEBE"
-        ],
         "sarcasm": false
-    },
-    "2_143": {
-        "utterance": "I mean, Thanksgiving with no turkey is like-like Fourth of July with no apple pie!",
-        "speaker": "JOEY",
-        "context": [
-            "Yeah. But I thought that was because I put the whole thing on my hand and made it walk across the table.",
-            "Anyway, it just doesn\u0100\u2019t seem worth it to make a whole turkey for just three people. Okay? It\u0100\u2019s a lot of work.",
-            "But you gotta have turkey on Thanksgiving!"
-        ],
-        "context_speakers": [
-            "JOEY",
-            "MONICA",
-            "JOEY"
-        ],
-        "sarcasm": true
     },
     "2_481": {
         "utterance": "All right.",
@@ -8137,22 +8203,7 @@
             "PHOEBE",
             "MONICA"
         ],
-        "sarcasm": true
-    },
-    "2_108": {
-        "utterance": "Well, that's different. My lie didn't make one of us a felon in 48 states. What were you thinking?",
-        "speaker": "MONICA",
-        "context": [
-            "I just had sex.",
-            "Ethan, focus. How could you not tell me?",
-            "Well, you never told me how old you were."
-        ],
-        "context_speakers": [
-            "PERSON1",
-            "MONICA",
-            "PERSON"
-        ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_248": {
         "utterance": "I mean, you and I we're just, y'know, we're nothing, we're goofin' around.",
@@ -8165,7 +8216,7 @@
             "MONICA",
             "CHANDLER"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_56": {
         "utterance": "Uh-huh, well! But umm, still I\u0100\u2019m-I\u0100\u2019m mad at you.",
@@ -8176,7 +8227,7 @@
             "Ohh, so cute."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "PHOEBE",
             "PERSON"
         ],
@@ -8195,22 +8246,7 @@
             "CHANDLER",
             "ROSS"
         ],
-        "sarcasm": false
-    },
-    "2_386": {
-        "utterance": "I should just go on to happier things, okay? Umm, why don\u0100\u2019t you tell about your lovely wedding?",
-        "speaker": "PERSON",
-        "context": [
-            "He might still show up.",
-            "Oh, what are you, stupid? It\u0100\u2019s been three hours.",
-            "Is that all?"
-        ],
-        "context_speakers": [
-            "MONICA",
-            "PERSON1",
-            "MONICA"
-        ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_134": {
         "utterance": "Paper cut!",
@@ -8221,7 +8257,7 @@
         "context_speakers": [
             "CHANDLER"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_488": {
         "utterance": "Just a sec, give me a minute to wake up for this\u0100\u2014Ah-ha-ha!!",
@@ -8236,7 +8272,7 @@
             "JOEY",
             "CHANDLER"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_542": {
         "utterance": "Uh, Rachel's here, so good luck man, let me know how it works out.",
@@ -8251,7 +8287,7 @@
             "RACHEL",
             "ROSS"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_504": {
         "utterance": "All right, okay, well, apparently not!",
@@ -8264,20 +8300,20 @@
         ],
         "sarcasm": true
     },
-    "2_364": {
-        "utterance": "Well, when Jake did it I saw that\u0100\u2026he was wearing women\u0100\u2019s underwear!",
-        "speaker": "JOEY",
+    "2_54": {
+        "utterance": "That\u0100\u2019s easy for you to say, you weren\u0100\u2019t almost just killed.",
+        "speaker": "RACHEL",
         "context": [
-            "Hey!",
-            "Listen, you know how uh, when you\u0100\u2019re wearing pants and you lean forward I check out your underwear?",
-            "Yeah!"
+            "Yes! And he said really mean things that were only partly true.",
+            "I\u0100\u2019m gonna go down there and teach that guy a lesson.",
+            "Joey, please don\u0100\u2019t do that. I think it\u0100\u2019s best that we just forget about it."
         ],
         "context_speakers": [
-            "PHOEBE",
+            "RACHEL",
             "JOEY",
-            "PHOEBE"
+            "MONICA"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_300": {
         "utterance": "I don\u0100\u2019t think you could ever do that.",
@@ -8291,21 +8327,6 @@
             "PHOEBE",
             "JOEY",
             "PHOEBE"
-        ],
-        "sarcasm": false
-    },
-    "2_237": {
-        "utterance": "Hey! Are you ready to try nursing again?",
-        "speaker": "PERSON",
-        "context": [
-            "Of course! Oh Joey, this ring I\u0101\u20ac\u00a6it\u0101\u20ac\u2122s beautiful I love it!",
-            "Yeah uh look Rach, there's something I gotta tell ya.",
-            "Hey!"
-        ],
-        "context_speakers": [
-            "RACHEL",
-            "JOEY",
-            "PERSON"
         ],
         "sarcasm": false
     },
@@ -8372,7 +8393,7 @@
             "PHOEBE",
             "MONICA"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_555": {
         "utterance": "Hey! It\u0100\u2019s starting to snow.",
@@ -8385,20 +8406,20 @@
             "ROSS",
             "MONICA"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_42": {
         "utterance": "Look, please, please don't go anywhere, okay?",
-        "speaker": "PERSON1",
+        "speaker": "BARRY",
         "context": [
             "Dr. Farber, we've got a bit of an emergency here...Jason Costalano is choking on his retainer.",
             "Oh God... I'll be right there, Bernice."
         ],
         "context_speakers": [
-            "PERSON2",
-            "PERSON1"
+            "PERSON",
+            "BARRY"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_441": {
         "utterance": "He\u0100\u2019s right, even if it\u0100\u2019s to say something complementary.",
@@ -8413,7 +8434,7 @@
             "PHOEBE",
             "CHANDLER"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_218": {
         "utterance": "Hey, does somebody wanna hand me one of those tiles.",
@@ -8439,24 +8460,9 @@
             "Uh, y'know what, we\u0100\u2019re having second thoughts about our copying needs. And we\u0100\u2019ll need a little more time to think about it."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "CHANDLER",
             "JOEY"
-        ],
-        "sarcasm": true
-    },
-    "2_593": {
-        "utterance": "Is that why in junior high you were the only one that hung out with that Ukrainian kid?",
-        "speaker": "ROSS",
-        "context": [
-            "Because! You could get to live out my fantasy!",
-            "You had fantasies about Emily?",
-            "No! Y\u0100\u2019know,"
-        ],
-        "context_speakers": [
-            "MONICA",
-            "ROSS",
-            "MONICA"
         ],
         "sarcasm": false
     },
@@ -8470,10 +8476,10 @@
         ],
         "context_speakers": [
             "PHOEBE",
-            "PERSON1",
+            "PERSON",
             "PHOEBE"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_537": {
         "utterance": "What did you want to show us? Because all I can see is this bitchin van",
@@ -8503,7 +8509,7 @@
             "ROSS",
             "RACHEL"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_572": {
         "utterance": "No! I\u0100\u2019m so happy for them!",
@@ -8518,7 +8524,7 @@
             "RACHEL",
             "PHOEBE"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_243": {
         "utterance": "Look I never should have kissed your girlfriend, but I\u0100\u2019m",
@@ -8550,7 +8556,7 @@
     },
     "2_245": {
         "utterance": "Well ah, I\u0100\u2019ve been doing a lot of thinking, and I look at my life",
-        "speaker": "PERSON",
+        "speaker": "PETE",
         "context": [
             "Ooh, nice.",
             "So ah, there was this thing I wanted to talk to you about.",
@@ -8558,10 +8564,10 @@
         ],
         "context_speakers": [
             "MONICA",
-            "PERSON1",
+            "PETE",
             "MONICA"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_176": {
         "utterance": "I\u0100\u2019m the ruptured spleen.",
@@ -8576,7 +8582,7 @@
             "CHANDLER",
             "MONICA"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_58": {
         "utterance": "Why?",
@@ -8587,24 +8593,9 @@
             "I don\u0100\u2019t know, I\u0100\u2019m still pretty tired out from this afternoon."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "PHOEBE",
             "PERSON"
-        ],
-        "sarcasm": false
-    },
-    "2_620": {
-        "utterance": "...and he couldn\u0100\u2019t let it go, and... I don\u0100\u2019t really know what happened with that either.",
-        "speaker": "JOEY",
-        "context": [
-            "Ehh?",
-            "Oh, and then Monica joked that she wouldn\u0100\u2019t go out with a guy like Chandler...",
-            "Hi there."
-        ],
-        "context_speakers": [
-            "PHOEBE",
-            "JOEY",
-            "CHANDLER"
         ],
         "sarcasm": false
     },
@@ -8638,21 +8629,6 @@
         ],
         "sarcasm": false
     },
-    "2_395": {
-        "utterance": "I am not!",
-        "speaker": "MONICA",
-        "context": [
-            "Look! This is ridiculous. We should be packing you!!",
-            "Hey, how are you guys doing?",
-            "Great! Monica\u0100\u2019s moving!"
-        ],
-        "context_speakers": [
-            "RACHEL",
-            "PHOEBE",
-            "RACHEL"
-        ],
-        "sarcasm": false
-    },
     "2_626": {
         "utterance": "Cause all I ever get to do now is pregnant stuff, it just bums me out.",
         "speaker": "PHOEBE",
@@ -8666,20 +8642,9 @@
         ],
         "sarcasm": false
     },
-    "2_201": {
-        "utterance": "Oh, thank you.",
-        "speaker": "ROSS",
-        "context": [
-            "Shh. Shh. Don\u0100\u2019t try to talk, we\u0100\u2019ll get you up to your room, we\u0100\u2019ll soak your feet, you\u0100\u2019ll be okay."
-        ],
-        "context_speakers": [
-            "JOEY"
-        ],
-        "sarcasm": false
-    },
     "2_607": {
         "utterance": "Hey.",
-        "speaker": "PERSON",
+        "speaker": "KATHY",
         "context": [
             "Okay.",
             "Listen uh, could you put Kathy on, I wanna apologize.",
@@ -8690,21 +8655,6 @@
             "JOEY",
             "CHANDLER"
         ],
-        "sarcasm": true
-    },
-    "2_544": {
-        "utterance": "What?",
-        "speaker": "MONICA",
-        "context": [
-            "I spelled out boobies.",
-            "Ross, but me down for another box of the mint treasures, okay. Where, where are the mint treasures?",
-            "Ah, we\u0100\u2019re out. I sold them all."
-        ],
-        "context_speakers": [
-            "CHANDLER",
-            "MONICA",
-            "ROSS"
-        ],
         "sarcasm": false
     },
     "2_33": {
@@ -8712,15 +8662,16 @@
         "speaker": "RACHEL",
         "context": [
             "Ohh! It\u0100\u2019s so nice to meet you.  Hello. Hello.",
-            "Well, Joshua, that 500 was for groceries.",
+            "Well, Joshua, that",
+            "500 was for groceries.",
             "What?"
         ],
         "context_speakers": [
             "RACHEL",
-            "PERSON1",
+            "PERSON",
             "RACHEL"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_44": {
         "utterance": "Whoa, maybe I was!",
@@ -8731,20 +8682,7 @@
         "context_speakers": [
             "JOEY"
         ],
-        "sarcasm": true
-    },
-    "2_469": {
-        "utterance": "Gone! I mean its amazing Pheebs. I feel so free and so graceful.  Hey! Look out for the horse! Sorry!",
-        "speaker": "RACHEL",
-        "context": [
-            "Hey! Oh honey, I'm so sorry, you were right, this feels great!",
-            "See? And you don't care if people are staring, it's just for a second cause then you're gone!"
-        ],
-        "context_speakers": [
-            "RACHEL",
-            "PHOEBE"
-        ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_189": {
         "utterance": "Yeah okay, I was just talking to the guys. Just look at them I mean, is it okay if they come visit?",
@@ -8791,21 +8729,6 @@
         ],
         "sarcasm": false
     },
-    "2_139": {
-        "utterance": "Yes. Yes, yes I did. But-but it was, it was just a one night thing. It meant nothing.",
-        "speaker": "ROSS",
-        "context": [
-            "You got Rachel pregnant?!",
-            "Who did?!",
-            "You did!"
-        ],
-        "context_speakers": [
-            "PERSON1",
-            "ROSS",
-            "PERSON2"
-        ],
-        "sarcasm": true
-    },
     "2_230": {
         "utterance": "Okay, Janice. Janice. You gotta give me Janice. That wasn't about being picky.",
         "speaker": "CHANDLER",
@@ -8816,7 +8739,7 @@
         ],
         "context_speakers": [
             "MONICA",
-            "PERSON1",
+            "MR.HECKLES",
             "RACHEL"
         ],
         "sarcasm": false
@@ -8849,20 +8772,33 @@
             "MONICA",
             "RACHEL"
         ],
+        "sarcasm": false
+    },
+    "2_550": {
+        "utterance": "All right I\u0100\u2019ll have one.",
+        "speaker": "CHANDLER",
+        "context": [
+            "I will have one. Okay, I\u0100\u2019m not gonna have one.",
+            "No, no, it\u0100\u2019s just my tooth."
+        ],
+        "context_speakers": [
+            "CHANDLER",
+            "PHOEBE"
+        ],
         "sarcasm": true
     },
     "2_454": {
         "utterance": "Ross umm, there\u0100\u2019s something that I\u0100\u2019ve got to tell you, there\u0100\u2019s-there\u0100\u2019s someone else.",
-        "speaker": "PERSON",
+        "speaker": "EMILY",
         "context": [
             "It was dreadful. I felt terrible about how I acted when you said those wonderful things.",
             "No, no, that-that, that\u0100\u2019s all right. Umm, I\u0100\u2019m just glad you called."
         ],
         "context_speakers": [
-            "PERSON1",
+            "EMILY",
             "ROSS"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_151": {
         "utterance": "Yeah, I mean, it would be rude to them for us to leave now.",
@@ -8890,7 +8826,7 @@
             "ROSS",
             "RACHEL"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_385": {
         "utterance": "No, I know, but I\u0100\u2014he just went on.",
@@ -8902,21 +8838,10 @@
         ],
         "context_speakers": [
             "RACHEL",
-            "PERSON1",
+            "PERSON",
             "RACHEL"
         ],
         "sarcasm": false
-    },
-    "2_249": {
-        "utterance": "Ow!",
-        "speaker": "CHANDLER",
-        "context": [
-            "You know, I mean, it's like we're different. I'm like the bing, bing, bing. You're like the boom, boom, ... boom."
-        ],
-        "context_speakers": [
-            "CHANDLER"
-        ],
-        "sarcasm": true
     },
     "2_547": {
         "utterance": "Okay, now much have you won so far?",
@@ -8929,7 +8854,7 @@
             "JOEY",
             "CHANDLER"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_65": {
         "utterance": "It's my friends.",
@@ -8940,11 +8865,11 @@
             "It's, I mean, it's nothing, I'm fine."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "PHOEBE",
             "PERSON"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_251": {
         "utterance": "No!! You have been screwing us all day!",
@@ -8970,7 +8895,7 @@
         "context_speakers": [
             "RACHEL"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_405": {
         "utterance": "I\u0100\u2019m supposed to teach a graduate seminar there in ten minutes.",
@@ -8983,22 +8908,7 @@
             "ROSS",
             "PERSON"
         ],
-        "sarcasm": true
-    },
-    "2_101": {
-        "utterance": "I\u0100\u2019m just doing it to get back at Ross.",
-        "speaker": "RACHEL",
-        "context": [
-            "I can\u0100\u2019t do this.",
-            "Yep. Yep, that\u0100\u2019s what I didn\u0100\u2019t want to know.",
-            "Well, oh, Mark, I\u0100\u2019m doing this for the wrong reasons, y'know?"
-        ],
-        "context_speakers": [
-            "RACHEL",
-            "PERSON1",
-            "RACHEL"
-        ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_375": {
         "utterance": "I was thkinking about maybe going into the Robot.",
@@ -9011,33 +8921,7 @@
             "MONICA",
             "ROSS"
         ],
-        "sarcasm": true
-    },
-    "2_61": {
-        "utterance": "Joey. Joey, something feels weird and not good weird. I don\u0100\u2019t\u0100\u2014Whoa!!",
-        "speaker": "RACHEL",
-        "context": [
-            "I saw this movie once where there was a door and no one knew what was behind it, and when they finally got it open millions and millions and millions of bugs came pouring out and they feasted on human flesh. Y\u0100\u2019know it wouldn\u0100\u2019t kill ya to respect your wife\u0100\u2019s privacy! Stupid closet full of bugs!"
-        ],
-        "context_speakers": [
-            "JOEY"
-        ],
         "sarcasm": false
-    },
-    "2_296": {
-        "utterance": "Well, maybe we will. Oh!",
-        "speaker": "PHOEBE",
-        "context": [
-            "Oh, it\u0100\u2019s you. I see you everywhere. I\u0100\u2019m Jim, Jim Nelson.",
-            "Oh Jim, Jim Nelson I\u0100\u2019m Phoebe, Phoebe Buffay. We certainly have been seeing a lot of each other lately.",
-            "We have. Maybe we\u0100\u2019ll be seeing each other at dinner tomorrow night, say around 8 o\u0100\u2019clock?"
-        ],
-        "context_speakers": [
-            "PERSON1",
-            "PHOEBE",
-            "PERSON"
-        ],
-        "sarcasm": true
     },
     "2_72": {
         "utterance": "Oh well. It probably would\u0100\u2019ve been the most constructive solution.",
@@ -9049,10 +8933,10 @@
         ],
         "context_speakers": [
             "ROSS",
-            "PERSON1",
+            "PERSON",
             "ROSS"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_353": {
         "utterance": "Nothing. It\u0100\u2019s just old and dingy, that\u0100\u2019s all.",
@@ -9077,10 +8961,10 @@
         ],
         "context_speakers": [
             "PHOEBE",
-            "JOEY",
+            "EVERYONE",
             "JOEY"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_521": {
         "utterance": "Uh-huh!",
@@ -9097,21 +8981,6 @@
         ],
         "sarcasm": false
     },
-    "2_503": {
-        "utterance": "I'm so embarrassed, I'm the one he hit on!",
-        "speaker": "PHOEBE",
-        "context": [
-            "I need some milk.",
-            "Ok, I've got milk Here you go... Oh! Better?",
-            "No"
-        ],
-        "context_speakers": [
-            "RACHEL",
-            "PHOEBE",
-            "RACHEL"
-        ],
-        "sarcasm": true
-    },
     "2_499": {
         "utterance": "The end.",
         "speaker": "PHOEBE",
@@ -9125,7 +8994,7 @@
             "PHOEBE",
             "RACHEL"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_317": {
         "utterance": "Ah, oh, hang on a second. Come in, come in. All right, so think about it, and call me back.",
@@ -9135,25 +9004,10 @@
             "Knock, knock, knock."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "PHOEBE"
         ],
-        "sarcasm": true
-    },
-    "2_157": {
-        "utterance": "I uh, oh! Because, uh, I haven\u0100\u2019t really paid the bill",
-        "speaker": "JOEY",
-        "context": [
-            "What? No, I want to watch this. . Did your cable go out?",
-            "No, that\u0100\u2019s",
-            "Joey, why is your cable out?"
-        ],
-        "context_speakers": [
-            "CHANDLER",
-            "JOEY",
-            "CHANDLER"
-        ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_393": {
         "utterance": "Pheebs?",
@@ -9163,21 +9017,6 @@
         ],
         "context_speakers": [
             "CHANDLER"
-        ],
-        "sarcasm": false
-    },
-    "2_63": {
-        "utterance": "Back on in 30 seconds people!",
-        "speaker": "PERSON",
-        "context": [
-            "Well, it helps the bee look tough in front of his bee friends. The bee is happy and I am definitely not.",
-            "Now, y'know the bee probably died after he stung ya.",
-            "Aw, dammit!"
-        ],
-        "context_speakers": [
-            "PHOEBE",
-            "JOEY",
-            "PHOEBE"
         ],
         "sarcasm": false
     },
@@ -9204,10 +9043,9 @@
         ],
         "context_speakers": [
             "RACHEL",
-            "CHANDLER",
             "CHANDLER"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_94": {
         "utterance": "Can't do it, can you?",
@@ -9274,7 +9112,7 @@
         "context_speakers": [
             "JOEY"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_302": {
         "utterance": "I know but it\u0100\u2019s so hard! Nothing rhymes with your stupid name!",
@@ -9289,7 +9127,7 @@
             "PHOEBE",
             "RACHEL"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_305": {
         "utterance": "Take a couple deep breaths.",
@@ -9300,7 +9138,7 @@
         "context_speakers": [
             "JOEY"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_27": {
         "utterance": "No no, you don't have to fly back, really.",
@@ -9324,7 +9162,7 @@
             "RACHEL",
             "PHOEBE"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_264": {
         "utterance": "Okay?",
@@ -9361,7 +9199,7 @@
             "RACHEL",
             "PHOEBE"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_202": {
         "utterance": "Yeah?",
@@ -9404,44 +9242,18 @@
     },
     "2_526": {
         "utterance": "Ah well, this is the living room.",
-        "speaker": "PERSON1",
+        "speaker": "RICHARD",
         "context": [
             "Really?! Well, it\u0100\u2019s just like everyone else\u0100\u2019s apartment. It\u0100\u2019s got rooms, walls, and ceilings.",
             "Well, I just wanted to see where you lived. Now, give me the tour.",
             "Oh my God! Oh my God!"
         ],
         "context_speakers": [
-            "PERSON1",
-            "PERSON2",
+            "RICHARD",
+            "PERSON",
             "MONICA"
         ],
-        "sarcasm": true
-    },
-    "2_402": {
-        "utterance": "Yay!",
-        "speaker": "PHOEBE",
-        "context": [
-            "No, no, no, I wouldn\u0100\u2019t do you myself, I mean that would be weird. Yeah, no, I\u0100\u2019ll get one of the other girls to do it. Oh, this will be so much fun!"
-        ],
-        "context_speakers": [
-            "PHOEBE"
-        ],
         "sarcasm": false
-    },
-    "2_311": {
-        "utterance": "We are bad people.",
-        "speaker": "CHANDLER",
-        "context": [
-            "How about you?",
-            "It's a kitchen slash bathroom.",
-            "All right, I see what you guys are saying. I'll uh, I'll go downstairs and fill out an application."
-        ],
-        "context_speakers": [
-            "ROSS",
-            "CHANDLER",
-            "ROSS"
-        ],
-        "sarcasm": true
     },
     "2_257": {
         "utterance": "Oh, hey, look, I found coffee! Okay, let\u0100\u2019s skedaddle.",
@@ -9456,7 +9268,7 @@
             "MONICA",
             "RACHEL"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_259": {
         "utterance": "I wasn't by myself. I had a doctor, a nurse, and a helper guy. So, did you see who won the game?",
@@ -9471,7 +9283,7 @@
             "PERSON1",
             "PERSON2"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_609": {
         "utterance": "I just called a friend of mine.",
@@ -9486,7 +9298,7 @@
             "PHOEBE",
             "RACHEL"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_31": {
         "utterance": "Even if people are on it!\"",
@@ -9497,7 +9309,7 @@
         "context_speakers": [
             "RACHEL"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_371": {
         "utterance": "I-I\u0100\u2019m really sorry. It\u0100\u2019s just that I",
@@ -9508,7 +9320,7 @@
         "context_speakers": [
             "ROSS"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_531": {
         "utterance": "Yeah well that\u0100\u2019s because uh\u0100\u2026I stayed in my room. Yeah, you don\u0100\u2019t want to look in my hamper.",
@@ -9523,7 +9335,7 @@
             "JOEY",
             "RACHEL"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_315": {
         "utterance": "I guess you'd know that, being one of the two of us, though, right?",
@@ -9534,7 +9346,7 @@
         "context_speakers": [
             "RACHEL"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_413": {
         "utterance": "Some guy bought it. I\u0100\u2019m sorry. I tired to stop it but they put me in jail!",
@@ -9546,25 +9358,24 @@
         ],
         "context_speakers": [
             "CHANDLER",
-            "PHOEBE",
-            "CHANDLER"
+            "PHOEBE"
         ],
         "sarcasm": false
     },
-    "2_37": {
-        "utterance": "Thanks, Bernice. Let's go away this weekend.",
-        "speaker": "PERSON1",
+    "2_548": {
+        "utterance": "Almost! But first, we gotta start.",
+        "speaker": "PERSON",
         "context": [
-            "Well, if you want, I'll just\u0100\u2014I'll just break it off with her.",
-            "No. No-no-no-no, no. I mean, don't do that. Not, I mean not for me.",
-            "Dr. Farber, Bobby Rush is here for his adjustment."
+            "All right, I'm outta here!",
+            "I'm kidding! I'm kidding!",
+            "So were done then!"
         ],
         "context_speakers": [
-            "PERSON1",
             "RACHEL",
-            "PERSON2"
+            "MONICA",
+            "RACHEL"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_128": {
         "utterance": "You building a post office?",
@@ -9577,21 +9388,6 @@
         ],
         "sarcasm": true
     },
-    "2_276": {
-        "utterance": "Are you serious?! Chandler, we ate an entire cheesecake two days ago and you want more?",
-        "speaker": "RACHEL",
-        "context": [
-            "They delivered it to the wrong address again!",
-            "So just bring it back downstairs, what\u0100\u2019s the problem?",
-            "I can\u0100\u2019t seem to say goodbye."
-        ],
-        "context_speakers": [
-            "CHANDLER",
-            "RACHEL",
-            "CHANDLER"
-        ],
-        "sarcasm": false
-    },
     "2_326": {
         "utterance": "Stick to the list.",
         "speaker": "ROSS",
@@ -9602,7 +9398,7 @@
         ],
         "context_speakers": [
             "RACHEL",
-            "PERSON1",
+            "TAG",
             "RACHEL"
         ],
         "sarcasm": false
@@ -9622,21 +9418,6 @@
         ],
         "sarcasm": true
     },
-    "2_460": {
-        "utterance": "Hey.",
-        "speaker": "CHANDLER",
-        "context": [
-            "I already fed her.",
-            "I know, that\u0101\u20ac\u2122s why I said again!",
-            "Alright you guys, we can\u0101\u20ac\u2122t turn on each other, Okay?\u0100  That\u0101\u20ac\u2122s just what she wants."
-        ],
-        "context_speakers": [
-            "RACHEL",
-            "MONICA",
-            "PHOEBE"
-        ],
-        "sarcasm": true
-    },
     "2_576": {
         "utterance": "And then for forgetting to invite you to it.",
         "speaker": "PHOEBE",
@@ -9649,17 +9430,6 @@
             "RACHEL",
             "MONICA",
             "RACHEL"
-        ],
-        "sarcasm": false
-    },
-    "2_383": {
-        "utterance": "So, what are we gonna do today?",
-        "speaker": "MONICA",
-        "context": [
-            "Well, on the bright side, now you won't have to see all these paleontologists with their shirts off. Not you guys. You got it going on!"
-        ],
-        "context_speakers": [
-            "PHOEBE"
         ],
         "sarcasm": false
     },
@@ -9689,30 +9459,6 @@
         ],
         "sarcasm": false
     },
-    "2_70": {
-        "utterance": "Oh, it\u0100\u2019s crazy about Rachel huh?",
-        "speaker": "PERSON",
-        "context": [
-            "Good! Good, long time no see. Like your sweater.",
-            "Oh hey, right back at ya."
-        ],
-        "context_speakers": [
-            "PERSON1",
-            "ROSS"
-        ],
-        "sarcasm": true
-    },
-    "2_513": {
-        "utterance": "Who? Who do you know that are friends that just fool around?",
-        "speaker": "MONICA",
-        "context": [
-            "Yeah! You know, ever since I had that dream about him, and can't get it out of my head! And what's the big deal, people do it all the time!"
-        ],
-        "context_speakers": [
-            "RACHEL"
-        ],
-        "sarcasm": false
-    },
     "2_522": {
         "utterance": "Yes it is.",
         "speaker": "PERSON",
@@ -9724,52 +9470,7 @@
             "PHOEBE",
             "PERSON"
         ],
-        "sarcasm": true
-    },
-    "2_265": {
-        "utterance": "What?!",
-        "speaker": "CHANDLER",
-        "context": [
-            "Ring dammit, ring!",
-            "Thanks.",
-            "Hey, you know our phone's not working?"
-        ],
-        "context_speakers": [
-            "CHANDLER",
-            "ROSS",
-            "JOEY"
-        ],
-        "sarcasm": true
-    },
-    "2_98": {
-        "utterance": "\"Benefits lapsed.\"",
-        "speaker": "CHANDLER",
-        "context": [
-            "Hey! Any good mail?",
-            "Yes, you got something from the Screen Actor\u0100\u2019s Guild.",
-            "Ooh, it\u0100\u2019s probably a residual check, hey can you open it for me, I\u0100\u2019m kinda\u0100\u2026."
-        ],
-        "context_speakers": [
-            "JOEY",
-            "CHANDLER",
-            "JOEY"
-        ],
         "sarcasm": false
-    },
-    "2_23": {
-        "utterance": "That's all right.",
-        "speaker": "MONICA",
-        "context": [
-            "I had to kiss Phoebe and Rachel every time I left a room, I mean it's too bad they didn't see us having sex.",
-            "Do you know anything about women?",
-            "No."
-        ],
-        "context_speakers": [
-            "CHANDLER",
-            "MONICA",
-            "CHANDLER"
-        ],
-        "sarcasm": true
     },
     "2_30": {
         "utterance": "So how'd it go?",
@@ -9782,22 +9483,7 @@
             "ROSS",
             "MONICA"
         ],
-        "sarcasm": true
-    },
-    "2_566": {
-        "utterance": "What\u0100\u2019s the other one?",
-        "speaker": "RACHEL",
-        "context": [
-            "Still crying?",
-            "Like a Y\u0100\u2019know,",
-            "I only know of two surefire ways to shut a man up. And one of them is sex."
-        ],
-        "context_speakers": [
-            "MONICA",
-            "RACHEL",
-            "MONICA"
-        ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_171": {
         "utterance": "What is the matter with your face?!",
@@ -9808,7 +9494,7 @@
         "context_speakers": [
             "MONICA"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_97": {
         "utterance": "It would be nice to have a little guarantee though.",
@@ -9821,22 +9507,20 @@
             "PHOEBE",
             "RACHEL"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_228": {
         "utterance": "Then we went to this bar and he hooked us up with all these women!",
         "speaker": "PERSON",
         "context": [
             "Hi Tag! Hey, so did you have fun with uh, with Joey last night?",
-            "Oh yeah! We went to the Knicks game.",
-            "Ohh that\u0100\u2019s nice."
+            "Oh yeah! We went to the Knicks game. Ohh that\u0100\u2019s nice."
         ],
         "context_speakers": [
             "RACHEL",
-            "PERSON1",
-            "RACHEL"
+            "TAG"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_7": {
         "utterance": "I've never loved anybody as much as I love you.",
@@ -9879,7 +9563,7 @@
             "PHOEBE",
             "ROSS"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_319": {
         "utterance": "No.",
@@ -9901,48 +9585,22 @@
         "context_speakers": [
             "MONICA"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
-    "2_360": {
-        "utterance": "Uh-oh.",
-        "speaker": "JOEY",
+    "2_410": {
+        "utterance": "If you wanna put a label on it.",
+        "speaker": "ROSS",
         "context": [
-            "Hi! Okay, uh well, let's try one. Whenever you guys are ready."
+            "That's funny. Who are they?",
+            "The blond woman is my ex-wife, and the woman touching her is her... close, personal friend.",
+            "You mean they're lovers."
         ],
         "context_speakers": [
+            "PERSON",
+            "ROSS",
             "PERSON"
         ],
         "sarcasm": true
-    },
-    "2_624": {
-        "utterance": "They\u0100\u2019re not!! Ross, they\u0100\u2019re just saving them for the important people!! Okay?! What-what if I was the president?!",
-        "speaker": "RACHEL",
-        "context": [
-            "Yeah?",
-            "Give her some money.",
-            "I really think they\u0100\u2019re out of rooms."
-        ],
-        "context_speakers": [
-            "ROSS",
-            "RACHEL",
-            "ROSS"
-        ],
-        "sarcasm": false
-    },
-    "2_468": {
-        "utterance": "Fine.",
-        "speaker": "PERSON",
-        "context": [
-            "Puzzler. A bit of a puzzle. Why don\u0100\u2019t you um, check the copy room, maybe you left the contracts in there?",
-            "How could I have left them in the copy room?",
-            "I don\u0100\u2019t know Tag! How can your genitals make phone calls? Okay? It\u0100\u2019s not a perfect world! Just go please."
-        ],
-        "context_speakers": [
-            "RACHEL",
-            "PERSON1",
-            "RACHEL"
-        ],
-        "sarcasm": false
     },
     "2_166": {
         "utterance": "But I'm the host!",
@@ -9953,22 +9611,26 @@
             "No you answer it and take pledges."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "JOEY",
             "PERSON"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
-    "2_366": {
-        "utterance": "I talk to you and it\u0100\u2019s nothin\u0100\u2019.",
-        "speaker": "JOEY",
+    "2_558": {
+        "utterance": "I can see it from right here. It\u0100\u2019ll cost you one husband.",
+        "speaker": "CHANDLER",
         "context": [
-            "Well, why don\u0100\u2019t you tell me what you\u0100\u2019re supposed to be! Huh? Because I sure as hell can\u0100\u2019t figure it out!"
+            "Oh wait! Stop! Stop! Stop!",
+            "Oh I\u0100\u2019m sorry! Do you need a break?",
+            "My boots in tan! Hey! Can you get a little closer so I can see the price?"
         ],
         "context_speakers": [
-            "JOEY"
+            "MONICA",
+            "CHANDLER",
+            "MONICA"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_289": {
         "utterance": "Nooo! No, that\u0100\u2019s not true. No, best time ever! Yeah, you rocked my world!",
@@ -9983,7 +9645,7 @@
             "MONICA",
             "CHANDLER"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_118": {
         "utterance": "Seriously, it's moving!",
@@ -9997,17 +9659,6 @@
             "PHOEBE",
             "ROSS",
             "PHOEBE"
-        ],
-        "sarcasm": false
-    },
-    "2_533": {
-        "utterance": "And now, he\u0100\u2019s got a two year contract opposite Susan Luchhi, the first lady of daytime television, and me, me I\u0100\u2019m stuck here teaching a bunch of people, most of whom are too ugly to even be on TV.",
-        "speaker": "JOEY",
-        "context": [
-            "I had such an opportunity in the recent, present. And I\u0100\u2019m ashamed to say that I took it, I advised a fellow actor to play a role, homosexually. Yeah, we both auditioned for the part, and uh, as it turned out, they ah, they liked the stupid gay thing and cast him."
-        ],
-        "context_speakers": [
-            "JOEY"
         ],
         "sarcasm": false
     },
@@ -10045,7 +9696,7 @@
             "Well, yeah, kinda. Um, but that\u0100\u2019s okay, see we have an understanding, um, see we each have this list of five famous people, so I\u0100\u2019m allowed to sleep with you."
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "ROSS"
         ],
         "sarcasm": false
@@ -10063,7 +9714,7 @@
             "PHOEBE",
             "MONICA"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
     "2_102": {
         "utterance": "No Blanche she is upset because they keep changing the taste of coke.",
@@ -10084,7 +9735,7 @@
         "utterance": "No Rose, she is depressed because Marvel had manners on only once a week",
         "speaker": "DOROTHY",
         "context": [
-            "Now PERSON1 is depressed Rose.",
+            "Now PERSON is depressed Rose.",
             "Do you think she is depressed about Rebecca"
         ],
         "context_speakers": [
@@ -10112,6 +9763,53 @@
         ],
         "sarcasm": true
     },
+    "2_587": {
+        "utterance": "Oh yes Blanche, about a half hour ago. But now I have hidden her again so you can find her.",
+        "speaker": "DOROTHY",
+        "context": [
+            "Have you found her?"
+        ],
+        "context_speakers": [
+            "BLANCHE"
+        ],
+        "sarcasm": true
+    },
+    "2_612": {
+        "utterance": "I don't know Rose, maybe Marry Poppins has an Italian cousin.",
+        "speaker": "DOROTHY",
+        "context": [
+            "Isn't she happy here?",
+            "I think she will be happy with Gloria",
+            "What about us? Whose gonna keep after us. Make us linguini and tell us story about Cicily."
+        ],
+        "context_speakers": [
+            "ROSE",
+            "DOROTHY",
+            "ROSE"
+        ],
+        "sarcasm": true
+    },
+    "2_89": {
+        "utterance": "On the home shopping network",
+        "speaker": "DOROTHY",
+        "context": [
+            "We clinked at the glasses, Stan gave me a toy smile and I winked at him",
+            "And then I gulped down the champaigne in one go",
+            "And it didn't go sdown smoothly",
+            "Later Stan told me that he put my engagement ring in the bottom of the glass",
+            "It turned up three days later.",
+            "Where did it turn up Dorothy?"
+        ],
+        "context_speakers": [
+            "DOROTHY",
+            "DOROTHY",
+            "DOROTHY",
+            "DOROTHY",
+            "DOROTHY",
+            "ROSE"
+        ],
+        "sarcasm": true
+    },
     "2_599": {
         "utterance": "No I am upset because crocodin turbs are wearing darker colors.",
         "speaker": "DOROTHY",
@@ -10123,7 +9821,7 @@
             "DOROTHY",
             "BLANCHE"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_182": {
         "utterance": "The liberarche marquee at Caesar's palace",
@@ -10131,6 +9829,19 @@
         "context": [
             "Whop, it is really coming down.",
             "Whats coming down?"
+        ],
+        "context_speakers": [
+            "DOROTHY",
+            "ROSE"
+        ],
+        "sarcasm": true
+    },
+    "2_292": {
+        "utterance": "No, she is going to sit here where it\u00d5s a 112 degrees and eat enchiladas.",
+        "speaker": "DOROTHY",
+        "context": [
+            "Its Miami in June, only cats are wearing fur!",
+            "You going out?"
         ],
         "context_speakers": [
             "DOROTHY",
@@ -10151,6 +9862,17 @@
         ],
         "sarcasm": true
     },
+    "2_390": {
+        "utterance": "No, I am depressed becaues Phillis George left the morning news.",
+        "speaker": "DOROTHY",
+        "context": [
+            "Are you depressed about Glen?"
+        ],
+        "context_speakers": [
+            "ROSE"
+        ],
+        "sarcasm": true
+    },
     "2_378": {
         "utterance": "No Blanche, with a venus fly trap",
         "speaker": "DOROTHY",
@@ -10162,7 +9884,18 @@
             "DOROTHY",
             "BLANCHE"
         ],
-        "sarcasm": false
+        "sarcasm": true
+    },
+    "2_9": {
+        "utterance": "No Rose, go to the corner and open a stand",
+        "speaker": "DOROTHY",
+        "context": [
+            "Shall I set this down someplace?"
+        ],
+        "context_speakers": [
+            "ROSE"
+        ],
+        "sarcasm": true
     },
     "2_144": {
         "utterance": "Lords of Arabia",
@@ -10175,7 +9908,7 @@
             "DOROTHY",
             "ROSE"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_479": {
         "utterance": "No I am worried she might be Phir Resuda's",
@@ -10188,20 +9921,19 @@
             "DOROTHY",
             "ROSE"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_45": {
         "utterance": "Oh ma no, it was a little girl selling girl scout toilets.",
         "speaker": "DOROTHY",
         "context": [
-            "Oh fine we will!",
-            "Is that Paolo?"
+            "Oh fine we will! Is that Paolo?"
         ],
         "context_speakers": [
             "DOROTHY",
             "SOPHIA"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_507": {
         "utterance": "No, I haven't taken her out of the trunk of the car yet.",
@@ -10225,7 +9957,7 @@
             "DOROTHY",
             "ROSE"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_281": {
         "utterance": "Ofcourse no Ma, I am referring to Carrey Grant, he is living in the broom closet.",
@@ -10264,7 +9996,22 @@
             "DOROTHY",
             "ROSE"
         ],
-        "sarcasm": false
+        "sarcasm": true
+    },
+    "2_505": {
+        "utterance": "To feed the cat Rose.",
+        "speaker": "DOROTHY",
+        "context": [
+            "Your kidney?",
+            "My kidney.",
+            "Why would she need a kidney?"
+        ],
+        "context_speakers": [
+            "DOROTHY",
+            "BLANCHE",
+            "ROSE"
+        ],
+        "sarcasm": true
     },
     "2_74": {
         "utterance": "Show them your slides of Hawaii",
@@ -10275,7 +10022,7 @@
         "context_speakers": [
             "ROSE"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_126": {
         "utterance": "No I am upset because Joe Piscapo didn't get the lead role in rain man.",
@@ -10288,7 +10035,20 @@
             "DOROTHY",
             "ROSE"
         ],
-        "sarcasm": false
+        "sarcasm": true
+    },
+    "2_158": {
+        "utterance": "A bucket of chicked. I hope you like it extra flat and crispy",
+        "speaker": "DOROTHY",
+        "context": [
+            "We brought dinner.",
+            "What you get?"
+        ],
+        "context_speakers": [
+            "ROSE",
+            "SOPHIA"
+        ],
+        "sarcasm": true
     },
     "2_255": {
         "utterance": "It's a musical Rose",
@@ -10299,7 +10059,18 @@
         "context_speakers": [
             "ROSE"
         ],
-        "sarcasm": false
+        "sarcasm": true
+    },
+    "2_502": {
+        "utterance": "I'm worried about whether Michael Jackson will be able to buy the remains of the elephant man.",
+        "speaker": "DOROTHY",
+        "context": [
+            "Still worried about the money you owe the government?"
+        ],
+        "context_speakers": [
+            "BLANCHE"
+        ],
+        "sarcasm": true
     },
     "2_11": {
         "utterance": "His cappucino maker.",
@@ -10312,7 +10083,7 @@
             "DOROTHY",
             "ROSE"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_135": {
         "utterance": "No, she I supset because Jimmy Swaager can't cover his motel bill",
@@ -10325,7 +10096,7 @@
             "ROSE",
             "BLANCHE"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_442": {
         "utterance": "No it\u00d5s the rose in the kitchen thing.",
@@ -10351,7 +10122,7 @@
             "DOROTHY",
             "BLANCHE"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_492": {
         "utterance": "I'm sorry Sophia, but in Dorothy's defence, it sure sounds a lot like her.",
@@ -10370,6 +10141,27 @@
         ],
         "sarcasm": true
     },
+    "2_512": {
+        "utterance": "Because it wears a little sunbrella Rose.",
+        "speaker": "DOROTHY",
+        "context": [
+            "It is not a fly Rose",
+            "Spanish fly is not a fly?",
+            "No, it's a beetle.",
+            "They call it a fly but its really a beetle?",
+            "Yes",
+            "How did they know its Spanish?"
+        ],
+        "context_speakers": [
+            "DOROTHY",
+            "ROSE",
+            "DOROTHY",
+            "ROSE",
+            "DOROTHY",
+            "ROSE"
+        ],
+        "sarcasm": true
+    },
     "2_121": {
         "utterance": "What was I doing? My ben gazara in person?",
         "speaker": "DOROTHY",
@@ -10381,7 +10173,7 @@
             "SOPHIA",
             "SOPHIA"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_129": {
         "utterance": "What are these? Claws?",
@@ -10396,7 +10188,7 @@
             "DOROTHY",
             "BLANCHE"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_222": {
         "utterance": "The little man who lives in there, who turns the light on and off will tell you.",
@@ -10418,7 +10210,7 @@
         "context_speakers": [
             "ROSE"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_352": {
         "utterance": "No Rose, it stands alone.",
@@ -10429,11 +10221,11 @@
             "Do you have to see 1, 2 and 3 to appreciate it?"
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
             "BLANCHE",
             "ROSE"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_344": {
         "utterance": "A hand puppet Rose.",
@@ -10443,7 +10235,20 @@
             "With what?"
         ],
         "context_speakers": [
-            "PERSON1",
+            "PERSON",
+            "ROSE"
+        ],
+        "sarcasm": true
+    },
+    "2_465": {
+        "utterance": "No Rose, that you should do.",
+        "speaker": "DOROTHY",
+        "context": [
+            "No more ice-skating",
+            "And I am not gonna go Niagra falls in a barrel."
+        ],
+        "context_speakers": [
+            "ROSE",
             "ROSE"
         ],
         "sarcasm": true
@@ -10457,7 +10262,7 @@
         "context_speakers": [
             "MODERATOR"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_361": {
         "utterance": "Nooo",
@@ -10483,7 +10288,7 @@
         "context_speakers": [
             "SCOTT"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_271": {
         "utterance": "Sarcasm? Noo.",
@@ -10494,7 +10299,7 @@
         "context_speakers": [
             "SCOTT"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_306": {
         "utterance": "No, no no, I just mediate the gorup. I just give up every Tuesday of my life to help these screwups for the good of my health",
@@ -10505,7 +10310,7 @@
         "context_speakers": [
             "SCOTT"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_209": {
         "utterance": "Really?",
@@ -10516,7 +10321,7 @@
         "context_speakers": [
             "SCOTT"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_312": {
         "utterance": "Sarcasm? At a sarcasmoholics meeting?",
@@ -10542,7 +10347,31 @@
             "SCOTT",
             "MEMBER-BOY"
         ],
-        "sarcasm": false
+        "sarcasm": true
+    },
+    "2_527": {
+        "utterance": "We thought you were just here for the company. He is a sarcasmoholic Stewart.",
+        "speaker": "MEMBER-GIRL",
+        "context": [
+            "My name's Scott and I am a sarcasmholic.",
+            "Nooo."
+        ],
+        "context_speakers": [
+            "SCOTT",
+            "MEMBER-GIRL"
+        ],
+        "sarcasm": true
+    },
+    "2_596": {
+        "utterance": "Noooo. Really?",
+        "speaker": "MEMBER-BOY",
+        "context": [
+            "I am having a bit of trouble telling when people are sarcastic."
+        ],
+        "context_speakers": [
+            "SCOTT"
+        ],
+        "sarcasm": true
     },
     "2_123": {
         "utterance": "Nooo!",
@@ -10560,6 +10389,34 @@
         "speaker": "MODERATOR",
         "context": [
             "No seriouslty."
+        ],
+        "context_speakers": [
+            "SCOTT"
+        ],
+        "sarcasm": true
+    },
+    "2_338": {
+        "utterance": "And I am sure every person here really really wants you to join our group.",
+        "speaker": "MODERATOR",
+        "context": [
+            "Scott scott come back. You have to realize that we are a bunch of people with severe problems.",
+            "We have been trying to help ourselves, just like you have been trying to help yourself.",
+            "That's why we need to help each other.",
+            "I mean, you seem like a decent guy."
+        ],
+        "context_speakers": [
+            "MODERATOR",
+            "MODERATOR",
+            "MODERATOR",
+            "MODERATOR"
+        ],
+        "sarcasm": true
+    },
+    "2_381": {
+        "utterance": "Noo..",
+        "speaker": "MODERATOR",
+        "context": [
+            "[nodding] - Was that sarcasm?"
         ],
         "context_speakers": [
             "SCOTT"
@@ -10597,7 +10454,22 @@
         "context_speakers": [
             "MONICA"
         ],
-        "sarcasm": false
+        "sarcasm": true
+    },
+    "2_589": {
+        "utterance": "Well why don't you check in one of my saddle bags while I chew on a bale of hay.",
+        "speaker": "CHANDLER",
+        "context": [
+            "I am sorry I think I can walk the rest of the way now just give me my boots.",
+            "I don't have your boots",
+            "Well I don't have them either, where are they?"
+        ],
+        "context_speakers": [
+            "MONICA",
+            "CHANDLER",
+            "MONICA"
+        ],
+        "sarcasm": true
     },
     "2_523": {
         "utterance": "Well, I'm a headhunter. I hook up out of work Soviet scientists with rogue third-world nations. Hi Rasputin!",
@@ -10623,6 +10495,17 @@
         ],
         "sarcasm": true
     },
+    "2_170": {
+        "utterance": "The British are coming?",
+        "speaker": "CHANDLER",
+        "context": [
+            "Hey you guys, guess what?"
+        ],
+        "context_speakers": [
+            "PHOEBE"
+        ],
+        "sarcasm": true
+    },
     "2_500": {
         "utterance": "Oh my God I love that! - Really? - NO!",
         "speaker": "MONICA",
@@ -10631,6 +10514,17 @@
         ],
         "context_speakers": [
             "CHANDLER"
+        ],
+        "sarcasm": true
+    },
+    "2_303": {
+        "utterance": "No thanks Josephine!",
+        "speaker": "CHANDLER",
+        "context": [
+            "Hey Chandler!, come on in we are knitting pot holders."
+        ],
+        "context_speakers": [
+            "JOEY"
         ],
         "sarcasm": true
     },
@@ -10656,7 +10550,7 @@
             "CHANDLER",
             "ROSS"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_438": {
         "utterance": "Really? Struck down in the prime of life.",
@@ -10667,7 +10561,7 @@
         "context_speakers": [
             "MONICA"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_167": {
         "utterance": "I am not freaking out, why would I be freaking out? A woman named Hildy called and said we will get married, but that happens everyday",
@@ -10691,17 +10585,6 @@
         ],
         "sarcasm": true
     },
-    "2_122": {
-        "utterance": "That\u00d5s not true I came with Monica and I am leaving with Weird Al.",
-        "speaker": "CHANDLER",
-        "context": [
-            "Ross and Charlie, Joey and Rachel, Phoebe and Mike. We are the only people leaving with the PERSON1 we came with."
-        ],
-        "context_speakers": [
-            "MONICA"
-        ],
-        "sarcasm": true
-    },
     "2_623": {
         "utterance": "What do you know? Its a treat for the eyes and the ears.",
         "speaker": "CHANDLER",
@@ -10717,7 +10600,7 @@
             "MONICA",
             "CHANDLER"
         ],
-        "sarcasm": false
+        "sarcasm": true
     },
     "2_131": {
         "utterance": "I really don't wanna sit with Allen Iverson over there .",
@@ -10743,7 +10626,35 @@
             "MONICA",
             "RACHEL"
         ],
-        "sarcasm": false
+        "sarcasm": true
+    },
+    "2_546": {
+        "utterance": "Oh sure, she was probably up all night excited about the party she knows is happening.",
+        "speaker": "CHANDLER",
+        "context": [
+            "Hey",
+            "Hey, where's the birthday girl?",
+            "Oh she is still napping."
+        ],
+        "context_speakers": [
+            "MONICA",
+            "CHANDLER",
+            "RACHEL"
+        ],
+        "sarcasm": true
+    },
+    "2_242": {
+        "utterance": "Are you still enjoying your nap?",
+        "speaker": "CHANDLER",
+        "context": [
+            "Okay?",
+            "Hi Emma, it's the year 2020."
+        ],
+        "context_speakers": [
+            "ROSS",
+            "CHANDLER"
+        ],
+        "sarcasm": true
     },
     "2_169": {
         "utterance": "Hes not right for the part, and if I suggest him my bosses are going to think I am an idiot. And that\u00d5s something they should learn on their own.",
@@ -10769,26 +10680,39 @@
         ],
         "context_speakers": [
             "JOEY",
-            "PERSON1",
+            "PERSON",
             "CHANDLER",
             "PERSON"
         ],
-        "sarcasm": true
+        "sarcasm": false
     },
-    "2_185": {
-        "utterance": "No, no. - Hello Rachel - Well not at first!",
+    "2_34": {
+        "utterance": "Is it me or the greetings gone downhill around here?",
         "speaker": "CHANDLER",
         "context": [
-            "Rach funny story, I bumped into Joanna yesterday.",
-            "My boss Joanna? Well that must have been awkward -",
-            "Well no actually she asked me if I want to get a drink.",
-            "You ah, didn't say yes to that did you?"
+            "Hey",
+            "You son of a bitch!"
         ],
         "context_speakers": [
             "CHANDLER",
-            "RACHEL",
+            "JOEY"
+        ],
+        "sarcasm": true
+    },
+    "2_608": {
+        "utterance": "You are right, by saying nice, I am virtually licking her.",
+        "speaker": "CHANDLER",
+        "context": [
+            "Did I go to this school?",
+            "Hey, there's Missy Goldberg. You gotta remember her.",
+            "Sure, nice.",
+            "Dude. You're married to my sister."
+        ],
+        "context_speakers": [
             "CHANDLER",
-            "RACHEL"
+            "ROSS",
+            "CHANDLER",
+            "ROSS"
         ],
         "sarcasm": true
     },
@@ -10801,6 +10725,6 @@
         "context_speakers": [
             "ROSS"
         ],
-        "sarcasm": false
+        "sarcasm": true
     }
 }

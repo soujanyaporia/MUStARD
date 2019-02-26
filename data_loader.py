@@ -22,25 +22,35 @@ def pickle_loader(filename):
 class DataLoader:
 
     DATA_PATH_JSON = "./data/sarcasm_data.json"
+    AUDIO_PICKLE = "./data/audio_features.p"
     INDICES_FILE = "./data/split_indices.p"
+    GLOVE_DICT = "./data/glove_full_dict.p"
+    UTT_ID = 0
+    CONTEXT_ID = 2
+    UNK_TOKEN = "<UNK>"
+    PAD_TOKEN = "<PAD>"
 
-    def __init__(self):
+    def __init__(self, config):
+
+        self.config = config
         
         dataset_json = json.load(open(self.DATA_PATH_JSON))
-        self.parseData(dataset_json)
+        audio_features = pickle.load(open(self.AUDIO_PICKLE, "rb"))
+        self.parseData(dataset_json, audio_features)
         self.StratifiedKFold()
+        self.setupGloveDict()
 
 
-    def parseData(self, json):
+    def parseData(self, json, audio_features):
         '''
         Prepares json data into lists
-        data_input = [ (utterance:string, speaker:string, context:list_of_strings, context_speakers:list_of_strings ) ]
+        data_input = [ (utterance:string, speaker:string, context:list_of_strings, context_speakers:list_of_strings, utterance_audio:features ) ]
         data_output = [ sarcasm_tag:int ]
         '''
         self.data_input, self.data_output = [], []
         
         for ID in json.keys():
-            self.data_input.append( (json[ID]["utterance"], json[ID]["speaker"], json[ID]["context"], json[ID]["context_speakers"]) )
+            self.data_input.append( (json[ID]["utterance"], json[ID]["speaker"], json[ID]["context"], json[ID]["context_speakers"], audio_features[ID]) )
             self.data_output.append( int(json[ID]["sarcasm"]) )
 
 
@@ -71,7 +81,77 @@ class DataLoader:
         data_output = [self.data_output[ind] for ind in indices]
         return data_input, data_output
 
+
+
+    def fullDatasetVocab(self):
+        '''
+        Return the full dataset's vocabulary to filter and cache glove embedding dictionary
+        '''
+
+        vocab = defaultdict(lambda:0)
+        utterances = [instance[self.UTT_ID] for instance in self.data_input]
+        contexts = [instance[self.CONTEXT_ID] for instance in self.data_input]
+
+
+        for utterance in utterances:
+            clean_utt = DataHelper.clean_str(utterance)
+            utt_words = nltk.word_tokenize(clean_utt)
+            for word in utt_words:
+                vocab[word.lower()] += 1
+
+        for context in contexts:
+            for c_utt in context:
+                clean_utt = DataHelper.clean_str(c_utt)
+                utt_words = nltk.word_tokenize(clean_utt)
+                for word in utt_words:
+                    vocab[word.lower()] += 1
+        return vocab
+
+
+    def setupGloveDict(self):
+        '''
+        Caching the glove dictionary based on all the words in the dataset.
+        This cache is later used to create appropriate dictionaries for each fold's training vocabulary
+        '''
+        assert(self.config.word_embedding_path is not None)
+
+        # Vocabulary of the full dataset
+        vocab = self.fullDatasetVocab()
+
+        if os.path.exists(self.GLOVE_DICT):
+            self.wordemb_dict = pickle.load(open(self.GLOVE_DICT, "rb"))
+        else:   
+            self.wordemb_dict = {}
+            for line in open(self.config.word_embedding_path,'r'):
+                splitLine = line.split() 
+                word = splitLine[0]
+                try:
+                    embedding = np.array([float(val) for val in splitLine[1:]])
+
+                    # Filter glove words based on its presence in the vocab
+                    if word.lower() in vocab:
+                        self.wordemb_dict[word.lower()] = embedding
+                except:
+                    print("Error word in glvoe file (skipped): ", word)
+                    continue
+            self.wordemb_dict[self.PAD_TOKEN] = np.zeros(self.config.embedding_dim)
+            self.wordemb_dict[self.UNK_TOKEN] = np.random.uniform(-0.25,0.25,self.config.embedding_dim)
+
+            pickle.dump(self.wordemb_dict, open(self.GLOVE_DICT, "wb"))
             
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 class DataHelper:
@@ -80,28 +160,57 @@ class DataHelper:
     SPEAKER_ID = 1
     CONTEXT_ID = 2
     CONTEXT_SPEAKERS_ID = 3
+    TARGET_AUDIO_ID = 4
 
     PAD_ID = 0
     UNK_ID = 1
-    UNK_TOKEN = "<UNK>"
     PAD_TOKEN = "<PAD>"
+    UNK_TOKEN = "<UNK>"
 
     GLOVE_MODELS = "./data/temp/glove_dict_{}.p"
     GLOVE_MODELS_CONTEXT = "./data/temp/glove_dict_context_{}.p"
 
 
-    def __init__(self, train_input, train_output, test_input, test_output, config):
+    def __init__(self, train_input, train_output, test_input, test_output, config, dataLoader):
+        self.dataLoader = dataLoader
         self.config = config
         self.train_input = train_input
         self.train_output = train_output
         self.test_input = test_input
         self.test_output = test_output
 
-        self.createVocab(config.use_context)
+        # create vocab for current split train set
+        self.createVocab(config.use_context) 
         print("vocab size: " + str(len(self.vocab)))
 
-        self.loadGloveModel(config.word_embedding_path, config.use_context)
+
+        self.loadGloveModelForCurrentSplit(config.use_context)
         self.createEmbeddingMatrix()
+
+
+    @staticmethod
+    def clean_str(string):
+        '''
+        Tokenization/string cleaning.
+        '''
+        string = re.sub(r"[^A-Za-z0-9(),!?\'\`]", " ", string)     
+        string = re.sub(r"\'s", " \'s", string) 
+        string = re.sub(r"\'ve", " \'ve", string) 
+        string = re.sub(r"n\'t", " n\'t", string) 
+        string = re.sub(r"\'re", " \'re", string) 
+        string = re.sub(r"\'d", " \'d", string) 
+        string = re.sub(r"\'ll", " \'ll", string) 
+        string = re.sub(r",", " , ", string) 
+        string = re.sub(r"!", " ! ", string) 
+        string = re.sub(r"\"", " \" ", string) 
+        string = re.sub(r"\(", " ( ", string) 
+        string = re.sub(r"\)", " ) ", string) 
+        string = re.sub(r"\?", " ? ", string) 
+        string = re.sub(r"\s{2,}", " ", string) 
+        string = re.sub(r"\.", " . ", string)    
+        string = re.sub(r".\, ", " , ", string)  
+        string = re.sub(r"\\n", " ", string)  
+        return string.strip().lower()
 
 
 
@@ -128,6 +237,7 @@ class DataHelper:
             for word in utt_words:
                 vocab[word.lower()] += 1
 
+        # Add vocabulary fron context sentences of train split if context is used
         if use_context:
             context_utterances = self.getData(self.CONTEXT_ID, mode="train")
             for context in context_utterances:
@@ -139,11 +249,11 @@ class DataHelper:
 
 
 
-    def loadGloveModel(self, gloveFile, use_context=False):
+    def loadGloveModelForCurrentSplit(self, use_context=False):
         '''
-        Loads the Glove pre-trained model
+        Loads the Glove pre-trained model for the current split
         '''
-        assert(gloveFile is not None)
+        
         print("Loading glove model")
 
         # if model already exists:
@@ -155,22 +265,15 @@ class DataHelper:
 
         if os.path.exists(filename):
             self.model = pickle_loader(filename)
-            self.embed_dim = len(self.model[self.PAD_TOKEN])
+            self.embed_dim = len(self.dataLoader.wordemb_dict[self.PAD_TOKEN])
         else:
             self.model = model = {}
             self.embed_dim = 0
-            for line in open(gloveFile,'r'):
-                splitLine = line.split() 
-                word = splitLine[0]
-                try:
-                    embedding = np.array([float(val) for val in splitLine[1:]])
-                except:
-                    print("Here", word)
-                    continue
+
+            # Further filter glove dict words to contain only train set vocab for current fold
+            for word, embedding in self.dataLoader.wordemb_dict.items():
                 if word in self.vocab: model[word.lower()] = embedding
-                self.embed_dim = len(splitLine[1:])
-            model[self.UNK_TOKEN] = np.zeros(self.embed_dim)
-            model[self.PAD_TOKEN] = np.zeros(self.embed_dim)
+                self.embed_dim = len(embedding)
 
             pickle.dump(self.model, open(filename, "wb"), protocol=2)
 
@@ -182,47 +285,32 @@ class DataHelper:
         embedding matrix W
         """
 
-        vocab_size = len(self.model)
+        vocab_size = len(self.model) # length of filtered glove embedding words
         self.word_idx_map = word_idx_map = dict()
         self.W = W = np.zeros(shape=(vocab_size+2, self.embed_dim), dtype='float32')            
-        W[self.PAD_ID] = np.zeros(self.embed_dim, dtype='float32')
-        W[self.UNK_ID] = np.random.uniform(-0.25,0.25,self.embed_dim) 
+        
+        # Pad and Unknown
+        W[self.PAD_ID] = self.dataLoader.wordemb_dict[self.PAD_TOKEN]
+        W[self.UNK_ID] = self.dataLoader.wordemb_dict[self.UNK_TOKEN]
+        word_idx_map[self.PAD_TOKEN] = self.PAD_ID
+        word_idx_map[self.UNK_TOKEN] = self.UNK_ID
+
+        # Other words
         i = 2
         for word in self.model:
-            W[i] = self.model[word]
-            word_idx_map[word] = i
-            i += 1
+            if (word != self.PAD_TOKEN) and (word != self.UNK_TOKEN):
+                W[i] = np.copy(self.model[word])
+                word_idx_map[word] = i
+                i += 1
 
         # Make words not in glove as unknown
         for word in self.vocab:
             if word not in self.model:
                 word_idx_map[word] = self.UNK_ID
 
+
     def getEmbeddingMatrix(self):
         return self.W
-
-    def clean_str(self, string):
-        '''
-        Tokenization/string cleaning.
-        '''
-        string = re.sub(r"[^A-Za-z0-9(),!?\'\`]", " ", string)     
-        string = re.sub(r"\'s", " \'s", string) 
-        string = re.sub(r"\'ve", " \'ve", string) 
-        string = re.sub(r"n\'t", " n\'t", string) 
-        string = re.sub(r"\'re", " \'re", string) 
-        string = re.sub(r"\'d", " \'d", string) 
-        string = re.sub(r"\'ll", " \'ll", string) 
-        string = re.sub(r",", " , ", string) 
-        string = re.sub(r"!", " ! ", string) 
-        string = re.sub(r"\"", " \" ", string) 
-        string = re.sub(r"\(", " ( ", string) 
-        string = re.sub(r"\)", " ) ", string) 
-        string = re.sub(r"\?", " ? ", string) 
-        string = re.sub(r"\s{2,}", " ", string) 
-        string = re.sub(r"\.", " . ", string)    
-        string = re.sub(r".\, ", " , ", string)  
-        string = re.sub(r"\\n", " ", string)  
-        return string.strip().lower()
 
 
     def wordToIndex(self, utterance):
@@ -247,11 +335,6 @@ class DataHelper:
             vector_utt.append(word_indices)
 
         return vector_utt
-
-    def contextMask(self, mode=None):
-
-        contexts = self.getData(self.CONTEXT_ID, mode, 
-                                "Set mode properly for contextMask method() : mode = train/test")
 
 
     def getAuthor(self, mode=None):
@@ -302,6 +385,39 @@ class DataHelper:
         return np.array(vector_context)
 
 
+    def pool_text(self, data):
+
+        data_vector = [self.W[ind] for ind in data if ind != 0] # only pick up non pad words
+        data_vector = np.mean(data_vector, axis=0)
+        return data_vector
+
+    def getContextPool(self, mode=None):
+
+        contexts = self.getData(self.CONTEXT_ID, mode, 
+                                "Set mode properly for vectorizeContext method() : mode = train/test")
+
+        vector_context = []
+        for context in contexts:
+            local_context = []
+            for utterance in context[-self.config.max_context_length:]: # taking latest (max_context_length) sentences
+
+                if utterance == "":
+                    print(context)
+
+                #padding to max_sent_length
+                word_indices = self.wordToIndex(utterance)
+                word_avg = self.pool_text(word_indices)
+
+                local_context.append(word_avg)
+
+            local_context = np.array(local_context)
+            vector_context.append(np.mean(local_context, axis=0))
+            
+
+        return np.array(vector_context)
+
+
+
     def oneHotOutput(self, mode=None, size=None):
         '''
         Returns one hot encoding of the output
@@ -324,6 +440,48 @@ class DataHelper:
         
         assert(np.array_equal(data, np.argmax(oneHotData, axis=1)))
         return oneHotData
+
+    #### Audio related functions ####
+
+    def getAudioMaxLength(self, data):
+        return np.max([feature.shape[1] for feature in data])
+
+    def padAudio(self, data, max_length):
+
+        for ind, instance in enumerate(data):
+            if instance.shape[1] < max_length:
+                instance = np.concatenate([instance, np.zeros( (instance.shape[0],(max_length-instance.shape[1])))], axis=1)
+                data[ind] = instance
+            data[ind] = data[ind][:,:max_length]
+            data[ind] = data[ind].transpose()
+        return np.array(data)
+
+
+    def getTargetAudio(self, mode=None):
+
+        audio = self.getData(self.TARGET_AUDIO_ID, mode, 
+                             "Set mode properly for TargetAudio method() : mode = train/test")
+
+        if mode == "train":
+            self.audioMaxLength = self.getAudioMaxLength(audio)
+
+        audio = self.padAudio(audio, self.audioMaxLength)
+
+        if mode == "train":
+            self.config.audio_length = audio.shape[1]
+            self.config.audio_embedding = audio.shape[2]
+
+        return audio
+
+    def getTargetAudioPool(self, mode=None):
+
+        audio = self.getData(self.TARGET_AUDIO_ID, mode, 
+                             "Set mode properly for TargetAudio method() : mode = train/test")
+
+        aud_pool=[]
+        for aud in audio:
+            aud_pool.append(np.mean(aud, axis=1))
+        return np.asarray(aud_pool)
 
 
 
