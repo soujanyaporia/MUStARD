@@ -1,2 +1,3 @@
+*.csv
 keras_model
 /output
