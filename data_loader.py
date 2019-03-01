@@ -1,10 +1,10 @@
-
 import os
 import sys
 import re
 import json
 import pickle
 
+import h5py
 import nltk
 import numpy as np
 from beeprint import pp
@@ -30,18 +30,26 @@ class DataLoader:
     UNK_TOKEN = "<UNK>"
     PAD_TOKEN = "<PAD>"
 
-    def __init__(self, config):
+    def __init__(self, config, load_video_features=False):
 
         self.config = config
         
         dataset_json = json.load(open(self.DATA_PATH_JSON))
         audio_features = pickle.load(open(self.AUDIO_PICKLE, "rb"))
-        self.parseData(dataset_json, audio_features)
+        if load_video_features:
+            video_features_file = h5py.File('data/features/utterances_final/resnet_pool5.hdf5')
+            context_video_features_file = h5py.File('data/features/context_final/resnet_pool5.hdf5')
+        else:
+            video_features_file = None
+            context_video_features_file = None
+        self.parseData(dataset_json, audio_features, video_features_file, context_video_features_file)
+        if video_features_file:
+            video_features_file.close()
         self.StratifiedKFold()
         self.setupGloveDict()
 
 
-    def parseData(self, json, audio_features):
+    def parseData(self, json, audio_features, video_features_file=None, context_video_features_file=None):
         '''
         Prepares json data into lists
         data_input = [ (utterance:string, speaker:string, context:list_of_strings, context_speakers:list_of_strings, utterance_audio:features ) ]
@@ -50,7 +58,9 @@ class DataLoader:
         self.data_input, self.data_output = [], []
         
         for ID in json.keys():
-            self.data_input.append( (json[ID]["utterance"], json[ID]["speaker"], json[ID]["context"], json[ID]["context_speakers"], audio_features[ID]) )
+            self.data_input.append((json[ID]["utterance"], json[ID]["speaker"], json[ID]["context"], json[ID]["context_speakers"], audio_features[ID],
+                                    video_features_file[ID] if video_features_file else None,
+                                    context_video_features_file[ID] if context_video_features_file else None))
             self.data_output.append( int(json[ID]["sarcasm"]) )
 
 

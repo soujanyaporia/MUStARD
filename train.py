@@ -1,15 +1,13 @@
 import os
-import pickle
 import json
 
 
 import numpy as np
-from beeprint import pp
 
 from config import Config
 from data_loader import DataLoader
 from data_loader import DataHelper
-from models import text_GRU, text_CNN, text_CNN_context
+from models import text_GRU, text_CNN
 
 # Desired graphics card selection
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
@@ -24,7 +22,7 @@ def train(model_name=None):
     config = Config()
     
     # Load data
-    data = DataLoader()
+    data = DataLoader(config)
 
 
     # Iterating over each fold
