@@ -1,15 +1,16 @@
-
 import os
 import sys
 import re
 import json
 import pickle
 
+import h5py
 import nltk
 import numpy as np
-from beeprint import pp
 from collections import defaultdict
 from sklearn.model_selection import StratifiedKFold
+
+import config
 
 
 def pickle_loader(filename):
@@ -35,13 +36,22 @@ class DataLoader:
         self.config = config
         
         dataset_json = json.load(open(self.DATA_PATH_JSON))
-        audio_features = pickle.load(open(self.AUDIO_PICKLE, "rb"))
-        self.parseData(dataset_json, audio_features)
+        audio_features = pickle_loader(self.AUDIO_PICKLE)
+        if config.use_target_video:
+            video_features_file = h5py.File('data/features/utterances_final/resnet_pool5.hdf5')
+            context_video_features_file = h5py.File('data/features/context_final/resnet_pool5.hdf5')
+        else:
+            video_features_file = None
+            context_video_features_file = None
+        self.parseData(dataset_json, audio_features, video_features_file, context_video_features_file)
+        if config.use_target_video:
+            video_features_file.close()
+            context_video_features_file.close()
         self.StratifiedKFold()
         self.setupGloveDict()
 
 
-    def parseData(self, json, audio_features):
+    def parseData(self, json, audio_features, video_features_file=None, context_video_features_file=None):
         '''
         Prepares json data into lists
         data_input = [ (utterance:string, speaker:string, context:list_of_strings, context_speakers:list_of_strings, utterance_audio:features ) ]
@@ -50,7 +60,10 @@ class DataLoader:
         self.data_input, self.data_output = [], []
         
         for ID in json.keys():
-            self.data_input.append( (json[ID]["utterance"], json[ID]["speaker"], json[ID]["context"], json[ID]["context_speakers"], audio_features[ID]) )
+            self.data_input.append((json[ID]["utterance"], json[ID]["speaker"], json[ID]["context"],
+                                    json[ID]["context_speakers"], audio_features[ID],
+                                    video_features_file[ID][()] if video_features_file else None,
+                                    context_video_features_file[ID][()] if context_video_features_file else None))
             self.data_output.append( int(json[ID]["sarcasm"]) )
 
 
@@ -119,7 +132,7 @@ class DataLoader:
         vocab = self.fullDatasetVocab()
 
         if os.path.exists(self.GLOVE_DICT):
-            self.wordemb_dict = pickle.load(open(self.GLOVE_DICT, "rb"))
+            self.wordemb_dict = pickle_loader(self.GLOVE_DICT)
         else:   
             self.wordemb_dict = {}
             for line in open(self.config.word_embedding_path,'r'):
@@ -161,6 +174,8 @@ class DataHelper:
     CONTEXT_ID = 2
     CONTEXT_SPEAKERS_ID = 3
     TARGET_AUDIO_ID = 4
+    TARGET_VIDEO_ID = 5
+    CONTEXT_VIDEO_ID = 6
 
     PAD_ID = 0
     UNK_ID = 1
@@ -180,7 +195,7 @@ class DataHelper:
         self.test_output = test_output
 
         # create vocab for current split train set
-        self.createVocab(config.use_context) 
+        self.createVocab(config.use_context)
         print("vocab size: " + str(len(self.vocab)))
 
 
@@ -483,8 +498,11 @@ class DataHelper:
             aud_pool.append(np.mean(aud, axis=1))
         return np.asarray(aud_pool)
 
-
+    def getTargetVideoPool(self, mode=None):
+        video = self.getData(self.TARGET_VIDEO_ID, mode,
+                             "Set mode properly for TargetVideo method() : mode = train/test")
+        return np.array([np.mean(feature_vector, axis=0) for feature_vector in video])
 
 
 if __name__ == "__main__":
-    dataLoader = DataLoader()
+    dataLoader = DataLoader(config.Config())

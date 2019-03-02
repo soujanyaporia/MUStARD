@@ -116,6 +116,9 @@ class text_CNN(keras_basemodel):
         if self.config.use_author:
             num_authors = self.config.num_authors
             input_authors = Input(shape=(num_authors,), name="input_authors")
+
+        if self.config.use_target_video:
+            pass  # TODO
         
 
 

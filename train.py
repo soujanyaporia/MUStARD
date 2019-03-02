@@ -1,15 +1,13 @@
 import os
-import pickle
 import json
 
 
 import numpy as np
-from beeprint import pp
 
 from config import Config
 from data_loader import DataLoader
 from data_loader import DataHelper
-from models import text_GRU, text_CNN, text_CNN_context
+from models import text_GRU, text_CNN
 
 # Desired graphics card selection
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
@@ -24,7 +22,7 @@ def train(model_name=None):
     config = Config()
     
     # Load data
-    data = DataLoader()
+    data = DataLoader(config)
 
 
     # Iterating over each fold
@@ -36,7 +34,7 @@ def train(model_name=None):
         # Prepare data
         train_input, train_output = data.getSplit(train_index)
         test_input, test_output = data.getSplit(test_index)
-        datahelper = DataHelper(train_input, train_output, test_input, test_output, config)
+        datahelper = DataHelper(train_input, train_output, test_input, test_output, config, data)
         
 
         train_input = [datahelper.vectorizeUtterance(mode="train")]
@@ -57,21 +55,19 @@ def train(model_name=None):
         if model_name == "text_GRU":
             model = text_GRU(config)
         elif model_name == "text_CNN":
-            model = text_CNN_context(config)
+            model = text_CNN(config)
+        else:
+            raise ValueError("Unrecognized model: " + model_name)
 
-
-
-        summary = model.getModel(datahelper.getEmbeddingMatrix())
+        model.getModel(datahelper.getEmbeddingMatrix())
         model.train(train_input, train_output)
         result_dict, result_str = model.test(test_input, test_output)
         results.append(result_dict)
-
     
     # Dumping result to output
     if not os.path.exists(os.path.dirname(RESULT_FILE)):
         os.makedirs(os.path.dirname(RESULT_FILE))
     json.dump(results, open(RESULT_FILE.format(model_name), "wb"))
-
 
 
 def printResult(model_name=None):
