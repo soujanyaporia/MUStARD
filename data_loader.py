@@ -28,6 +28,7 @@ class DataLoader:
     GLOVE_DICT = "./data/glove_full_dict.p"
     UTT_ID = 0
     CONTEXT_ID = 2
+    SHOW_ID = 7
     UNK_TOKEN = "<UNK>"
     PAD_TOKEN = "<PAD>"
 
@@ -50,6 +51,9 @@ class DataLoader:
         self.StratifiedKFold()
         self.setupGloveDict()
 
+        # Setup speaker independent split
+        self.speakerIndependentSplit()
+
 
     def parseData(self, json, audio_features, video_features_file=None, context_video_features_file=None):
         '''
@@ -63,7 +67,8 @@ class DataLoader:
             self.data_input.append((json[ID]["utterance"], json[ID]["speaker"], json[ID]["context"],
                                     json[ID]["context_speakers"], audio_features[ID],
                                     video_features_file[ID][()] if video_features_file else None,
-                                    context_video_features_file[ID][()] if context_video_features_file else None))
+                                    context_video_features_file[ID][()] if context_video_features_file else None,
+                                    json[ID]["show"]))
             self.data_output.append( int(json[ID]["sarcasm"]) )
 
 
@@ -84,6 +89,26 @@ class DataLoader:
         '''
         self.split_indices = pickle_loader(self.INDICES_FILE)
         return self.split_indices
+
+    def speakerIndependentSplit(self):
+        '''
+        Prepares split for speaker independent setting
+        Train: Fr, TGG, Sa
+        Test: TBBT
+        '''
+        self.train_ind_SI, self.test_ind_SI = [], []
+        for ind, data in enumerate(self.data_input):
+            if data[self.SHOW_ID] == "FRIENDS":
+                self.test_ind_SI.append(ind)
+            else:
+                self.train_ind_SI.append(ind)
+
+    def getSpeakerIndependent(self):
+        '''
+        Returns the split indices of speaker independent setting
+        '''
+        return self.train_ind_SI, self.test_ind_SI
+
 
 
     def getSplit(self, indices):
@@ -152,8 +177,6 @@ class DataLoader:
 
             pickle.dump(self.wordemb_dict, open(self.GLOVE_DICT, "wb"))
             
-
-
 
 
 
@@ -493,14 +516,15 @@ class DataHelper:
         audio = self.getData(self.TARGET_AUDIO_ID, mode, 
                              "Set mode properly for TargetAudio method() : mode = train/test")
 
-        aud_pool=[]
-        for aud in audio:
-            aud_pool.append(np.mean(aud, axis=1))
-        return np.asarray(aud_pool)
+        return np.array([np.mean(feature_vector, axis=1) for feature_vector in audio])
+
+
+    #### Video related functions ####
 
     def getTargetVideoPool(self, mode=None):
         video = self.getData(self.TARGET_VIDEO_ID, mode,
                              "Set mode properly for TargetVideo method() : mode = train/test")
+
         return np.array([np.mean(feature_vector, axis=0) for feature_vector in video])
 
 

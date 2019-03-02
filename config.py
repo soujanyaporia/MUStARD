@@ -1,11 +1,14 @@
 class Config:
     # Training modes
-    use_context = False  # whether to use context information or not (default false)
-    use_author = False  # add author one-hot encoding in the input
+    use_context = True  # whether to use context information or not (default false)
+    use_author = True  # add author one-hot encoding in the input
 
     use_target_text = False
     use_target_audio = False  # adds audio target utterance features.
-    use_target_video = True  # adds video target utterance features.
+    use_target_video = True # adds video target utterance features.
+
+
+    speaker_independent = False # speaker independent experiments
 
     embedding_dim = 300  # GloVe embedding size
     word_embedding_path = "/mnt/data/devamanyu/work/glove.840B.300d.txt"

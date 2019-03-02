@@ -12,6 +12,14 @@ from data_loader import DataHelper
 RESULT_FILE = "./output/{}.json"
 
 
+# Load config
+config = Config()
+
+# Load data
+data = DataLoader(config)
+
+
+
 def svm_train(train_input, train_output):
 
     clf = svm.SVC(C=10.0, gamma='scale', kernel='rbf')
@@ -29,18 +37,80 @@ def svm_test(clf, test_input, test_output):
     # To generate random scores
     # y_pred = np.random.randint(2, size=len(y_pred))
     
-    result_string = classification_report(y_true, y_pred)
+    result_string = classification_report(y_true, y_pred, digits=4)
     print(confusion_matrix(y_true, y_pred))
     print(result_string)
-    return classification_report(y_true, y_pred, output_dict=True), result_string
+    return classification_report(y_true, y_pred, output_dict=True, digits=4), result_string
 
 
 
+def trainIO(train_index, test_index):
 
-def train(model_name=None):
+    # Prepare data
+    train_input, train_output = data.getSplit(train_index)
+    test_input, test_output = data.getSplit(test_index)
+    datahelper = DataHelper(train_input, train_output, test_input, test_output, config, data)
 
-    # Load config
-    config = Config()
+    train_input = np.empty((len(train_input), 0))
+    test_input = np.empty((len(test_input), 0))
+
+    if config.use_target_text:
+        train_input = np.concatenate([train_input,
+                                      np.array([datahelper.pool_text(utt)
+                                                for utt in datahelper.vectorizeUtterance(mode='train')])], axis=1)
+        test_input = np.concatenate([test_input,
+                                     np.array([datahelper.pool_text(utt)
+                                               for utt in datahelper.vectorizeUtterance(mode='test')])], axis=1)
+
+    if config.use_target_video:
+        train_input = np.concatenate([train_input, datahelper.getTargetVideoPool(mode='train')], axis=1)
+        test_input = np.concatenate([test_input, datahelper.getTargetVideoPool(mode='test')], axis=1)
+
+    if config.use_target_audio:
+        train_input = np.concatenate([train_input, datahelper.getTargetAudioPool(mode='train')], axis=1)
+        test_input = np.concatenate([test_input, datahelper.getTargetAudioPool(mode='test')], axis=1)
+
+    if train_input.shape[1] == 0:
+        print("Invalid modalities")
+        exit(1)
+
+    # Aux input
+
+    if config.use_author:
+        train_input_author = datahelper.getAuthor(mode="train")
+        test_input_author =  datahelper.getAuthor(mode="test")
+
+        train_input = np.concatenate([train_input, train_input_author], axis=1)
+        test_input = np.concatenate([test_input, test_input_author], axis=1)
+
+    if config.use_context:
+        train_input_context = datahelper.getContextPool(mode="train")
+        test_input_context =  datahelper.getContextPool(mode="test")
+
+        train_input = np.concatenate([train_input, train_input_context], axis=1)
+        test_input = np.concatenate([test_input, test_input_context], axis=1)
+
+    
+    train_output = datahelper.oneHotOutput(mode="train", size=config.num_classes)
+    test_output = datahelper.oneHotOutput(mode="test", size=config.num_classes)
+
+    return train_input, train_output, test_input, test_output
+
+
+
+def trainSpeakerIndependent(model_name=None):
+
+    config.fold = "SI"
+    
+    (train_index, test_index) = data.getSpeakerIndependent()
+    train_input, train_output, test_input, test_output = trainIO(train_index, test_index)
+
+    clf = svm_train(train_input, train_output)
+    result_dict, result_str = svm_test(clf, test_input, test_output)
+
+
+
+def trainSpeakerDependent(model_name=None):
     
     # Load data
     data = DataLoader(config)
@@ -53,53 +123,7 @@ def train(model_name=None):
         config.fold = fold+1
         print("Present Fold: {}".format(config.fold))
 
-        # Prepare data
-        train_input, train_output = data.getSplit(train_index)
-        test_input, test_output = data.getSplit(test_index)
-        datahelper = DataHelper(train_input, train_output, test_input, test_output, config, data)
-
-        train_input = np.empty((len(train_input), 0))
-        test_input = np.empty((len(test_input), 0))
-
-        if config.use_target_text:
-            train_input = np.concatenate([train_input,
-                                          np.array([datahelper.pool_text(utt)
-                                                    for utt in datahelper.vectorizeUtterance(mode='train')])], axis=1)
-            test_input = np.concatenate([test_input,
-                                         np.array([datahelper.pool_text(utt)
-                                                   for utt in datahelper.vectorizeUtterance(mode='test')])], axis=1)
-
-        if config.use_target_audio:
-            train_input = np.concatenate([train_input, datahelper.getTargetAudioPool(mode='train')], axis=1)
-            test_input = np.concatenate([test_input, datahelper.getTargetAudioPool(mode='test')], axis=1)
-
-        if config.use_target_video:
-            train_input = np.concatenate([train_input, datahelper.getTargetVideoPool(mode='train')], axis=1)
-            test_input = np.concatenate([test_input, datahelper.getTargetVideoPool(mode='test')], axis=1)
-
-        if train_input.shape[1] == 0:
-            print("Invalid modalities")
-            exit(1)
-
-        # Aux input
-
-        if config.use_author:
-            train_input_author = datahelper.getAuthor(mode="train")
-            test_input_author =  datahelper.getAuthor(mode="test")
-
-            train_input = np.concatenate([train_input, train_input_author], axis=1)
-            test_input = np.concatenate([test_input, test_input_author], axis=1)
-
-        if config.use_context:
-            train_input_context = datahelper.getContextPool(mode="train")
-            test_input_context =  datahelper.getContextPool(mode="test")
-
-            train_input = np.concatenate([train_input, train_input_context], axis=1)
-            test_input = np.concatenate([test_input, test_input_context], axis=1)
-
-        
-        train_output = datahelper.oneHotOutput(mode="train", size=config.num_classes)
-        test_output = datahelper.oneHotOutput(mode="test", size=config.num_classes)
+        train_input, train_output, test_input, test_output = trainIO(train_index, test_index)
 
         clf = svm_train(train_input, train_output)
         result_dict, result_str = svm_test(clf, test_input, test_output)
@@ -145,6 +169,9 @@ if __name__ == "__main__":
     MODEL = "SVM"
     RUNS = 1
 
-    for _ in range(RUNS):
-        train(model_name=MODEL)
-        printResult(model_name=MODEL)
+    if config.speaker_independent:
+        trainSpeakerIndependent(model_name=MODEL)
+    else:
+        for _ in range(RUNS):
+            trainSpeakerDependent(model_name=MODEL)
+            printResult(model_name=MODEL)
