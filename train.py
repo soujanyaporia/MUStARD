@@ -34,7 +34,7 @@ def train(model_name=None):
         # Prepare data
         train_input, train_output = data.getSplit(train_index)
         test_input, test_output = data.getSplit(test_index)
-        datahelper = DataHelper(train_input, train_output, test_input, test_output, config)
+        datahelper = DataHelper(train_input, train_output, test_input, test_output, config, data)
         
 
         train_input = [datahelper.vectorizeUtterance(mode="train")]
@@ -55,21 +55,19 @@ def train(model_name=None):
         if model_name == "text_GRU":
             model = text_GRU(config)
         elif model_name == "text_CNN":
-            model = text_CNN_context(config)
+            model = text_CNN(config)
+        else:
+            raise ValueError("Unrecognized model: " + model_name)
 
-
-
-        summary = model.getModel(datahelper.getEmbeddingMatrix())
+        model.getModel(datahelper.getEmbeddingMatrix())
         model.train(train_input, train_output)
         result_dict, result_str = model.test(test_input, test_output)
         results.append(result_dict)
-
     
     # Dumping result to output
     if not os.path.exists(os.path.dirname(RESULT_FILE)):
         os.makedirs(os.path.dirname(RESULT_FILE))
     json.dump(results, open(RESULT_FILE.format(model_name), "wb"))
-
 
 
 def printResult(model_name=None):

@@ -1,21 +1,15 @@
-import os
-import pickle
 import json
-
+import os
 
 import numpy as np
 from sklearn import svm
-from beeprint import pp
+from sklearn.metrics import classification_report, confusion_matrix
 
 from config import Config
 from data_loader import DataLoader
 from data_loader import DataHelper
-from models import text_GRU, text_CNN
-from sklearn.metrics import classification_report
-from sklearn.metrics import confusion_matrix, f1_score, precision_score, recall_score
 
 RESULT_FILE = "./output/{}.json"
-
 
 
 def svm_train(train_input, train_output):
@@ -63,34 +57,31 @@ def train(model_name=None):
         train_input, train_output = data.getSplit(train_index)
         test_input, test_output = data.getSplit(test_index)
         datahelper = DataHelper(train_input, train_output, test_input, test_output, config, data)
-        
-        emb_matrix = datahelper.getEmbeddingMatrix()
 
+        train_input = np.empty((len(train_input), 0))
+        test_input = np.empty((len(test_input), 0))
 
-        # Default text
-        if (config.use_target_text) and (not config.use_target_audio): # Only text
-            train_input = np.array([datahelper.pool_text(utt) for utt in datahelper.vectorizeUtterance(mode="train")])
-            test_input = np.array([datahelper.pool_text(utt) for utt in datahelper.vectorizeUtterance(mode="test")])
+        if config.use_target_text:
+            train_input = np.concatenate([train_input,
+                                          np.array([datahelper.pool_text(utt)
+                                                    for utt in datahelper.vectorizeUtterance(mode='train')])], axis=1)
+            test_input = np.concatenate([test_input,
+                                         np.array([datahelper.pool_text(utt)
+                                                   for utt in datahelper.vectorizeUtterance(mode='test')])], axis=1)
 
-        elif (config.use_target_audio) and (not config.use_target_text): # Only audio
-            train_input = datahelper.getTargetAudioPool(mode="train")
-            test_input = datahelper.getTargetAudioPool(mode="test")
+        if config.use_target_audio:
+            train_input = np.concatenate([train_input, datahelper.getTargetAudioPool(mode='train')], axis=1)
+            test_input = np.concatenate([test_input, datahelper.getTargetAudioPool(mode='test')], axis=1)
 
-        elif (config.use_target_text) and (config.use_target_audio): # Bimodal input
-            train_input = np.array([datahelper.pool_text(utt) for utt in datahelper.vectorizeUtterance(mode="train")])
-            test_input = np.array([datahelper.pool_text(utt) for utt in datahelper.vectorizeUtterance(mode="test")])
+        if config.use_target_video:
+            train_input = np.concatenate([train_input, datahelper.getTargetVideoPool(mode='train')], axis=1)
+            test_input = np.concatenate([test_input, datahelper.getTargetVideoPool(mode='test')], axis=1)
 
-            train_input_audio = datahelper.getTargetAudioPool(mode="train")
-            test_input_audio =  datahelper.getTargetAudioPool(mode="test")
-
-            train_input = np.concatenate([train_input, train_input_audio], axis=1)
-            test_input = np.concatenate([test_input, test_input_audio], axis=1)
-        else:
+        if train_input.shape[1] == 0:
             print("Invalid modalities")
-            exit()
+            exit(1)
 
-
-        # Aux input 
+        # Aux input
 
         if config.use_author:
             train_input_author = datahelper.getAuthor(mode="train")
@@ -114,14 +105,12 @@ def train(model_name=None):
         result_dict, result_str = svm_test(clf, test_input, test_output)
 
         results.append(result_dict)
-        
 
-    
     # Dumping result to output
     if not os.path.exists(os.path.dirname(RESULT_FILE)):
         os.makedirs(os.path.dirname(RESULT_FILE))
-    json.dump(results, open(RESULT_FILE.format(model_name), "wb"))
-
+    with open(RESULT_FILE.format(model_name), 'w') as file:
+        json.dump(results, file)
 
 
 def printResult(model_name=None):
@@ -148,7 +137,6 @@ def printResult(model_name=None):
 
 
 if __name__ == "__main__":
-
     '''
     model_names:
     - text_GRU
