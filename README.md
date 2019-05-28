@@ -1,5 +1,9 @@
 # MMSD: Multimodal Sarcasm Detection
 
+
+### Example Utterance
+![](https://github.com/soujanyaporia/MMSD/edit/master/images/utterance_example.jpg)
+
 ## Data Format
 
 Sample instance from the dataset. Each instance is alloted one identifier (e.g. 1_60) which comprises a dictionary of the following items:   
