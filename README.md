@@ -1,8 +1,12 @@
 # MMSD: Multimodal Sarcasm Detection
 
+This repository presents our ACL 2019 work: Towards Multimodal Sarcasm Detection (An *Obviously* Perfect Paper)    
 
-### Example Utterance
-![](https://github.com/soujanyaporia/MMSD/edit/master/images/utterance_example.jpg)
+We release the MMSD dataset which is a multimodal video corpus for research in automated sarcasm discovery. The dataset is compiled popular TV shows including *Friends*, *The Golden Girls*, *The Big Bang Theory*, and *Sarcasmaholics  Anonymous*. MMSD consists of audiovisual utterances annotated with sarcasm labels. Each utterance is accompanied by its context, which provides additional information on the scenario where the utterance occurs.
+
+## Example Utterance
+![](images/utterance_example.jpg)
+<p align="center"> Sample sarcastic utterance in the dataset along with its context and transcript </p>     
 
 ## Data Format
 
