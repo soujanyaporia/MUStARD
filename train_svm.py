@@ -155,17 +155,16 @@ def printResult(model_name=None):
         weighted_fscores.append(result["weighted avg"]["f1-score"])
         weighted_precision.append(result["weighted avg"]["precision"])
         weighted_recall.append(result["weighted avg"]["recall"])
-        
 
         print("Fold {}:".format(fold+1))
-        print("Weighted Precision: {}  Weighted Recall: {}  Weighted Fscore: {}".format(result["weighted avg"]["precision"],
-                                                                                 result["weighted avg"]["recall"],
-                                                                                 result["weighted avg"]["f1-score"]))
+        print("Weighted Precision: {}  Weighted Recall: {}  Weighted F score: {}".format(result["weighted avg"]["precision"],
+                                                                                         result["weighted avg"]["recall"],
+                                                                                         result["weighted avg"]["f1-score"]))
     print("#"*20)
     print("Avg :")
-    print("Weighted Precision: {}  Weighted Recall: {}  Weighted Fscore: {}".format(np.mean(weighted_precision),
-                                                                             np.mean(weighted_recall),
-                                                                             np.mean(weighted_fscores)))
+    print("Weighted Precision: {:.3f}  Weighted Recall: {:.3f}  Weighted F score: {:.3f}".format(np.mean(weighted_precision),
+                                                                                                 np.mean(weighted_recall),
+                                                                                                 np.mean(weighted_fscores)))
  
 
 if __name__ == "__main__":

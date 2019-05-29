@@ -1,20 +1,28 @@
 # MMSD: Multimodal Sarcasm Detection
 
-This repository presents our ACL 2019 work "Towards Multimodal Sarcasm Detection (An *Obviously* Perfect Paper)".
+This repository contains the dataset and experiments from our ACL 2019 paper "Towards Multimodal Sarcasm Detection
+(An _Obviously_ Perfect Paper)".
 
-We release the MMSD dataset which is a multimodal video corpus for research in automated sarcasm discovery. The dataset is compiled from popular TV shows including *Friends*, *The Golden Girls*, *The Big Bang Theory*, and *Sarcasmaholics Anonymous*. MMSD consists of audiovisual utterances annotated with sarcasm labels. Each utterance is accompanied by its context, which provides additional information on the scenario where the utterance occurs.
+We release the MMSD dataset which is a multimodal video corpus for research in automated sarcasm discovery. The dataset
+is compiled from popular TV shows including *Friends*, *The Golden Girls*, *The Big Bang Theory*, and
+*Sarcasmaholics Anonymous*. MMSD consists of audiovisual utterances annotated with sarcasm labels. Each utterance is
+accompanied by its context, which provides additional information on the scenario where the utterance occurs.
 
 ## Example Instance
-![](images/utterance_example.jpg)
+
+![Example instance](images/utterance_example.jpg)
+
 <p align="center"> Example sarcastic utterance from the dataset along with its context and transcript. </p>     
 
 ## Raw Videos
 
-The raw video clips including both the utterances and their respective context are available [here]().
+We provide a [Google Drive folder with the raw video clips](https://drive.google.com/open?id=1msjXtTTYWCSJAzn7riQh791HXevb3NgE),
+including both the utterances and their respective context
 
 ## Data Format
 
-The annotations and transcripts of the audiovisual clips are available at `data/sarcasm_data.json`. Each instance in the json file is alloted one identifier (e.g. "1\_60") which is a dictionary of the following items:   
+The annotations and transcripts of the audiovisual clips are available at [`data/sarcasm_data.json`](data/sarcasm_data.json).
+Each instance in the JSON file is allotted one identifier (e.g. "1\_60") which is a dictionary of the following items:   
 
 
 | Key                     | Value                                                                          | 
@@ -28,23 +36,61 @@ The annotations and transcripts of the audiovisual clips are available at `data/
 Example format in JSON:
 
 ```json
-"1_60": {
-  "utterance": "It's just a privilege to watch your mind at work.",
-  "speaker": "SHELDON",
-  "context": [
-    "I never would have identified the fingerprints of string theory in the aftermath of the Big Bang.",
-    "My apologies. What's your plan?"
-  ],
-  "context_speakers": [
-    "LEONARD",
-    "SHELDON"
-  ],
-  "sarcasm": true
+{
+  "1_60": {
+    "utterance": "It's just a privilege to watch your mind at work.",
+    "speaker": "SHELDON",
+    "context": [
+      "I never would have identified the fingerprints of string theory in the aftermath of the Big Bang.",
+      "My apologies. What's your plan?"
+    ],
+    "context_speakers": [
+      "LEONARD",
+      "SHELDON"
+    ],
+    "sarcasm": true
+  }
 }
 ```
 
 ## Citation
 
-Please cite the following papers if you find this dataset useful in your research:
+Please cite the following paper if you find this dataset useful in your research:
 
-`S Castro, D Hazarika, V Pérez-Rosas,R Zimmermann, R Mihalcea, S Poria. Towards Multimodal Sarcasm Detection(An _Obviously_ Perfect Paper). ACL 2019.`
+```tex
+@inproceedings{mmsd,
+    title = "Towards Multimodal Sarcasm Detection (An  _Obviously_ Perfect Paper)",
+    author = "Castro, Santiago  and
+      Hazarika, Devamanyu  and
+      P{\'e}rez-Rosas, Ver{\'o}nica  and
+      Zimmermann, Roger  and
+      Mihalcea, Rada  and
+      Poria, Soujanya",
+    booktitle = "Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = "jul",
+    year = "2019",
+    address = "Florence, Italy",
+    publisher = "Association for Computational Linguistics",
+}
+```
+
+## Run the code
+
+1. Setup an environment with Conda:
+
+    ```bash
+    conda env create -f environment.yml
+    conda activate mmsd
+    python -c "import nltk; nltk.download('punkt')"
+    ```
+
+2. Download [Common Crawl pretrained GloVe word vectors of size 300d, 840B tokens](http://nlp.stanford.edu/data/glove.840B.300d.zip)
+somewhere.
+
+3. [Extract the visual features](visual/README.md).
+
+4. Modify [`config.py`](config.py) and run:
+
+    ```bash
+    python train_svm.py
+    ```
