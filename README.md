@@ -8,9 +8,13 @@ We release the MMSD dataset which is a multimodal video corpus for research in a
 ![](images/utterance_example.jpg)
 <p align="center"> Example sarcastic utterance from the dataset along with its context and transcript. </p>     
 
+## Raw Videos
+
+The raw video clips including both the utterances and their respective context are available [here]().
+
 ## Data Format
 
-Each instance is alloted one identifier (e.g. "1\_60") which comprises a dictionary of the following items:   
+The annotations and transcripts of the audiovisual clips are available at `data/sarcasm_data.json`. Each instance in the json file is alloted one identifier (e.g. "1\_60") which is a dictionary of the following items:   
 
 
 | Key                     | Value                                                                          | 
@@ -19,7 +23,7 @@ Each instance is alloted one identifier (e.g. "1\_60") which comprises a diction
 | `speaker`               | Speaker of the target utterance.                                               | 
 | `context`               | List of utterances (in chronological order) preceding the target utterance.    | 
 | `context_speakers`      | Respective speakers of the context utterances.                                 | 
-| `sarcasm`               | Label for sarcasm tag.                                                         | 
+| `sarcasm`               | Binary label for sarcasm tag.                                                         | 
 
 Example format in JSON:
 
@@ -38,3 +42,9 @@ Example format in JSON:
   "sarcasm": true
 }
 ```
+
+## Citation
+
+Please cite the following papers if you find this dataset useful in your research:
+
+`S Castro, D Hazarika, V Pérez-Rosas,R Zimmermann, R Mihalcea, S Poria. Towards Multimodal Sarcasm Detection(An _Obviously_ Perfect Paper). ACL 2019.`
