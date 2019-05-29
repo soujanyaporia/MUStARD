@@ -36,6 +36,9 @@ def svm_test(clf, test_input, test_output):
 
     # To generate random scores
     # y_pred = np.random.randint(2, size=len(y_pred))
+
+    # To generate majority baseline
+    # y_pred = [0]*len(y_pred)
     
     result_string = classification_report(y_true, y_pred, digits=4)
     print(confusion_matrix(y_true, y_pred))
@@ -142,24 +145,28 @@ def printResult(model_name=None):
 
     results = json.load(open(RESULT_FILE.format(model_name), "rb"))
 
+    weighted_precision, weighted_recall = [], []
     weighted_fscores, macro_fscores, micro_fscores = [], [], []
+
     print("#"*20)
     for fold, result in enumerate(results):
         micro_fscores.append(result["micro avg"]["f1-score"])
         macro_fscores.append(result["macro avg"]["f1-score"])
         weighted_fscores.append(result["weighted avg"]["f1-score"])
+        weighted_precision.append(result["weighted avg"]["precision"])
+        weighted_recall.append(result["weighted avg"]["recall"])
         
 
         print("Fold {}:".format(fold+1))
-        print("Micro Fscore: {}  Macro Fscore: {}  Weighted Fscore: {}".format(result["micro avg"]["f1-score"],
-                                                                               result["macro avg"]["f1-score"],
-                                                                               result["weighted avg"]["f1-score"]))
+        print("Weighted Precision: {}  Weighted Recall: {}  Weighted Fscore: {}".format(result["weighted avg"]["precision"],
+                                                                                 result["weighted avg"]["recall"],
+                                                                                 result["weighted avg"]["f1-score"]))
     print("#"*20)
     print("Avg :")
-    print("Micro Fscore: {}  Macro Fscore: {}  Weighted Fscore: {}".format(np.mean(micro_fscores),
-                                                                           np.mean(macro_fscores),
-                                                                           np.mean(weighted_fscores)))
-
+    print("Weighted Precision: {}  Weighted Recall: {}  Weighted Fscore: {}".format(np.mean(weighted_precision),
+                                                                             np.mean(weighted_recall),
+                                                                             np.mean(weighted_fscores)))
+ 
 
 if __name__ == "__main__":
 
