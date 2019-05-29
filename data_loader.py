@@ -37,6 +37,7 @@ class DataLoader:
         self.config = config
         
         dataset_json = json.load(open(self.DATA_PATH_JSON))
+
         audio_features = pickle_loader(self.AUDIO_PICKLE)
         if config.use_target_video:
             video_features_file = h5py.File('data/features/utterances_final/resnet_pool5.hdf5')
@@ -44,6 +45,7 @@ class DataLoader:
         else:
             video_features_file = None
             context_video_features_file = None
+
         self.parseData(dataset_json, audio_features, video_features_file, context_video_features_file)
         if config.use_target_video:
             video_features_file.close()
@@ -170,7 +172,7 @@ class DataLoader:
                     if word.lower() in vocab:
                         self.wordemb_dict[word.lower()] = embedding
                 except:
-                    print("Error word in glvoe file (skipped): ", word)
+                    print("Error word in glove file (skipped): ", word)
                     continue
             self.wordemb_dict[self.PAD_TOKEN] = np.zeros(self.config.embedding_dim)
             self.wordemb_dict[self.UNK_TOKEN] = np.random.uniform(-0.25,0.25,self.config.embedding_dim)

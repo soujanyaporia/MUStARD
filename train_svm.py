@@ -49,6 +49,7 @@ def trainIO(train_index, test_index):
     # Prepare data
     train_input, train_output = data.getSplit(train_index)
     test_input, test_output = data.getSplit(test_index)
+
     datahelper = DataHelper(train_input, train_output, test_input, test_output, config, data)
 
     train_input = np.empty((len(train_input), 0))
@@ -161,17 +162,10 @@ def printResult(model_name=None):
 
 
 if __name__ == "__main__":
-    '''
-    model_names:
-    - text_GRU
-    - text_CNN
-    '''
-    MODEL = "SVM"
-    RUNS = 1
 
     if config.speaker_independent:
-        trainSpeakerIndependent(model_name=MODEL)
+        trainSpeakerIndependent(model_name=config.model)
     else:
-        for _ in range(RUNS):
-            trainSpeakerDependent(model_name=MODEL)
-            printResult(model_name=MODEL)
+        for _ in range(config.runs):
+            trainSpeakerDependent(model_name=config.model)
+            printResult(model_name=config.model)
