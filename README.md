@@ -89,7 +89,28 @@ somewhere.
 
 3. [Extract the visual features](visual/README.md).
 
-4. Modify [`config.py`](config.py) and run:
+4. Extract BERT features in another environment with Python 2 and TensorFlow 1.11.0 following
+["Using BERT to extract fixed feature vectors (like ELMo)" from BERT's repo](https://github.com/google-research/bert/tree/d66a146741588fb208450bde15aa7db143baaa69#using-bert-to-extract-fixed-feature-vectors-like-elmo)
+and running this command:
+
+    ```bash
+    # Download BERT-base uncased in some dir:
+    wget https://storage.googleapis.com/bert_models/2018_10_18/uncased_L-12_H-768_A-12.zip
+    # Then put the location in this var:
+    BERT_BASE_DIR=...
+    
+    python extract_features.py \
+      --input_file=data/bert-input.txt \
+      --output_file=data/bert-output.jsonl \
+      --vocab_file=${BERT_BASE_DIR}/vocab.txt \
+      --bert_config_file=${BERT_BASE_DIR}/bert_config.json \
+      --init_checkpoint=${BERT_BASE_DIR}/bert_model.ckpt \
+      --layers=-1,-2,-3,-4 \
+      --max_seq_length=128 \
+      --batch_size=8
+    ```
+
+5. Modify [`config.py`](config.py) and run:
 
     ```bash
     python train_svm.py
