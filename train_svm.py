@@ -4,6 +4,8 @@ import os
 import numpy as np
 from sklearn import svm
 from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
 
 from config import Config
 from data_loader import DataLoader
@@ -22,7 +24,7 @@ data = DataLoader(config)
 
 def svm_train(train_input, train_output):
 
-    clf = svm.SVC(C=10.0, gamma='scale', kernel='rbf')
+    clf = make_pipeline(StandardScaler(), svm.SVC(C=10.0, gamma='scale', kernel='rbf'))
 
     clf.fit(train_input, np.argmax(train_output, axis=1))
 
@@ -146,12 +148,10 @@ def printResult(model_name=None):
     results = json.load(open(RESULT_FILE.format(model_name), "rb"))
 
     weighted_precision, weighted_recall = [], []
-    weighted_fscores, macro_fscores, micro_fscores = [], [], []
+    weighted_fscores = []
 
     print("#"*20)
     for fold, result in enumerate(results):
-        micro_fscores.append(result["micro avg"]["f1-score"])
-        macro_fscores.append(result["macro avg"]["f1-score"])
         weighted_fscores.append(result["weighted avg"]["f1-score"])
         weighted_precision.append(result["weighted avg"]["precision"])
         weighted_recall.append(result["weighted avg"]["recall"])
