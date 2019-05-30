@@ -16,7 +16,7 @@ accompanied by its context, which provides additional information on the scenari
 
 ## Raw Videos
 
-We provide a [Google Drive folder with the raw video clips](https://drive.google.com/open?id=1msjXtTTYWCSJAzn7riQh791HXevb3NgE),
+We provide a [Google Drive folder with the raw video clips](https://drive.google.com/file/d/1i9ixalVcXskA5_BkNnbR60sqJqvGyi6E/view?usp=sharing),
 including both the utterances and their respective context
 
 ## Data Format
