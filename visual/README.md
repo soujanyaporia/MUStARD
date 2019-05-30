@@ -2,12 +2,6 @@
 
 This folder tackles the visual modality. It extracts features and provides some baselines.
 
-To run it, setup an environment with Conda from the file `environment.yml`:
-
-```bash
-conda env create -f environment.yml
-```
-
 ## Feature extraction
 
 1. Download the videos from Google Drive to `data/videos`, placing the files there without subdirectories.
