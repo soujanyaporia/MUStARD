@@ -108,7 +108,9 @@ and running this command:
       --layers=-1,-2,-3,-4 \
       --max_seq_length=128 \
       --batch_size=8
-    ```
+    ```   
+    
+    To download existing BERT features for the utterances, use [this link](https://drive.google.com/file/d/1GYv74vN80iX_IkEmkJhkjDRGxLvraWuZ/view?usp=sharing) to download two files which should be placed as `data/bert-output.jsonl` and `data/bert-output-context.jsonl`
 
 5. Modify [`config.py`](config.py) and run:
 
