@@ -13,7 +13,7 @@ accompanied by its context, which provides additional information on the scenari
 ![Example instance](images/utterance_example.jpg)
 
 <p align="center"> Example sarcastic utterance from the dataset along with its context and transcript. </p>     
-  
+
 ## Raw Videos
 
 We provide a [Google Drive folder with the raw video clips](https://drive.google.com/file/d/1i9ixalVcXskA5_BkNnbR60sqJqvGyi6E/view?usp=sharing),
