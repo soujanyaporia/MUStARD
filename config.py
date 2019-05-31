@@ -10,7 +10,7 @@ class Config:
     use_bert = True # if False, uses glove pooling
 
     use_target_text = True
-    use_target_audio = True # adds audio target utterance features.
+    use_target_audio = False # adds audio target utterance features.
     use_target_video = True # adds video target utterance features.
 
     speaker_independent = False  # speaker independent experiments
