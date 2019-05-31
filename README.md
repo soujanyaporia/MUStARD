@@ -1,6 +1,6 @@
 # MMSD: Multimodal Sarcasm Detection
 
-This repository contains the dataset and experiments from our ACL 2019 paper "Towards Multimodal Sarcasm Detection
+This repository contains the dataset and code for our ACL 2019 paper "Towards Multimodal Sarcasm Detection
 (An _Obviously_ Perfect Paper)".
 
 We release the MMSD dataset which is a multimodal video corpus for research in automated sarcasm discovery. The dataset
@@ -13,7 +13,7 @@ accompanied by its context, which provides additional information on the scenari
 ![Example instance](images/utterance_example.jpg)
 
 <p align="center"> Example sarcastic utterance from the dataset along with its context and transcript. </p>     
-
+  
 ## Raw Videos
 
 We provide a [Google Drive folder with the raw video clips](https://drive.google.com/file/d/1i9ixalVcXskA5_BkNnbR60sqJqvGyi6E/view?usp=sharing),
@@ -115,4 +115,5 @@ and running this command:
     ```bash
     python train_svm.py
     ```
+
 6. Evaluation: We evaluate using weighted F-score metric in a 5-fold cross validation scheme. The fold indices are available at `data/split_incides.p` . Refer to our baseline scripts for more details.
