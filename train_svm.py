@@ -24,16 +24,7 @@ data = DataLoader(config)
 
 def svm_train(train_input, train_output):
 
-    # C_range = np.logspace(-2, 10, 13)
-    # gamma_range = np.logspace(-9, 3, 13)
-    # param_grid = dict(gamma=gamma_range, C=C_range)
-    # print(C_range, gamma_range)
-
-    # grid = GridSearchCV(svm.SVC(), param_grid=param_grid, cv=cv)
-    # exit()
-
-    # clf = make_pipeline(StandardScaler(), svm.SVC(C=1000.0, gamma='scale', kernel='rbf'))
-    clf = svm.SVC(C=1000.0, gamma='scale', kernel='rbf')
+    clf = make_pipeline(StandardScaler(), svm.SVC(C=10.0, gamma='scale', kernel='rbf'))
 
     clf.fit(train_input, np.argmax(train_output, axis=1))
 
