@@ -24,7 +24,16 @@ data = DataLoader(config)
 
 def svm_train(train_input, train_output):
 
-    clf = make_pipeline(StandardScaler(), svm.SVC(C=10.0, gamma='scale', kernel='rbf'))
+    # C_range = np.logspace(-2, 10, 13)
+    # gamma_range = np.logspace(-9, 3, 13)
+    # param_grid = dict(gamma=gamma_range, C=C_range)
+    # print(C_range, gamma_range)
+
+    # grid = GridSearchCV(svm.SVC(), param_grid=param_grid, cv=cv)
+    # exit()
+
+    # clf = make_pipeline(StandardScaler(), svm.SVC(C=1000.0, gamma='scale', kernel='rbf'))
+    clf = svm.SVC(C=1000.0, gamma='scale', kernel='rbf')
 
     clf.fit(train_input, np.argmax(train_output, axis=1))
 
@@ -61,12 +70,17 @@ def trainIO(train_index, test_index):
     test_input = np.empty((len(test_input), 0))
 
     if config.use_target_text:
-        train_input = np.concatenate([train_input,
-                                      np.array([datahelper.pool_text(utt)
-                                                for utt in datahelper.vectorizeUtterance(mode='train')])], axis=1)
-        test_input = np.concatenate([test_input,
-                                     np.array([datahelper.pool_text(utt)
-                                               for utt in datahelper.vectorizeUtterance(mode='test')])], axis=1)
+
+        if config.use_bert:
+            train_input = np.concatenate([train_input, datahelper.getTargetBertFeatures(mode='train')], axis=1)
+            test_input = np.concatenate([test_input, datahelper.getTargetBertFeatures(mode='test')], axis=1)
+        else:
+            train_input = np.concatenate([train_input,
+                                          np.array([datahelper.pool_text(utt)
+                                                    for utt in datahelper.vectorizeUtterance(mode='train')])], axis=1)
+            test_input = np.concatenate([test_input,
+                                         np.array([datahelper.pool_text(utt)
+                                                   for utt in datahelper.vectorizeUtterance(mode='test')])], axis=1)
 
     if config.use_target_video:
         train_input = np.concatenate([train_input, datahelper.getTargetVideoPool(mode='train')], axis=1)
@@ -90,8 +104,12 @@ def trainIO(train_index, test_index):
         test_input = np.concatenate([test_input, test_input_author], axis=1)
 
     if config.use_context:
-        train_input_context = datahelper.getContextPool(mode="train")
-        test_input_context =  datahelper.getContextPool(mode="test")
+        if config.use_bert:
+            train_input_context = datahelper.getContextBertFeatures(mode="train")
+            test_input_context =  datahelper.getContextBertFeatures(mode="test")
+        else:
+            train_input_context = datahelper.getContextPool(mode="train")
+            test_input_context =  datahelper.getContextPool(mode="test")
 
         train_input = np.concatenate([train_input, train_input_context], axis=1)
         test_input = np.concatenate([test_input, test_input_context], axis=1)
