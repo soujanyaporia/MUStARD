@@ -73,18 +73,21 @@ class SpeakerIndependentTConfig(Config):
     svm_scale = False
     use_target_text = True
     svm_c = 10.0
+    speaker_independent = True
 
 
 class SpeakerIndependentAConfig(Config):
     svm_scale = False
     use_target_audio = True
     svm_c = 1000.0
+    speaker_independent = True
 
 
 class SpeakerIndependentVConfig(Config):
     svm_scale = False
     use_target_video = True
     svm_c = 30.0
+    speaker_independent = True
 
 
 class SpeakerIndependentTAConfig(Config):
@@ -92,6 +95,7 @@ class SpeakerIndependentTAConfig(Config):
     use_target_text = True
     use_target_audio = True
     svm_c = 500.0
+    speaker_independent = True
 
 
 class SpeakerIndependentTVConfig(Config):
@@ -99,6 +103,7 @@ class SpeakerIndependentTVConfig(Config):
     use_target_text = True
     use_target_video = True
     svm_c = 10.0
+    speaker_independent = True
 
 
 class SpeakerIndependentAVConfig(Config):
@@ -106,6 +111,7 @@ class SpeakerIndependentAVConfig(Config):
     use_target_audio = True
     use_target_video = True
     svm_c = 500.0
+    speaker_independent = True
 
 
 class SpeakerIndependentTAVConfig(Config):
@@ -114,6 +120,7 @@ class SpeakerIndependentTAVConfig(Config):
     use_target_audio = True
     use_target_video = True
     svm_c = 1000.0
+    speaker_independent = True
 
 
 def config_by_key(key=''):
