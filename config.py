@@ -9,9 +9,10 @@ class Config:
 
     use_bert = True # if False, uses glove pooling
 
-    use_target_text = True
+
+    use_target_text = False
     use_target_audio = False # adds audio target utterance features.
-    use_target_video = True # adds video target utterance features.
+    use_target_video = False # adds video target utterance features.
 
     speaker_independent = False  # speaker independent experiments
 
@@ -23,7 +24,113 @@ class Config:
     epochs = 15
     batch_size = 16
     val_split = 0.1  # Percentage of data in validation set from training data
-    dropout_rate = 0.5
 
-    filter_sizes = [8, 9, 10]  # for CNN model
-    num_filters = 32
+    svm_c = 10.0
+    svm_scale = True
+
+
+class SpeakerDependentTConfig(Config):
+    use_target_text = True
+    svm_c = 1.0
+
+
+class SpeakerDependentAConfig(Config):
+    use_target_audio = True
+    svm_c = 1.0
+
+
+class SpeakerDependentVConfig(Config):
+    use_target_video = True
+    svm_c = 1.0
+
+
+class SpeakerDependentTAConfig(Config):
+    use_target_text = True
+    use_target_audio = True
+    svm_c = 1.0
+
+
+class SpeakerDependentTVConfig(Config):
+    use_target_text = True
+    use_target_video = True
+    svm_c = 10.0
+
+
+class SpeakerDependentAVConfig(Config):
+    use_target_audio = True
+    use_target_video = True
+    svm_c = 30.0
+
+
+class SpeakerDependentTAVConfig(Config):
+    use_target_text = True
+    use_target_audio = True
+    use_target_video = True
+    svm_c = 10.0
+
+
+class SpeakerIndependentTConfig(Config):
+    svm_scale = False
+    use_target_text = True
+    svm_c = 10.0
+
+
+class SpeakerIndependentAConfig(Config):
+    svm_scale = False
+    use_target_audio = True
+    svm_c = 1000.0
+
+
+class SpeakerIndependentVConfig(Config):
+    svm_scale = False
+    use_target_video = True
+    svm_c = 30.0
+
+
+class SpeakerIndependentTAConfig(Config):
+    svm_scale = False
+    use_target_text = True
+    use_target_audio = True
+    svm_c = 500.0
+
+
+class SpeakerIndependentTVConfig(Config):
+    svm_scale = False
+    use_target_text = True
+    use_target_video = True
+    svm_c = 10.0
+
+
+class SpeakerIndependentAVConfig(Config):
+    svm_scale = False
+    use_target_audio = True
+    use_target_video = True
+    svm_c = 500.0
+
+
+class SpeakerIndependentTAVConfig(Config):
+    svm_scale = False
+    use_target_text = True
+    use_target_audio = True
+    use_target_video = True
+    svm_c = 1000.0
+
+
+def config_by_key(key=''):
+    return {
+        '': Config(),
+        't': SpeakerDependentTConfig(),
+        'a': SpeakerDependentAConfig(),
+        'v': SpeakerDependentVConfig(),
+        'ta': SpeakerDependentTAConfig(),
+        'tv': SpeakerDependentTVConfig(),
+        'av': SpeakerDependentAVConfig(),
+        'tav': SpeakerDependentTAVConfig(),
+        'i-t': SpeakerIndependentTConfig(),
+        'i-a': SpeakerIndependentAConfig(),
+        'i-v': SpeakerIndependentVConfig(),
+        'i-ta': SpeakerIndependentTAConfig(),
+        'i-tv': SpeakerIndependentTVConfig(),
+        'i-av': SpeakerIndependentAVConfig(),
+        'i-tav': SpeakerIndependentTAVConfig(),
+    }[key]
