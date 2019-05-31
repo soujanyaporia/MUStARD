@@ -103,8 +103,7 @@ class DataLoader:
         
         for idx, ID in enumerate(json.keys()):
             self.data_input.append((json[ID]["utterance"], json[ID]["speaker"], json[ID]["context"],
-                                    json[ID]["context_speakers"], 
-                                    audio_features[ID] if audio_features else None,
+                                    json[ID]["context_speakers"], audio_features[ID] if audio_features else None,
                                     video_features_file[ID][()] if video_features_file else None,
                                     context_video_features_file[ID][()] if context_video_features_file else None,
                                     text_bert_embeddings[idx] if text_bert_embeddings else None,

@@ -18,4 +18,5 @@ dependencies:
   - torchvision=0.2.2
   - tqdm=4.31.1
   - pip:
+    - jsonlines==1.2.0
     - overrides==1.9
