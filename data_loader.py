@@ -7,6 +7,7 @@ import pickle
 import h5py
 import nltk
 import numpy as np
+import jsonlines
 from collections import defaultdict
 from sklearn.model_selection import StratifiedKFold
 
@@ -26,9 +27,11 @@ class DataLoader:
     AUDIO_PICKLE = "./data/audio_features.p"
     INDICES_FILE = "./data/split_indices.p"
     GLOVE_DICT = "./data/glove_full_dict.p"
+    BERT_TARGET_EMBEDDINGS = "./data/bert-output.jsonl"
+    BERT_CONTEXT_EMBEDDINGS = "./data/bert-output-context.jsonl"
     UTT_ID = 0
     CONTEXT_ID = 2
-    SHOW_ID = 7
+    SHOW_ID = 9
     UNK_TOKEN = "<UNK>"
     PAD_TOKEN = "<PAD>"
 
@@ -38,7 +41,37 @@ class DataLoader:
         
         dataset_json = json.load(open(self.DATA_PATH_JSON))
 
-        audio_features = pickle_loader(self.AUDIO_PICKLE)
+        if config.use_bert and config.use_target_text:
+            text_bert_embeddings = []
+            with jsonlines.open(self.BERT_TARGET_EMBEDDINGS) as reader:
+                
+                # Visit each target utterance
+                for obj in reader:
+
+                    CLS_TOKEN_INDEX = 0
+                    features = obj['features'][CLS_TOKEN_INDEX]
+
+                    bert_embedding_target = []
+                    for layer in [0,1,2,3]:
+                        bert_embedding_target.append(np.array(features["layers"][layer]["values"]))
+                    bert_embedding_target = np.mean(bert_embedding_target, axis=0)
+                    text_bert_embeddings.append(np.copy(bert_embedding_target))
+        else:
+            text_bert_embeddings = None
+
+
+        if config.use_context:
+            context_bert_embeddings = self.loadContextBert(dataset_json)
+        else:
+            context_bert_embeddings = None
+
+
+
+        if config.use_target_audio:
+            audio_features = pickle_loader(self.AUDIO_PICKLE)
+        else:
+            audio_features = None
+
         if config.use_target_video:
             video_features_file = h5py.File('data/features/utterances_final/resnet_pool5.hdf5')
             context_video_features_file = h5py.File('data/features/context_final/resnet_pool5.hdf5')
@@ -46,10 +79,13 @@ class DataLoader:
             video_features_file = None
             context_video_features_file = None
 
-        self.parseData(dataset_json, audio_features, video_features_file, context_video_features_file)
+
+        self.parseData(dataset_json, audio_features, video_features_file, context_video_features_file, text_bert_embeddings, context_bert_embeddings)
+
         if config.use_target_video:
             video_features_file.close()
             context_video_features_file.close()
+
         self.StratifiedKFold()
         self.setupGloveDict()
 
@@ -57,7 +93,7 @@ class DataLoader:
         self.speakerIndependentSplit()
 
 
-    def parseData(self, json, audio_features, video_features_file=None, context_video_features_file=None):
+    def parseData(self, json, audio_features, video_features_file=None, context_video_features_file=None, text_bert_embeddings=None, context_bert_embeddings=None):
         '''
         Prepares json data into lists
         data_input = [ (utterance:string, speaker:string, context:list_of_strings, context_speakers:list_of_strings, utterance_audio:features ) ]
@@ -65,13 +101,62 @@ class DataLoader:
         '''
         self.data_input, self.data_output = [], []
         
-        for ID in json.keys():
+        for idx, ID in enumerate(json.keys()):
             self.data_input.append((json[ID]["utterance"], json[ID]["speaker"], json[ID]["context"],
                                     json[ID]["context_speakers"], audio_features[ID],
                                     video_features_file[ID][()] if video_features_file else None,
                                     context_video_features_file[ID][()] if context_video_features_file else None,
+                                    text_bert_embeddings[idx] if text_bert_embeddings else None,
+                                    context_bert_embeddings[idx] if context_bert_embeddings else None,
                                     json[ID]["show"]))
             self.data_output.append( int(json[ID]["sarcasm"]) )
+
+    def loadContextBert(self, dataset, ):
+
+        # Prepare context video length list
+        length=[]
+        for idx, ID in enumerate(dataset.keys()):
+            length.append(len(dataset[ID]["context"]))
+
+        # Load BERT embeddings
+        with jsonlines.open(self.BERT_CONTEXT_EMBEDDINGS) as reader:
+            context_utterance_embeddings=[]
+            # Visit each context utterance
+            for obj in reader:
+
+                CLS_TOKEN_INDEX = 0
+                features = obj['features'][CLS_TOKEN_INDEX]
+
+                bert_embedding_target = []
+                for layer in [0,1,2,3]:
+                    bert_embedding_target.append(np.array(features["layers"][layer]["values"]))
+                bert_embedding_target = np.mean(bert_embedding_target, axis=0)
+                context_utterance_embeddings.append(np.copy(bert_embedding_target))
+
+        # Checking whether total context features == total context sentences
+        assert(len(context_utterance_embeddings)== sum(length))
+
+        # Rearrange context features for each target utterance
+        cumulative_length = [length[0]]
+        cumulative_value = length[0]
+        for val in length[1:]:
+            cumulative_value+=val
+            cumulative_length.append(cumulative_value)
+
+        assert(len(length)==len(cumulative_length))
+
+        end_index = cumulative_length
+        start_index = [0]+cumulative_length[:-1]
+
+        final_context_bert_features = []
+        for start, end in zip(start_index, end_index):
+            local_features = []
+            for idx in range(start, end):
+                local_features.append(context_utterance_embeddings[idx])
+            final_context_bert_features.append(local_features)
+
+        return final_context_bert_features
+
 
 
     def StratifiedKFold(self, splits=5):
@@ -201,6 +286,8 @@ class DataHelper:
     TARGET_AUDIO_ID = 4
     TARGET_VIDEO_ID = 5
     CONTEXT_VIDEO_ID = 6
+    TEXT_BERT_ID = 7
+    CONTEXT_BERT_ID = 8
 
     PAD_ID = 0
     UNK_ID = 1
@@ -362,6 +449,26 @@ class DataHelper:
         word_indices = word_indices + [self.PAD_ID]*(self.config.max_sent_length - len(word_indices))
         assert(len(word_indices) == self.config.max_sent_length)
         return word_indices
+
+
+    def getTargetBertFeatures(self, mode=None):
+
+        utterances = self.getData(self.TEXT_BERT_ID, mode, 
+                                  "Set mode properly for vectorizeUtterance method() : mode = train/test")
+
+        return utterances
+
+    def getContextBertFeatures(self, mode=None):
+
+        utterances = self.getData(self.CONTEXT_BERT_ID, mode, 
+                                  "Set mode properly for vectorizeUtterance method() : mode = train/test")
+
+        mean_features=[]
+        for utt in utterances:
+            mean_features.append(np.mean(utt, axis=0))
+
+        return np.array(mean_features)
+
 
     def vectorizeUtterance(self, mode=None):
 
