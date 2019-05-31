@@ -8,7 +8,7 @@ from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import FunctionTransformer, StandardScaler
 
-from config import config_by_key
+from config import CONFIG_BY_KEY
 from data_loader import DataLoader
 from data_loader import DataHelper
 
@@ -17,7 +17,7 @@ RESULT_FILE = "./output/{}.json"
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config-key', default='')
+    parser.add_argument('--config-key', default='', choices=list(CONFIG_BY_KEY.keys()))
     return parser.parse_args()
 
 
@@ -25,7 +25,7 @@ args = parse_args()
 print("Args:", args)
 
 # Load config
-config = config_by_key(args.config_key)
+config = CONFIG_BY_KEY[args.config_key]
 
 # Load data
 data = DataLoader(config)
@@ -33,7 +33,7 @@ data = DataLoader(config)
 
 def svm_train(train_input, train_output):
     clf = make_pipeline(
-        StandardScaler() if config.svm_scale else FunctionTransformer(lambda x: x),
+        StandardScaler() if config.svm_scale else FunctionTransformer(lambda x: x, validate=False),
         svm.SVC(C=config.svm_c, gamma='scale', kernel='rbf')
     )
 
@@ -52,10 +52,10 @@ def svm_test(clf, test_input, test_output):
     # To generate majority baseline
     # y_pred = [0]*len(y_pred)
     
-    result_string = classification_report(y_true, y_pred, digits=4)
+    result_string = classification_report(y_true, y_pred, digits=3)
     print(confusion_matrix(y_true, y_pred))
     print(result_string)
-    return classification_report(y_true, y_pred, output_dict=True, digits=4), result_string
+    return classification_report(y_true, y_pred, output_dict=True, digits=3), result_string
 
 
 
@@ -131,7 +131,7 @@ def trainSpeakerIndependent(model_name=None):
     train_input, train_output, test_input, test_output = trainIO(train_index, test_index)
 
     clf = svm_train(train_input, train_output)
-    result_dict, result_str = svm_test(clf, test_input, test_output)
+    svm_test(clf, test_input, test_output)
 
 
 
