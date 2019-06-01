@@ -9,7 +9,6 @@ class Config:
 
     use_bert = True # if False, uses glove pooling
 
-
     use_target_text = False
     use_target_audio = False # adds audio target utterance features.
     use_target_video = False # adds video target utterance features.
@@ -69,6 +68,26 @@ class SpeakerDependentTAVConfig(Config):
     svm_c = 10.0
 
 
+class SpeakerDependentTPlusContext(SpeakerDependentTConfig):
+    use_context = True
+    svm_c = 1.0
+
+
+class SpeakerDependentTPlusAuthor(SpeakerDependentTConfig):
+    use_author = True
+    svm_c = 10.0
+
+
+class SpeakerDependentTVPlusContext(SpeakerDependentTVConfig):
+    use_context = True
+    svm_c = 10.0
+
+
+class SpeakerDependentTVPlusAuthor(SpeakerDependentTVConfig):
+    use_author = True
+    svm_c = 10.0
+
+
 class SpeakerIndependentTConfig(Config):
     svm_scale = False
     use_target_text = True
@@ -123,21 +142,48 @@ class SpeakerIndependentTAVConfig(Config):
     speaker_independent = True
 
 
-def config_by_key(key=''):
-    return {
-        '': Config(),
-        't': SpeakerDependentTConfig(),
-        'a': SpeakerDependentAConfig(),
-        'v': SpeakerDependentVConfig(),
-        'ta': SpeakerDependentTAConfig(),
-        'tv': SpeakerDependentTVConfig(),
-        'av': SpeakerDependentAVConfig(),
-        'tav': SpeakerDependentTAVConfig(),
-        'i-t': SpeakerIndependentTConfig(),
-        'i-a': SpeakerIndependentAConfig(),
-        'i-v': SpeakerIndependentVConfig(),
-        'i-ta': SpeakerIndependentTAConfig(),
-        'i-tv': SpeakerIndependentTVConfig(),
-        'i-av': SpeakerIndependentAVConfig(),
-        'i-tav': SpeakerIndependentTAVConfig(),
-    }[key]
+class SpeakerIndependentTPlusContext(SpeakerIndependentTConfig):
+    use_context = True
+    svm_c = 10.0
+
+
+class SpeakerIndependentTPlusAuthor(SpeakerIndependentTConfig):
+    use_author = True
+    svm_c = 10.0
+
+
+class SpeakerIndependentTAPlusContext(SpeakerIndependentTAConfig):
+    use_context = True
+    svm_c = 1000.0
+
+
+class SpeakerIndependentTAPlusAuthor(SpeakerIndependentTAConfig):
+    use_author = True
+    svm_c = 1000.0
+
+
+CONFIG_BY_KEY = {
+    '': Config(),
+    't': SpeakerDependentTConfig(),
+    'a': SpeakerDependentAConfig(),
+    'v': SpeakerDependentVConfig(),
+    'ta': SpeakerDependentTAConfig(),
+    'tv': SpeakerDependentTVConfig(),
+    'av': SpeakerDependentAVConfig(),
+    'tav': SpeakerDependentTAVConfig(),
+    't-c': SpeakerDependentTPlusContext(),
+    't-author': SpeakerDependentTPlusAuthor(),
+    'tv-c': SpeakerDependentTVPlusContext(),
+    'tv-author': SpeakerDependentTVPlusAuthor(),
+    'i-t': SpeakerIndependentTConfig(),
+    'i-a': SpeakerIndependentAConfig(),
+    'i-v': SpeakerIndependentVConfig(),
+    'i-ta': SpeakerIndependentTAConfig(),
+    'i-tv': SpeakerIndependentTVConfig(),
+    'i-av': SpeakerIndependentAVConfig(),
+    'i-tav': SpeakerIndependentTAVConfig(),
+    'i-t-c': SpeakerIndependentTPlusContext(),
+    'i-t-author': SpeakerIndependentTPlusAuthor(),
+    'i-ta-c': SpeakerIndependentTAPlusContext(),
+    'i-ta-author': SpeakerIndependentTAPlusAuthor(),
+}
