@@ -112,7 +112,7 @@ and running this command:
     
     To download existing BERT features for the utterances, use [this link](https://drive.google.com/file/d/1GYv74vN80iX_IkEmkJhkjDRGxLvraWuZ/view?usp=sharing) to download two files which should be placed as `data/bert-output.jsonl` and `data/bert-output-context.jsonl`
 
-5. Modify [`config.py`](config.py) and run:
+5. Modify [`config.py`](config.py) (or see that file and check the options in `python train_svm.py -h`) and run:
 
     ```bash
     python train_svm.py
