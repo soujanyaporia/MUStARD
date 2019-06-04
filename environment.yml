@@ -1,4 +1,4 @@
-name: mmsd
+name: mustard
 channels:
   - pytorch
   - defaults
