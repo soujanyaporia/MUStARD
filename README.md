@@ -58,7 +58,7 @@ Example format in JSON:
 Please cite the following paper if you find this dataset useful in your research:
 
 ```tex
-@inproceedings{mmsd,
+@inproceedings{mustard,
     title = "Towards Multimodal Sarcasm Detection (An  _Obviously_ Perfect Paper)",
     author = "Castro, Santiago  and
       Hazarika, Devamanyu  and
@@ -80,7 +80,7 @@ Please cite the following paper if you find this dataset useful in your research
 
     ```bash
     conda env create -f environment.yml
-    conda activate mmsd
+    conda activate mustard
     python -c "import nltk; nltk.download('punkt')"
     ```
 
