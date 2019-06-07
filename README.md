@@ -60,7 +60,7 @@ Please cite the following paper if you find this dataset useful in your research
 
 ```tex
 @inproceedings{mustard,
-    title = "Towards Multimodal Sarcasm Detection (An  _Obviously_ Perfect Paper)",
+    title = "Towards Multimodal Sarcasm Detection (An  \_Obviously\_ Perfect Paper)",
     author = "Castro, Santiago  and
       Hazarika, Devamanyu  and
       P{\'e}rez-Rosas, Ver{\'o}nica  and
