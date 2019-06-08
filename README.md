@@ -68,7 +68,7 @@ Please cite the following paper if you find this dataset useful in your research
       Mihalcea, Rada  and
       Poria, Soujanya",
     booktitle = "Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
-    month = "jul",
+    month = "7",
     year = "2019",
     address = "Florence, Italy",
     publisher = "Association for Computational Linguistics",
