@@ -111,10 +111,10 @@ and running:
       --batch_size=8
     ```
 
-5. Modify [`config.py`](config.py) (or see that file and check the options in `python train_svm.py -h`) and run:
+5. Check the options in `python train_svm.py -h` to select a run configuration (or modify [`config.py`](config.py)) and then run it:
 
     ```bash
-    python train_svm.py
+    python train_svm.py  # add the flags you want
     ```
 
 6. Evaluation: We evaluate using weighted F-score metric in a 5-fold cross validation scheme. The fold indices are available at `data/split_incides.p` . Refer to our baseline scripts for more details.
