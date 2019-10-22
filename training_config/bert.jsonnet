@@ -19,7 +19,8 @@ local pretrained_model = 'bert-base-cased';
     },
     //tiny_sample: true
   },
-  train_data_path: 'data/sarcasm_data.json',
+  train_data_path: 'data/sarcasm_speaker_independent_train.jsonnet',
+  validation_data_path: 'data/sarcasm_speaker_independent_test.jsonnet',
   model: {
     type: 'bert_for_classification',
     bert_model: pretrained_model
@@ -30,9 +31,13 @@ local pretrained_model = 'bert-base-cased';
     batch_size: 32,
   },
   trainer: {
-    num_epochs: 4,
+    num_epochs: 40,
     validation_metric: '+accuracy',
-    optimizer: 'adam',
-    learning_rate_scheduler: 'slanted_triangular'
+    optimizer: 'ranger',
+//    learning_rate_scheduler: {
+//      type: 'slanted_triangular',
+//      num_epochs: 4,
+//      num_steps_per_epoch: 10,
+//    }
   }
 }
