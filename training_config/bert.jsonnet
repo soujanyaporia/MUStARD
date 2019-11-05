@@ -22,7 +22,7 @@ local pretrained_model = 'bert-base-cased';
   train_data_path: 'data/sarcasm_speaker_independent_train.jsonnet',
   validation_data_path: 'data/sarcasm_speaker_independent_test.jsonnet',
   model: {
-    type: 'bert_for_classification',
+    type: 'bert_for_classification_plus',
     bert_model: pretrained_model
   },
   iterator: {
@@ -32,7 +32,8 @@ local pretrained_model = 'bert-base-cased';
   },
   trainer: {
     num_epochs: 40,
-    validation_metric: '+accuracy',
+    patience: 10,
+    validation_metric: '+f1',
     optimizer: 'ranger',
 //    learning_rate_scheduler: {
 //      type: 'slanted_triangular',
