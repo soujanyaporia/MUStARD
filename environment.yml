@@ -3,11 +3,14 @@ channels:
   - pytorch
   - defaults
 dependencies:
-  # TODO: pin indirect dependencies.
   - pip:
-      - allennlp==0.9.0
-      - jsonlines==1.2.0
-      - overrides==1.9
+    - allennlp==0.9.0
+    # Apex needs nvcc, which isn't provided by cudatoolkit below. So you need to run the following having
+    # a regular CUDA installation of the same version as the cudatoolkit below, and a compatible version
+    # of GCC for that CUDA version (e.g., GCC 7 for CUDA 10.0).
+    - git+https://github.com/NVIDIA/apex@606c3dc --global-option="--cpp_ext" --global-option="--cuda_ext"
+    - jsonlines==1.2.0
+    - overrides==1.9
   - cudatoolkit=10.0
   - cudnn=7.6.0
   - ffmpeg=4.0
