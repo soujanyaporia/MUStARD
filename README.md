@@ -58,7 +58,7 @@ Example format in JSON:
 
 Please cite the following paper if you find this dataset useful in your research:
 
-```tex
+```bibtex
 @inproceedings{mustard,
     title = "Towards Multimodal Sarcasm Detection (An  \_Obviously\_ Perfect Paper)",
     author = "Castro, Santiago  and
