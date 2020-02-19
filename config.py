@@ -1,165 +1,190 @@
-class Config:
+from dataclasses import dataclass
 
-    model = "SVM"
-    runs = 1  # No. of runs of experiments
+
+@dataclass
+class Config:
+    model: str = "SVM"
+    runs: int = 1  # No. of runs of experiments
 
     # Training modes
-    use_context = False # whether to use context information or not (default false)
-    use_author = False  # add author one-hot encoding in the input
+    use_context: bool = False  # whether to use context information or not (default false)
+    use_author: bool = False  # add author one-hot encoding in the input
 
-    use_bert = True # if False, uses glove pooling
+    use_bert: bool = True  # if False, uses glove pooling
 
-    use_target_text = False
-    use_target_audio = False # adds audio target utterance features.
-    use_target_video = False # adds video target utterance features.
+    use_target_text: bool = False
+    use_target_audio: bool = False  # adds audio target utterance features.
+    use_target_video: bool = False  # adds video target utterance features.
 
-    speaker_independent = False  # speaker independent experiments
+    speaker_independent: bool = False  # speaker independent experiments
 
-    embedding_dim = 300  # GloVe embedding size
-    word_embedding_path = "/home/sacastro/glove.840B.300d.txt"
-    max_sent_length = 20
-    max_context_length = 4  # Maximum sentences to take in context
-    num_classes = 2  # Binary classification of sarcasm
-    epochs = 15
-    batch_size = 16
-    val_split = 0.1  # Percentage of data in validation set from training data
+    embedding_dim: int = 300  # GloVe embedding size
+    word_embedding_path: str = "/home/sacastro/glove.840B.300d.txt"
+    max_sent_length: int = 20
+    max_context_length: int = 4  # Max sentence number to take from the context.
+    num_classes: int = 2  # Binary classification of sarcasm
+    epochs: int = 15
+    batch_size: int = 16
+    val_split: float = 0.1  # Percentage of data in validation set from training data
 
-    svm_c = 10.0
-    svm_scale = True
+    svm_c: float = 10.0
+    svm_scale: bool = True
 
 
+@dataclass
 class SpeakerDependentTConfig(Config):
-    use_target_text = True
-    svm_c = 1.0
+    use_target_text: bool = True
+    svm_c: float = 1.0
 
 
+@dataclass
 class SpeakerDependentAConfig(Config):
-    use_target_audio = True
-    svm_c = 1.0
+    use_target_audio: bool = True
+    svm_c: float = 1.0
 
 
+@dataclass
 class SpeakerDependentVConfig(Config):
-    use_target_video = True
-    svm_c = 1.0
+    use_target_video: bool = True
+    svm_c: float = 1.0
 
 
+@dataclass
 class SpeakerDependentTAConfig(Config):
-    use_target_text = True
-    use_target_audio = True
-    svm_c = 1.0
+    use_target_text: bool = True
+    use_target_audio: bool = True
+    svm_c: float = 1.0
 
 
+@dataclass
 class SpeakerDependentTVConfig(Config):
-    use_target_text = True
-    use_target_video = True
-    svm_c = 10.0
+    use_target_text: bool = True
+    use_target_video: bool = True
+    svm_c: float = 10.0
 
 
+@dataclass
 class SpeakerDependentAVConfig(Config):
-    use_target_audio = True
-    use_target_video = True
-    svm_c = 30.0
+    use_target_audio: bool = True
+    use_target_video: bool = True
+    svm_c: float = 30.0
 
 
+@dataclass
 class SpeakerDependentTAVConfig(Config):
-    use_target_text = True
-    use_target_audio = True
-    use_target_video = True
-    svm_c = 10.0
+    use_target_text: bool = True
+    use_target_audio: bool = True
+    use_target_video: bool = True
+    svm_c: float = 10.0
 
 
+@dataclass
 class SpeakerDependentTPlusContext(SpeakerDependentTConfig):
-    use_context = True
-    svm_c = 1.0
+    use_context: bool = True
+    svm_c: float = 1.0
 
 
+@dataclass
 class SpeakerDependentTPlusAuthor(SpeakerDependentTConfig):
-    use_author = True
-    svm_c = 10.0
+    use_author: bool = True
+    svm_c: float = 10.0
 
 
+@dataclass
 class SpeakerDependentTVPlusContext(SpeakerDependentTVConfig):
-    use_context = True
-    svm_c = 10.0
+    use_context: bool = True
+    svm_c: float = 10.0
 
 
+@dataclass
 class SpeakerDependentTVPlusAuthor(SpeakerDependentTVConfig):
-    use_author = True
-    svm_c = 10.0
+    use_author: bool = True
+    svm_c: float = 10.0
 
 
+@dataclass
 class SpeakerIndependentTConfig(Config):
-    svm_scale = False
-    use_target_text = True
-    svm_c = 10.0
-    speaker_independent = True
+    svm_scale: bool = False
+    use_target_text: bool = True
+    svm_c: float = 10.0
+    speaker_independent: bool = True
 
 
+@dataclass
 class SpeakerIndependentAConfig(Config):
-    svm_scale = False
-    use_target_audio = True
-    svm_c = 1000.0
-    speaker_independent = True
+    svm_scale: bool = False
+    use_target_audio: bool = True
+    svm_c: float = 1000.0
+    speaker_independent: bool = True
 
 
+@dataclass
 class SpeakerIndependentVConfig(Config):
     svm_scale = False
-    use_target_video = True
-    svm_c = 30.0
-    speaker_independent = True
+    use_target_video: bool = True
+    svm_c: float = 30.0
+    speaker_independent: bool = True
 
 
+@dataclass
 class SpeakerIndependentTAConfig(Config):
-    svm_scale = False
-    use_target_text = True
-    use_target_audio = True
-    svm_c = 500.0
-    speaker_independent = True
+    svm_scale: bool = False
+    use_target_text: bool = True
+    use_target_audio: bool = True
+    svm_c: float = 500.0
+    speaker_independent: bool = True
 
 
+@dataclass
 class SpeakerIndependentTVConfig(Config):
-    svm_scale = False
-    use_target_text = True
-    use_target_video = True
-    svm_c = 10.0
-    speaker_independent = True
+    svm_scale: bool = False
+    use_target_text: bool = True
+    use_target_video: bool = True
+    svm_c: float = 10.0
+    speaker_independent: bool = True
 
 
+@dataclass
 class SpeakerIndependentAVConfig(Config):
-    svm_scale = False
-    use_target_audio = True
-    use_target_video = True
+    svm_scale: bool = False
+    use_target_audio: bool = True
+    use_target_video: bool = True
     svm_c = 500.0
-    speaker_independent = True
+    speaker_independent: bool = True
 
 
+@dataclass
 class SpeakerIndependentTAVConfig(Config):
-    svm_scale = False
-    use_target_text = True
-    use_target_audio = True
-    use_target_video = True
+    svm_scale: bool = False
+    use_target_text: bool = True
+    use_target_audio: bool = True
+    use_target_video: bool = True
     svm_c = 1000.0
-    speaker_independent = True
+    speaker_independent: bool = True
 
 
+@dataclass
 class SpeakerIndependentTPlusContext(SpeakerIndependentTConfig):
-    use_context = True
-    svm_c = 10.0
+    use_context: bool = True
+    svm_c: float = 10.0
 
 
+@dataclass
 class SpeakerIndependentTPlusAuthor(SpeakerIndependentTConfig):
-    use_author = True
-    svm_c = 10.0
+    use_author: bool = True
+    svm_c: float = 10.0
 
 
+@dataclass
 class SpeakerIndependentTAPlusContext(SpeakerIndependentTAConfig):
-    use_context = True
-    svm_c = 1000.0
+    use_context: bool = True
+    svm_c: float = 1000.0
 
 
+@dataclass
 class SpeakerIndependentTAPlusAuthor(SpeakerIndependentTAConfig):
-    use_author = True
-    svm_c = 1000.0
+    use_author: bool = True
+    svm_c: float = 1000.0
 
 
 CONFIG_BY_KEY = {
