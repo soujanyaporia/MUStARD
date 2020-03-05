@@ -2,7 +2,7 @@
 
 This repository contains the dataset and code for our ACL 2019 paper:
  
-[Towards Multimodal Sarcasm Detection (An _Obviously_ Perfect Paper)](https://arxiv.org/abs/1906.01815)
+[Towards Multimodal Sarcasm Detection (An _Obviously_ Perfect Paper)](https://www.aclweb.org/anthology/P19-1455/)
 
 We release the MUStARD dataset which is a multimodal video corpus for research in automated sarcasm discovery. The dataset
 is compiled from popular TV shows including *Friends*, *The Golden Girls*, *The Big Bang Theory*, and
