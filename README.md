@@ -88,7 +88,7 @@ Please cite the following paper if you find this dataset useful in your research
 2. Download [Common Crawl pretrained GloVe word vectors of size 300d, 840B tokens](http://nlp.stanford.edu/data/glove.840B.300d.zip)
 somewhere.
 
-3. [Download the pre-extracted visual features](https://drive.google.com/open?id=1Ff1WDObGKqpfbvy7-H1mD8YWvBS-Kf26) to the `data/` folder (so `data/features/` contains the folders `context_final/` and `utterances_final/` with the fetures) or [extract the visual features](visual/README.md) yourself.
+3. [Download the pre-extracted visual features](https://drive.google.com/open?id=1Ff1WDObGKqpfbvy7-H1mD8YWvBS-Kf26) to the `data/` folder (so `data/features/` contains the folders `context_final/` and `utterances_final/` with the fetures) or [extract the visual features](visual) yourself.
 
 4. [Download the pre-extracted BERT features](https://drive.google.com/file/d/1GYv74vN80iX_IkEmkJhkjDRGxLvraWuZ/view?usp=sharing) and place the two files directly under the folder `data/` (so they are `data/bert-output.jsonl` and `data/bert-output-context.jsonl`), or [extract the BERT features in another environment with Python 2 and TensorFlow 1.11.0 following
 ["Using BERT to extract fixed feature vectors (like ELMo)" from BERT's repo](https://github.com/google-research/bert/tree/d66a146741588fb208450bde15aa7db143baaa69#using-bert-to-extract-fixed-feature-vectors-like-elmo)
