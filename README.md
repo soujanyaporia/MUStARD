@@ -79,7 +79,7 @@ Please cite the following paper if you find this dataset useful in your research
 1. Setup an environment with Conda:
 
     ```bash
-    conda env create -f environment.yml
+    conda env create
     conda activate mustard
     python -c "import nltk; nltk.download('punkt')"
     ```
