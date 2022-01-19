@@ -1,17 +1,16 @@
 class Config:
-
     model = "SVM"
     runs = 1  # No. of runs of experiments
 
     # Training modes
-    use_context = False # whether to use context information or not (default false)
+    use_context = False  # whether to use context information or not (default false)
     use_author = False  # add author one-hot encoding in the input
 
-    use_bert = True # if False, uses glove pooling
+    use_bert = True  # if False, uses glove pooling
 
     use_target_text = False
-    use_target_audio = False # adds audio target utterance features.
-    use_target_video = False # adds video target utterance features.
+    use_target_audio = False  # adds audio target utterance features.
+    use_target_video = False  # adds video target utterance features.
 
     speaker_independent = False  # speaker independent experiments
 
@@ -26,6 +25,8 @@ class Config:
 
     svm_c = 10.0
     svm_scale = True
+
+    fold = None
 
 
 class SpeakerDependentTConfig(Config):
@@ -163,27 +164,27 @@ class SpeakerIndependentTAPlusAuthor(SpeakerIndependentTAConfig):
 
 
 CONFIG_BY_KEY = {
-    '': Config(),
-    't': SpeakerDependentTConfig(),
-    'a': SpeakerDependentAConfig(),
-    'v': SpeakerDependentVConfig(),
-    'ta': SpeakerDependentTAConfig(),
-    'tv': SpeakerDependentTVConfig(),
-    'av': SpeakerDependentAVConfig(),
-    'tav': SpeakerDependentTAVConfig(),
-    't-c': SpeakerDependentTPlusContext(),
-    't-author': SpeakerDependentTPlusAuthor(),
-    'tv-c': SpeakerDependentTVPlusContext(),
-    'tv-author': SpeakerDependentTVPlusAuthor(),
-    'i-t': SpeakerIndependentTConfig(),
-    'i-a': SpeakerIndependentAConfig(),
-    'i-v': SpeakerIndependentVConfig(),
-    'i-ta': SpeakerIndependentTAConfig(),
-    'i-tv': SpeakerIndependentTVConfig(),
-    'i-av': SpeakerIndependentAVConfig(),
-    'i-tav': SpeakerIndependentTAVConfig(),
-    'i-t-c': SpeakerIndependentTPlusContext(),
-    'i-t-author': SpeakerIndependentTPlusAuthor(),
-    'i-ta-c': SpeakerIndependentTAPlusContext(),
-    'i-ta-author': SpeakerIndependentTAPlusAuthor(),
+    "": Config(),
+    "t": SpeakerDependentTConfig(),
+    "a": SpeakerDependentAConfig(),
+    "v": SpeakerDependentVConfig(),
+    "ta": SpeakerDependentTAConfig(),
+    "tv": SpeakerDependentTVConfig(),
+    "av": SpeakerDependentAVConfig(),
+    "tav": SpeakerDependentTAVConfig(),
+    "t-c": SpeakerDependentTPlusContext(),
+    "t-author": SpeakerDependentTPlusAuthor(),
+    "tv-c": SpeakerDependentTVPlusContext(),
+    "tv-author": SpeakerDependentTVPlusAuthor(),
+    "i-t": SpeakerIndependentTConfig(),
+    "i-a": SpeakerIndependentAConfig(),
+    "i-v": SpeakerIndependentVConfig(),
+    "i-ta": SpeakerIndependentTAConfig(),
+    "i-tv": SpeakerIndependentTVConfig(),
+    "i-av": SpeakerIndependentAVConfig(),
+    "i-tav": SpeakerIndependentTAVConfig(),
+    "i-t-c": SpeakerIndependentTPlusContext(),
+    "i-t-author": SpeakerIndependentTPlusAuthor(),
+    "i-ta-c": SpeakerIndependentTAPlusContext(),
+    "i-ta-author": SpeakerIndependentTAPlusAuthor(),
 }

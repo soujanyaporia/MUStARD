@@ -13,7 +13,7 @@ accompanied by its context, which provides additional information on the scenari
 
 ![Example instance](images/utterance_example.jpg)
 
-<p align="center"> Example sarcastic utterance from the dataset along with its context and transcript. </p>     
+<p style="text-align: center">Example sarcastic utterance from the dataset along with its context and transcript.</p>
 
 ## Raw Videos
 
@@ -23,15 +23,15 @@ including both the utterances and their respective context
 ## Data Format
 
 The annotations and transcripts of the audiovisual clips are available at [`data/sarcasm_data.json`](data/sarcasm_data.json).
-Each instance in the JSON file is allotted one identifier (e.g. "1\_60") which is a dictionary of the following items:   
+Each instance in the JSON file is allotted one identifier (e.g. "1\_60") which is a dictionary of the following items: 
 
-| Key                     | Value                                                                          | 
-| ----------------------- |:------------------------------------------------------------------------------:| 
-| `utterance`             | The text of the target utterance to classify.                                  | 
-| `speaker`               | Speaker of the target utterance.                                               | 
-| `context`               | List of utterances (in chronological order) preceding the target utterance.    | 
-| `context_speakers`      | Respective speakers of the context utterances.                                 | 
-| `sarcasm`               | Binary label for sarcasm tag.                                                  | 
+| Key                |                                    Value                                    |
+|--------------------|:---------------------------------------------------------------------------:|
+| `utterance`        |                The text of the target utterance to classify.                |
+| `speaker`          |                      Speaker of the target utterance.                       |
+| `context`          | List of utterances (in chronological order) preceding the target utterance. |
+| `context_speakers` |               Respective speakers of the context utterances.                |
+| `sarcasm`          |                        Binary label for sarcasm tag.                        |
 
 Example format in JSON:
 
@@ -59,7 +59,7 @@ Please cite the following paper if you find this dataset useful in your research
 
 ```bibtex
 @inproceedings{mustard,
-    title = "Towards Multimodal Sarcasm Detection (An  \_Obviously\_ Perfect Paper)",
+    title = "Towards Multimodal Sarcasm Detection (An \_Obviously\_ Perfect Paper)",
     author = "Castro, Santiago  and
       Hazarika, Devamanyu  and
       P{\'e}rez-Rosas, Ver{\'o}nica  and
@@ -76,7 +76,7 @@ Please cite the following paper if you find this dataset useful in your research
 
 ## Run the code
 
-1. Setup an environment with Conda:
+1. Set up the environment with Conda:
 
     ```bash
     conda env create

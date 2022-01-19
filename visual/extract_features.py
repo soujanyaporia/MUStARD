@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 """Script to extract ResNet features from video frames."""
 import argparse
+from typing import Any, Tuple
 
 import h5py
 from overrides import overrides
@@ -15,7 +16,7 @@ from i3d import I3D
 from dataset import SarcasmDataset
 
 # noinspection PyUnresolvedReferences
-DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 def pretrained_resnet152() -> torch.nn.Module:
@@ -42,7 +43,7 @@ def pretrained_i3d() -> torch.nn.Module:
     return i3d
 
 
-def save_resnet_features():
+def save_resnet_features() -> None:
     transforms = torchvision.transforms.Compose([
         torchvision.transforms.Resize(256),
         torchvision.transforms.CenterCrop(224),
@@ -55,13 +56,13 @@ def save_resnet_features():
 
     class Identity(torch.nn.Module):
         @overrides
-        def forward(self, input_):
+        def forward(self, input_: torch.Tensor) -> torch.Tensor:
             return input_
 
     resnet.fc = Identity()  # Trick to avoid computing the fc1000 layer, as we don't need it here.
 
-    with h5py.File(SarcasmDataset.features_file_path('resnet', 'res5c'), 'w') as res5c_features_file, \
-            h5py.File(SarcasmDataset.features_file_path('resnet', 'pool5'), 'w') as pool5_features_file:
+    with h5py.File(SarcasmDataset.features_file_path("resnet", "res5c"), "w") as res5c_features_file, \
+            h5py.File(SarcasmDataset.features_file_path("resnet", "pool5"), "w") as pool5_features_file:
 
         for video_id in dataset.video_ids:
             video_frame_count = dataset.frame_count_by_video_id[video_id]
@@ -70,7 +71,7 @@ def save_resnet_features():
 
         res5c_output = None
 
-        def avg_pool_hook(_module, input_, _output):
+        def avg_pool_hook(_module: torch.nn.Module, input_: Tuple[torch.Tensor], _output: Any) -> None:
             nonlocal res5c_output
             res5c_output = input_[0]
 
@@ -79,8 +80,8 @@ def save_resnet_features():
         total_frame_count = sum(dataset.frame_count_by_video_id[video_id] for video_id in dataset.video_ids)
         with tqdm(total=total_frame_count, desc="Extracting ResNet features") as progress_bar:
             for instance in torch.utils.data.DataLoader(dataset):
-                video_id = instance['id'][0]
-                frames = instance['frames'][0].to(DEVICE)
+                video_id = instance["id"][0]
+                frames = instance["frames"][0].to(DEVICE)
 
                 batch_size = 32
                 for start_index in range(0, len(frames), batch_size):
@@ -90,13 +91,13 @@ def save_resnet_features():
 
                     avg_pool_value = resnet(frame_batch)
 
-                    res5c_features_file[video_id][frame_ids_range] = res5c_output.cpu()
+                    res5c_features_file[video_id][frame_ids_range] = res5c_output.cpu()  # noqa
                     pool5_features_file[video_id][frame_ids_range] = avg_pool_value.cpu()
 
                     progress_bar.update(len(frame_ids_range))
 
 
-def save_c3d_features():
+def save_c3d_features() -> None:
     transforms = torchvision.transforms.Compose([
         torchvision.transforms.Resize(128),
         torchvision.transforms.CenterCrop(112),
@@ -107,17 +108,17 @@ def save_c3d_features():
 
     c3d = pretrained_c3d().to(DEVICE)
 
-    with h5py.File(SarcasmDataset.features_file_path('c3d', 'fc7'), 'w') as fc7_features_file:
+    with h5py.File(SarcasmDataset.features_file_path("c3d", "fc7"), "w") as fc7_features_file:
         for video_id in dataset.video_ids:
             video_frame_count = dataset.frame_count_by_video_id[video_id]
             feature_count = video_frame_count - 16 + 1
             fc7_features_file.create_dataset(video_id, shape=(feature_count, 4096))
 
         for instance in tqdm(torch.utils.data.DataLoader(dataset), desc="Extracting C3D features"):
-            video_id = instance['id'][0]
+            video_id = instance["id"][0]  # noqa
             video_frame_count = dataset.frame_count_by_video_id[video_id]
             feature_count = video_frame_count - 16 + 1
-            frames = instance['frames'][0].to(DEVICE)
+            frames = instance["frames"][0].to(DEVICE)
             frames = frames.unsqueeze(0)  # Add batch dimension
             frames = frames.transpose(1, 2)  # C3D expects (B, C, T, H, W)
 
@@ -126,7 +127,7 @@ def save_c3d_features():
                 fc7_features_file[video_id][i, :] = output.cpu().data.numpy()
 
 
-def save_i3d_features():
+def save_i3d_features() -> None:
     transforms = torchvision.transforms.Compose([
         torchvision.transforms.Resize(256),
         torchvision.transforms.CenterCrop(224),
@@ -137,17 +138,17 @@ def save_i3d_features():
 
     i3d = pretrained_i3d().to(DEVICE)
 
-    with h5py.File(SarcasmDataset.features_file_path('i3d', 'avg_pool'), 'w') as avg_pool_features_file:
+    with h5py.File(SarcasmDataset.features_file_path("i3d", "avg_pool"), "w") as avg_pool_features_file:
         for video_id in dataset.video_ids:
             video_frame_count = dataset.frame_count_by_video_id[video_id]
             feature_count = video_frame_count - 16 + 1
             avg_pool_features_file.create_dataset(video_id, shape=(feature_count, 1024))
 
         for instance in tqdm(torch.utils.data.DataLoader(dataset), desc="Extracting I3D features"):
-            video_id = instance['id'][0]
+            video_id = instance["id"][0]  # noqa
             video_frame_count = dataset.frame_count_by_video_id[video_id]
             feature_count = video_frame_count - 16 + 1
-            frames = instance['frames'][0].to(DEVICE)
+            frames = instance["frames"][0].to(DEVICE)
             frames = frames.unsqueeze(0)  # Add batch dimension
             frames = frames.transpose(1, 2)  # I3D expects (B, C, T, H, W)
 
@@ -156,23 +157,23 @@ def save_i3d_features():
                 avg_pool_features_file[video_id][i, :] = output.cpu().data.numpy()
 
 
-def parse_args():
-    parser = argparse.ArgumentParser(description='Extract video features.')
-    parser.add_argument('network', choices=['resnet', 'c3d', 'i3d'])
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Extract video features.")
+    parser.add_argument("network", choices=["resnet", "c3d", "i3d"])
     return parser.parse_args()
 
 
-def main():
+def main() -> None:
     args = parse_args()
-    if args.network == 'resnet':
+    if args.network == "resnet":
         save_resnet_features()
-    elif args.network == 'c3d':
+    elif args.network == "c3d":
         save_c3d_features()
-    elif args.network == 'i3d':
+    elif args.network == "i3d":
         save_i3d_features()
     else:
-        raise ValueError('Network type not supported.')
+        raise ValueError(f"Network type not supported: {args.network}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

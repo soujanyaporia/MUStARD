@@ -1,222 +1,177 @@
-import os
-import sys
-import re
 import json
+import os
 import pickle
+import re
+from collections import defaultdict
+from typing import Any, Iterable, Mapping, MutableSequence, Optional, Sequence, Tuple
 
 import h5py
+import jsonlines
 import nltk
 import numpy as np
-import jsonlines
-from collections import defaultdict
 from sklearn.model_selection import StratifiedKFold
 
 import config
 
+CLS_TOKEN_INDEX = 0
 
-def pickle_loader(filename):
-    if sys.version_info[0] < 3:
-        return pickle.load(open(filename, 'rb'))
-    else:
-        return pickle.load(open(filename, 'rb'), encoding="latin1")
+
+def pickle_loader(filename: str) -> Any:
+    with open(filename, "rb") as file:
+        return pickle.load(file, encoding="latin1")
 
 
 class DataLoader:
-
-    DATA_PATH_JSON = "./data/sarcasm_data.json"
-    AUDIO_PICKLE = "./data/audio_features.p"
-    INDICES_FILE = "./data/split_indices.p"
-    GLOVE_DICT = "./data/glove_full_dict.p"
-    BERT_TARGET_EMBEDDINGS = "./data/bert-output.jsonl"
-    BERT_CONTEXT_EMBEDDINGS = "./data/bert-output-context.jsonl"
+    DATA_PATH = "data/sarcasm_data.json"
+    AUDIO_PICKLE = "data/audio_features.p"
+    INDICES_FILE = "data/split_indices.p"
+    GLOVE_DICT = "data/glove_full_dict.p"
+    BERT_TARGET_EMBEDDINGS = "data/bert-output.jsonl"
+    BERT_CONTEXT_EMBEDDINGS = "data/bert-output-context.jsonl"
     UTT_ID = 0
     CONTEXT_ID = 2
     SHOW_ID = 9
     UNK_TOKEN = "<UNK>"
     PAD_TOKEN = "<PAD>"
 
-    def __init__(self, config):
-
+    def __init__(self, config: config.Config) -> None:
         self.config = config
-        
-        dataset_json = json.load(open(self.DATA_PATH_JSON))
+
+        with open(self.DATA_PATH) as file:
+            dataset_dict = json.load(file)
 
         if config.use_bert and config.use_target_text:
             text_bert_embeddings = []
-            with jsonlines.open(self.BERT_TARGET_EMBEDDINGS) as reader:
-                
-                # Visit each target utterance
-                for obj in reader:
-
-                    CLS_TOKEN_INDEX = 0
-                    features = obj['features'][CLS_TOKEN_INDEX]
-
-                    bert_embedding_target = []
-                    for layer in [0,1,2,3]:
-                        bert_embedding_target.append(np.array(features["layers"][layer]["values"]))
-                    bert_embedding_target = np.mean(bert_embedding_target, axis=0)
+            with jsonlines.open(self.BERT_TARGET_EMBEDDINGS) as utterances:
+                for utterance in utterances:
+                    features = utterance["features"][CLS_TOKEN_INDEX]
+                    bert_embedding_target = np.mean([np.array(features["layers"][layer]["values"])
+                                                     for layer in range(4)], axis=0)
                     text_bert_embeddings.append(np.copy(bert_embedding_target))
         else:
             text_bert_embeddings = None
 
-
-        if config.use_context:
-            context_bert_embeddings = self.loadContextBert(dataset_json)
-        else:
-            context_bert_embeddings = None
-
-
-
-        if config.use_target_audio:
-            audio_features = pickle_loader(self.AUDIO_PICKLE)
-        else:
-            audio_features = None
+        context_bert_embeddings = self.load_context_bert(dataset_dict) if config.use_context else None
+        audio_features = pickle_loader(self.AUDIO_PICKLE) if config.use_target_audio else None
 
         if config.use_target_video:
-            video_features_file = h5py.File('data/features/utterances_final/resnet_pool5.hdf5')
-            context_video_features_file = h5py.File('data/features/context_final/resnet_pool5.hdf5')
+            video_features_file = h5py.File("data/features/utterances_final/resnet_pool5.hdf5")
+            context_video_features_file = h5py.File("data/features/context_final/resnet_pool5.hdf5")
         else:
             video_features_file = None
             context_video_features_file = None
 
+        self.data_input = []
+        self.data_output = []
 
-        self.parseData(dataset_json, audio_features, video_features_file, context_video_features_file, text_bert_embeddings, context_bert_embeddings)
+        self.word_emb_dict = {}
+
+        self.train_ind_si = []
+        self.test_ind_si = []
+
+        self.parse_data(dataset_dict, audio_features, video_features_file, context_video_features_file,
+                        text_bert_embeddings, context_bert_embeddings)
 
         if config.use_target_video:
             video_features_file.close()
             context_video_features_file.close()
 
-        self.StratifiedKFold()
-        self.setupGloveDict()
+        self.split_indices = None
+        self.stratified_k_fold()
 
-        # Setup speaker independent split
-        self.speakerIndependentSplit()
+        self.setup_glove_dict()
 
+        self.speaker_independent_split()
 
-    def parseData(self, json, audio_features, video_features_file=None, context_video_features_file=None, text_bert_embeddings=None, context_bert_embeddings=None):
-        '''
-        Prepares json data into lists
-        data_input = [ (utterance:string, speaker:string, context:list_of_strings, context_speakers:list_of_strings, utterance_audio:features ) ]
-        data_output = [ sarcasm_tag:int ]
-        '''
-        self.data_input, self.data_output = [], []
-        
-        for idx, ID in enumerate(json.keys()):
-            self.data_input.append((json[ID]["utterance"], json[ID]["speaker"], json[ID]["context"],
-                                    json[ID]["context_speakers"], audio_features[ID] if audio_features else None,
-                                    video_features_file[ID][()] if video_features_file else None,
-                                    context_video_features_file[ID][()] if context_video_features_file else None,
-                                    text_bert_embeddings[idx] if text_bert_embeddings else None,
-                                    context_bert_embeddings[idx] if context_bert_embeddings else None,
-                                    json[ID]["show"]))
-            self.data_output.append( int(json[ID]["sarcasm"]) )
+    def parse_data(self, dataset_dict: Mapping[str, Mapping[str, Any]],
+                   audio_features: Optional[Mapping[str, Any]] = None,
+                   video_features_file: Optional[Mapping[str, Any]] = None,
+                   context_video_features_file: Optional[Mapping[str, Any]] = None,
+                   text_embeddings: Optional[Mapping[int, Any]] = None,
+                   context_embeddings: Optional[Mapping[int, Any]] = None) -> None:
+        """Prepares the dictionary data into lists."""
+        for idx, id_ in enumerate(dataset_dict):
+            self.data_input.append((dataset_dict[id_]["utterance"], dataset_dict[id_]["speaker"],
+                                    dataset_dict[id_]["context"], dataset_dict[id_]["context_speakers"],
+                                    audio_features[id_] if audio_features else None,
+                                    video_features_file[id_][()] if video_features_file else None,
+                                    context_video_features_file[id_][()] if context_video_features_file else None,
+                                    text_embeddings[idx] if text_embeddings else None,
+                                    context_embeddings[idx] if context_embeddings else None,
+                                    dataset_dict[id_]["show"]))
+            self.data_output.append(int(dataset_dict[id_]["sarcasm"]))
 
-    def loadContextBert(self, dataset, ):
+    def load_context_bert(self, dataset: Mapping[str, Mapping[str, Any]]) -> Iterable[Iterable[np.ndarray]]:
+        length = [len(dataset[id_]["context"]) for id_ in dataset]
 
-        # Prepare context video length list
-        length=[]
-        for idx, ID in enumerate(dataset.keys()):
-            length.append(len(dataset[ID]["context"]))
-
-        # Load BERT embeddings
-        with jsonlines.open(self.BERT_CONTEXT_EMBEDDINGS) as reader:
-            context_utterance_embeddings=[]
-            # Visit each context utterance
-            for obj in reader:
-
-                CLS_TOKEN_INDEX = 0
-                features = obj['features'][CLS_TOKEN_INDEX]
-
-                bert_embedding_target = []
-                for layer in [0,1,2,3]:
-                    bert_embedding_target.append(np.array(features["layers"][layer]["values"]))
-                bert_embedding_target = np.mean(bert_embedding_target, axis=0)
+        with jsonlines.open(self.BERT_CONTEXT_EMBEDDINGS) as utterances:
+            context_utterance_embeddings = []
+            for utterance in utterances:
+                features = utterance["features"][CLS_TOKEN_INDEX]
+                bert_embedding_target = np.mean([np.array(features["layers"][layer]["values"])
+                                                 for layer in [0, 1, 2, 3]], axis=0)
                 context_utterance_embeddings.append(np.copy(bert_embedding_target))
 
         # Checking whether total context features == total context sentences
-        assert(len(context_utterance_embeddings)== sum(length))
+        assert len(context_utterance_embeddings) == sum(length)
 
         # Rearrange context features for each target utterance
         cumulative_length = [length[0]]
         cumulative_value = length[0]
         for val in length[1:]:
-            cumulative_value+=val
+            cumulative_value += val
             cumulative_length.append(cumulative_value)
 
-        assert(len(length)==len(cumulative_length))
+        assert len(length) == len(cumulative_length)
 
         end_index = cumulative_length
-        start_index = [0]+cumulative_length[:-1]
+        start_index = [0] + cumulative_length[:-1]
 
-        final_context_bert_features = []
-        for start, end in zip(start_index, end_index):
-            local_features = []
-            for idx in range(start, end):
-                local_features.append(context_utterance_embeddings[idx])
-            final_context_bert_features.append(local_features)
+        return [[context_utterance_embeddings[idx] for idx in range(start, end)]
+                for start, end in zip(start_index, end_index)]
 
-        return final_context_bert_features
-
-
-
-    def StratifiedKFold(self, splits=5):
-        '''
-        Prepares or loads (if existing) splits for k-fold 
-        '''
-        skf = StratifiedKFold(n_splits=splits, shuffle=True)
-        split_indices = [(train_index, test_index) for train_index, test_index in skf.split(self.data_input, self.data_output)]
+    def stratified_k_fold(self, splits: int = 5) -> None:
+        """Prepares or loads (if existing) splits for a K-fold cross-validation."""
+        cross_validator = StratifiedKFold(n_splits=splits, shuffle=True)
+        split_indices = [(train_index, test_index)
+                         for train_index, test_index in cross_validator.split(self.data_input, self.data_output)]
 
         if not os.path.exists(self.INDICES_FILE):
-            pickle.dump(split_indices, open(self.INDICES_FILE, 'wb'), protocol=2)
-        
+            with open(self.INDICES_FILE, "wb") as file:
+                pickle.dump(split_indices, file, protocol=2)
 
-    def getStratifiedKFold(self):
-        '''
-        Returns train/test indices for k-folds
-        '''
+    def get_stratified_k_fold(self) -> Iterable[Tuple[Iterable[int], Iterable[int]]]:
+        """Returns train/test indices for a k-fold cross-validation."""
         self.split_indices = pickle_loader(self.INDICES_FILE)
         return self.split_indices
 
-    def speakerIndependentSplit(self):
-        '''
-        Prepares split for speaker independent setting
-        Train: Fr, TGG, Sa
+    def speaker_independent_split(self) -> None:
+        """Prepares a split for the Speaker Independent setting.
+
+        Train: Friends, TGG, Sa
         Test: TBBT
-        '''
-        self.train_ind_SI, self.test_ind_SI = [], []
-        for ind, data in enumerate(self.data_input):
+        """
+        for i, data in enumerate(self.data_input):
             if data[self.SHOW_ID] == "FRIENDS":
-                self.test_ind_SI.append(ind)
+                self.test_ind_si.append(i)
             else:
-                self.train_ind_SI.append(ind)
+                self.train_ind_si.append(i)
 
-    def getSpeakerIndependent(self):
-        '''
-        Returns the split indices of speaker independent setting
-        '''
-        return self.train_ind_SI, self.test_ind_SI
+    def get_speaker_independent(self) -> Tuple[Iterable[int], Iterable[int]]:
+        """Returns the split indices of speaker independent setting."""
+        return self.train_ind_si, self.test_ind_si
 
-
-
-    def getSplit(self, indices):
-        '''
-        Returns the split comprising of the indices
-        '''
-        data_input = [self.data_input[ind] for ind in indices]
-        data_output = [self.data_output[ind] for ind in indices]
+    def get_split(self, indices: Iterable[int]) -> Tuple[Sequence[Tuple[Any, ...]], Sequence[int]]:
+        """Returns the split consisting of the indices."""
+        data_input = [self.data_input[i] for i in indices]
+        data_output = [self.data_output[i] for i in indices]
         return data_input, data_output
 
-
-
-    def fullDatasetVocab(self):
-        '''
-        Return the full dataset's vocabulary to filter and cache glove embedding dictionary
-        '''
-
-        vocab = defaultdict(lambda:0)
+    def full_dataset_vocab(self) -> Mapping[str, int]:
+        """Returns the full dataset's vocabulary to filter and cache the GloVe embedding dictionary."""
+        vocab = defaultdict(int)
         utterances = [instance[self.UTT_ID] for instance in self.data_input]
         contexts = [instance[self.CONTEXT_ID] for instance in self.data_input]
-
 
         for utterance in utterances:
             clean_utt = DataHelper.clean_str(utterance)
@@ -230,55 +185,42 @@ class DataLoader:
                 utt_words = nltk.word_tokenize(clean_utt)
                 for word in utt_words:
                     vocab[word.lower()] += 1
+
         return vocab
 
-
-    def setupGloveDict(self):
-        '''
+    def setup_glove_dict(self) -> None:
+        """
         Caching the glove dictionary based on all the words in the dataset.
         This cache is later used to create appropriate dictionaries for each fold's training vocabulary
-        '''
-        assert(self.config.word_embedding_path is not None)
+        """
+        assert self.config.word_embedding_path is not None
 
-        # Vocabulary of the full dataset
-        vocab = self.fullDatasetVocab()
+        vocab = self.full_dataset_vocab()
 
         if os.path.exists(self.GLOVE_DICT):
-            self.wordemb_dict = pickle_loader(self.GLOVE_DICT)
-        else:   
-            self.wordemb_dict = {}
-            for line in open(self.config.word_embedding_path,'r'):
-                splitLine = line.split() 
-                word = splitLine[0]
-                try:
-                    embedding = np.array([float(val) for val in splitLine[1:]])
+            self.word_emb_dict = pickle_loader(self.GLOVE_DICT)
+        else:
+            self.word_emb_dict = {}
+            with open(self.config.word_embedding_path) as file:
+                for line in file:
+                    split_line = line.split()
+                    word = split_line[0]
+                    try:
+                        embedding = np.array([float(val) for val in split_line[1:]])
 
-                    # Filter glove words based on its presence in the vocab
-                    if word.lower() in vocab:
-                        self.wordemb_dict[word.lower()] = embedding
-                except:
-                    print("Error word in glove file (skipped): ", word)
-                    continue
-            self.wordemb_dict[self.PAD_TOKEN] = np.zeros(self.config.embedding_dim)
-            self.wordemb_dict[self.UNK_TOKEN] = np.random.uniform(-0.25,0.25,self.config.embedding_dim)
+                        if word.lower() in vocab:  # Filter glove words based on its presence in the vocab
+                            self.word_emb_dict[word.lower()] = embedding
+                    except ValueError:
+                        print("Error word in glove file (skipped): ", word)
+                        continue
+            self.word_emb_dict[self.PAD_TOKEN] = np.zeros(self.config.embedding_dim)
+            self.word_emb_dict[self.UNK_TOKEN] = np.random.uniform(-0.25, 0.25, self.config.embedding_dim)
 
-            pickle.dump(self.wordemb_dict, open(self.GLOVE_DICT, "wb"))
-            
-
-
-
-
-
-
-
-
-
-
-
+            with open(self.GLOVE_DICT, "wb") as file:
+                pickle.dump(self.word_emb_dict, file)
 
 
 class DataHelper:
-
     UTT_ID = 0
     SPEAKER_ID = 1
     CONTEXT_ID = 2
@@ -294,94 +236,87 @@ class DataHelper:
     PAD_TOKEN = "<PAD>"
     UNK_TOKEN = "<UNK>"
 
-    GLOVE_MODELS = "./data/temp/glove_dict_{}.p"
-    GLOVE_MODELS_CONTEXT = "./data/temp/glove_dict_context_{}.p"
+    GLOVE_MODELS = "data/temp/glove_dict_{}.p"
+    GLOVE_MODELS_CONTEXT = "data/temp/glove_dict_context_{}.p"
 
-
-    def __init__(self, train_input, train_output, test_input, test_output, config, dataLoader):
-        self.dataLoader = dataLoader
+    def __init__(self, train_input: Sequence[Tuple[Any, ...]], train_output: Sequence[int],
+                 test_input: Sequence[Tuple[Any, ...]], test_output: Sequence[int], config: config.Config,
+                 data_loader: DataLoader) -> None:
+        self.data_loader = data_loader
         self.config = config
         self.train_input = train_input
         self.train_output = train_output
         self.test_input = test_input
         self.test_output = test_output
 
-        # create vocab for current split train set
-        self.createVocab(config.use_context)
-        print("vocab size: " + str(len(self.vocab)))
+        self.author_to_index = None
+        self.UNK_AUTHOR_ID = None
+        self.audio_max_length = None
 
+        # Create the vocab for the current split's training set.
+        self.vocab = defaultdict(int)
+        self.create_vocab(config.use_context)
+        print("Vocab size:", len(self.vocab))
 
-        self.loadGloveModelForCurrentSplit(config.use_context)
-        self.createEmbeddingMatrix()
+        self.model = {}
+        self.embed_dim = -1
+        self.load_glove_model_for_current_split(config.use_context)
 
+        self.word_idx_map = {}
+        self.W = np.empty(0)
+        self.create_embedding_matrix()
 
     @staticmethod
-    def clean_str(string):
-        '''
-        Tokenization/string cleaning.
-        '''
-        string = re.sub(r"[^A-Za-z0-9(),!?\'\`]", " ", string)     
-        string = re.sub(r"\'s", " \'s", string) 
-        string = re.sub(r"\'ve", " \'ve", string) 
-        string = re.sub(r"n\'t", " n\'t", string) 
-        string = re.sub(r"\'re", " \'re", string) 
-        string = re.sub(r"\'d", " \'d", string) 
-        string = re.sub(r"\'ll", " \'ll", string) 
-        string = re.sub(r",", " , ", string) 
-        string = re.sub(r"!", " ! ", string) 
-        string = re.sub(r"\"", " \" ", string) 
-        string = re.sub(r"\(", " ( ", string) 
-        string = re.sub(r"\)", " ) ", string) 
-        string = re.sub(r"\?", " ? ", string) 
-        string = re.sub(r"\s{2,}", " ", string) 
-        string = re.sub(r"\.", " . ", string)    
-        string = re.sub(r".\, ", " , ", string)  
-        string = re.sub(r"\\n", " ", string)  
-        return string.strip().lower()
+    def clean_str(s: str) -> str:
+        """Cleans a string for tokenization."""
+        s = re.sub(r"[^A-Za-z0-9(),!?\'`]", " ", s)
+        s = re.sub(r"\'s", " \'s", s)
+        s = re.sub(r"\'ve", " \'ve", s)
+        s = re.sub(r"n\'t", " n\'t", s)
+        s = re.sub(r"\'re", " \'re", s)
+        s = re.sub(r"\'d", " \'d", s)
+        s = re.sub(r"\'ll", " \'ll", s)
+        s = re.sub(r",", " , ", s)
+        s = re.sub(r"!", " ! ", s)
+        s = re.sub(r"\"", " \" ", s)
+        s = re.sub(r"\(", " ( ", s)
+        s = re.sub(r"\)", " ) ", s)
+        s = re.sub(r"\?", " ? ", s)
+        s = re.sub(r"\s{2,}", " ", s)
+        s = re.sub(r"\.", " . ", s)
+        s = re.sub(r"., ", " , ", s)
+        s = re.sub(r"\\n", " ", s)
+        return s.strip().lower()
 
-
-
-    def getData(self, ID=None, mode=None, error_message=None):
-
+    def get_data(self, id_: int, mode: str) -> MutableSequence[Any]:
         if mode == "train":
-            return [instance[ID] for instance in self.train_input]
+            return [instance[id_] for instance in self.train_input]
         elif mode == "test":
-            return [instance[ID] for instance in self.test_input]
+            return [instance[id_] for instance in self.test_input]
         else:
-            print(error_message)
-            exit()
+            raise ValueError(f"Unrecognized mode: {mode}")
 
-
-
-    def createVocab(self, use_context=False):
-
-        self.vocab = vocab = defaultdict(lambda:0)
-        utterances = self.getData(self.UTT_ID, mode="train")
+    def create_vocab(self, use_context: bool = False) -> None:
+        utterances = self.get_data(self.UTT_ID, mode="train")
 
         for utterance in utterances:
             clean_utt = self.clean_str(utterance)
             utt_words = nltk.word_tokenize(clean_utt)
             for word in utt_words:
-                vocab[word.lower()] += 1
+                self.vocab[word.lower()] += 1
 
-        # Add vocabulary fron context sentences of train split if context is used
         if use_context:
-            context_utterances = self.getData(self.CONTEXT_ID, mode="train")
+            context_utterances = self.get_data(self.CONTEXT_ID, mode="train")
             for context in context_utterances:
                 for c_utt in context:
                     clean_utt = self.clean_str(c_utt)
                     utt_words = nltk.word_tokenize(clean_utt)
                     for word in utt_words:
-                        vocab[word.lower()] += 1
+                        self.vocab[word.lower()] += 1
 
-
-
-    def loadGloveModelForCurrentSplit(self, use_context=False):
-        '''
-        Loads the Glove pre-trained model for the current split
-        '''
-        
-        print("Loading glove model")
+    def load_glove_model_for_current_split(self, use_context: bool = False) -> None:
+        """Loads the GloVe pre-trained model for the current split."""
+        print("Loading the GloVe model…")
 
         # if model already exists:
         filename = self.GLOVE_MODELS_CONTEXT if use_context else self.GLOVE_MODELS
@@ -392,137 +327,105 @@ class DataHelper:
 
         if os.path.exists(filename):
             self.model = pickle_loader(filename)
-            self.embed_dim = len(self.dataLoader.wordemb_dict[self.PAD_TOKEN])
+            self.embed_dim = len(self.data_loader.word_emb_dict[self.PAD_TOKEN])
         else:
-            self.model = model = {}
+            self.model = {}
             self.embed_dim = 0
 
-            # Further filter glove dict words to contain only train set vocab for current fold
-            for word, embedding in self.dataLoader.wordemb_dict.items():
-                if word in self.vocab: model[word.lower()] = embedding
+            # Filter the GloVe dict words to contain only the train set vocab for the current fold.
+            for word, embedding in self.data_loader.word_emb_dict.items():
+                if word in self.vocab:
+                    self.model[word.lower()] = embedding
                 self.embed_dim = len(embedding)
 
-            pickle.dump(self.model, open(filename, "wb"), protocol=2)
+            with open(filename, "wb") as file:
+                pickle.dump(self.model, file, protocol=2)
 
+    def create_embedding_matrix(self) -> None:
+        """Returns the word matrix.
 
-    def createEmbeddingMatrix(self):
+        W[i] is the vector for word indexed by `i`.
+
+        Also creates word_idx_map : to map all words to proper index of i for the associated embedding matrix W.
         """
-        Get word matrix. W[i] is the vector for word indexed by i
-        also creates word_idx_map : to map all words to proper index of i for associated
-        embedding matrix W
-        """
+        vocab_size = len(self.model)  # length of filtered glove embedding words
+        self.W = np.zeros(shape=(vocab_size + 2, self.embed_dim), dtype=np.float32)
 
-        vocab_size = len(self.model) # length of filtered glove embedding words
-        self.word_idx_map = word_idx_map = dict()
-        self.W = W = np.zeros(shape=(vocab_size+2, self.embed_dim), dtype='float32')            
-        
         # Pad and Unknown
-        W[self.PAD_ID] = self.dataLoader.wordemb_dict[self.PAD_TOKEN]
-        W[self.UNK_ID] = self.dataLoader.wordemb_dict[self.UNK_TOKEN]
-        word_idx_map[self.PAD_TOKEN] = self.PAD_ID
-        word_idx_map[self.UNK_TOKEN] = self.UNK_ID
+        self.W[self.PAD_ID] = self.data_loader.word_emb_dict[self.PAD_TOKEN]
+        self.W[self.UNK_ID] = self.data_loader.word_emb_dict[self.UNK_TOKEN]
+        self.word_idx_map[self.PAD_TOKEN] = self.PAD_ID
+        self.word_idx_map[self.UNK_TOKEN] = self.UNK_ID
 
         # Other words
         i = 2
         for word in self.model:
-            if (word != self.PAD_TOKEN) and (word != self.UNK_TOKEN):
-                W[i] = np.copy(self.model[word])
-                word_idx_map[word] = i
+            if word not in {self.PAD_TOKEN, self.UNK_TOKEN}:
+                self.W[i] = np.copy(self.model[word])
+                self.word_idx_map[word] = i
                 i += 1
 
-        # Make words not in glove as unknown
+        # Mark words not in GloVe as unknown.
         for word in self.vocab:
             if word not in self.model:
-                word_idx_map[word] = self.UNK_ID
+                self.word_idx_map[word] = self.UNK_ID
 
-
-    def getEmbeddingMatrix(self):
+    def get_embedding_matrix(self) -> np.ndarray:
         return self.W
 
+    def word_to_index(self, utterance: str) -> Iterable[int]:
+        word_indices = [self.word_idx_map.get(word, self.UNK_ID) for word in
+                        nltk.word_tokenize(self.clean_str(utterance))]
 
-    def wordToIndex(self, utterance):
-
-        word_indices = [self.word_idx_map.get(word, self.UNK_ID) for word in nltk.word_tokenize(self.clean_str(utterance))]
-
-        #padding to max_sent_length
+        # padding to max_sent_length
         word_indices = word_indices[:self.config.max_sent_length]
-        word_indices = word_indices + [self.PAD_ID]*(self.config.max_sent_length - len(word_indices))
-        assert(len(word_indices) == self.config.max_sent_length)
+        word_indices = word_indices + [self.PAD_ID] * (self.config.max_sent_length - len(word_indices))
+        assert len(word_indices) == self.config.max_sent_length
         return word_indices
 
+    def get_target_bert_feature(self, mode: str) -> MutableSequence[np.ndarray]:
+        return self.get_data(self.TEXT_BERT_ID, mode)
 
-    def getTargetBertFeatures(self, mode=None):
+    def get_context_bert_features(self, mode: str) -> np.ndarray:
+        utterances = self.get_data(self.CONTEXT_BERT_ID, mode)
+        return np.array([np.mean(utterance, axis=0) for utterance in utterances])
 
-        utterances = self.getData(self.TEXT_BERT_ID, mode, 
-                                  "Set mode properly for vectorizeUtterance method() : mode = train/test")
+    def vectorize_utterance(self, mode: str) -> Sequence[Iterable[int]]:
+        utterances = self.get_data(self.UTT_ID, mode)
+        return [self.word_to_index(utterance) for utterance in utterances]
 
-        return utterances
-
-    def getContextBertFeatures(self, mode=None):
-
-        utterances = self.getData(self.CONTEXT_BERT_ID, mode, 
-                                  "Set mode properly for vectorizeUtterance method() : mode = train/test")
-
-        mean_features=[]
-        for utt in utterances:
-            mean_features.append(np.mean(utt, axis=0))
-
-        return np.array(mean_features)
-
-
-    def vectorizeUtterance(self, mode=None):
-
-        
-        utterances = self.getData(self.UTT_ID, mode, 
-                                  "Set mode properly for vectorizeUtterance method() : mode = train/test")
-
-        vector_utt = []
-        for utterance in utterances:
-            word_indices = self.wordToIndex(utterance)
-            vector_utt.append(word_indices)
-
-        return vector_utt
-
-
-    def getAuthor(self, mode=None):
-
-        authors = self.getData(self.SPEAKER_ID, mode, 
-                               "Set mode properly for contextMask method() : mode = train/test")
+    def get_author(self, mode: str) -> np.ndarray:
+        authors = self.get_data(self.SPEAKER_ID, mode)
 
         # Create dictionary for speaker
 
-        if mode=="train":
-            author_list = set()
-            author_list.add("PERSON")
+        if mode == "train":
+            author_set = {"PERSON"}
 
             for author in authors:
                 author = author.strip()
                 if "PERSON" not in author:
-                    author_list.add(author)
+                    author_set.add(author)
 
-            self.author_ind={author:ind for ind, author in enumerate(author_list)}
-            self.UNK_AUTHOR_ID = self.author_ind["PERSON"]
-            self.config.num_authors = len(self.author_ind)
-        
+            self.author_to_index = {author: i for i, author in enumerate(author_set)}
+            self.UNK_AUTHOR_ID = self.author_to_index["PERSON"]
+            self.config.num_authors = len(self.author_to_index)
+
         # Convert authors into author_ids
-        authors = [self.author_ind.get(author.strip(), self.UNK_AUTHOR_ID) for author in authors]
-        authors = self.toOneHot(authors, len(self.author_ind))
-        return authors
-        
+        authors = [self.author_to_index.get(author.strip(), self.UNK_AUTHOR_ID) for author in authors]
+        return self.to_one_hot(authors, len(self.author_to_index))
 
-    def vectorizeContext(self, mode=None):
+    def vectorize_context(self, mode: str) -> np.ndarray:
+        dummy_sent = [self.PAD_ID] * self.config.max_sent_length
 
-        dummy_sent = [self.PAD_ID]*self.config.max_sent_length
-
-        contexts = self.getData(self.CONTEXT_ID, mode, 
-                                "Set mode properly for vectorizeContext method() : mode = train/test")
+        contexts = self.get_data(self.CONTEXT_ID, mode)
 
         vector_context = []
         for context in contexts:
             local_context = []
-            for utterance in context[-self.config.max_context_length:]: # taking latest (max_context_length) sentences
-                #padding to max_sent_length
-                word_indices = self.wordToIndex(utterance)
+            for utterance in context[-self.config.max_context_length:]:  # taking latest (max_context_length) sentences
+                # padding to max_sent_length
+                word_indices = self.word_to_index(utterance)
                 local_context.append(word_indices)
             for _ in range(self.config.max_context_length - len(local_context)):
                 local_context.append(dummy_sent[:])
@@ -531,88 +434,74 @@ class DataHelper:
 
         return np.array(vector_context)
 
+    def pool_text(self, data: Iterable[int]) -> np.ndarray:
+        return np.mean([self.W[i] for i in data if i != 0], axis=0)  # Only pick up non-padded words.
 
-    def pool_text(self, data):
-
-        data_vector = [self.W[ind] for ind in data if ind != 0] # only pick up non pad words
-        data_vector = np.mean(data_vector, axis=0)
-        return data_vector
-
-    def getContextPool(self, mode=None):
-
-        contexts = self.getData(self.CONTEXT_ID, mode, 
-                                "Set mode properly for vectorizeContext method() : mode = train/test")
+    def get_context_pool(self, mode: str) -> np.ndarray:
+        contexts = self.get_data(self.CONTEXT_ID, mode)
 
         vector_context = []
         for context in contexts:
             local_context = []
-            for utterance in context[-self.config.max_context_length:]: # taking latest (max_context_length) sentences
-
+            for utterance in context[-self.config.max_context_length:]:  # taking latest (max_context_length) sentences
                 if utterance == "":
                     print(context)
 
-                #padding to max_sent_length
-                word_indices = self.wordToIndex(utterance)
+                # padding to max_sent_length
+                word_indices = self.word_to_index(utterance)
                 word_avg = self.pool_text(word_indices)
 
                 local_context.append(word_avg)
 
             local_context = np.array(local_context)
             vector_context.append(np.mean(local_context, axis=0))
-            
 
         return np.array(vector_context)
 
-
-
-    def oneHotOutput(self, mode=None, size=None):
-        '''
-        Returns one hot encoding of the output
-        '''
+    def one_hot_output(self, mode: str, size: int) -> np.ndarray:
+        """Returns a one hot encoding of the output."""
         if mode == "train":
-            labels = self.toOneHot(self.train_output, size)
+            return self.to_one_hot(self.train_output, size)
         elif mode == "test":
-            labels = self.toOneHot(self.test_output, size)
+            return self.to_one_hot(self.test_output, size)
         else:
-            print("Set mode properly for toOneHot method() : mode = train/test")
-            exit()
-        return labels
+            raise ValueError("Set mode properly for toOneHot method() : mode = train/test")
 
-    def toOneHot(self, data, size=None):
-        '''
+    @staticmethod
+    def to_one_hot(data: Sequence[int], size: int) -> np.ndarray:
+        """
         Returns one hot label version of data
-        '''
-        oneHotData = np.zeros((len(data), size))
-        oneHotData[range(len(data)),data] = 1
-        
-        assert(np.array_equal(data, np.argmax(oneHotData, axis=1)))
-        return oneHotData
+        """
+        one_hot_data = np.zeros((len(data), size))
+        one_hot_data[range(len(data)), data] = 1
 
-    #### Audio related functions ####
+        assert np.array_equal(data, np.argmax(one_hot_data, axis=1))
+        return one_hot_data
 
-    def getAudioMaxLength(self, data):
-        return np.max([feature.shape[1] for feature in data])
+    # ### Audio related functions ####
 
-    def padAudio(self, data, max_length):
+    @staticmethod
+    def get_audio_max_length(data: Iterable[np.ndarray]) -> int:
+        return max(feature.shape[1] for feature in data)
 
-        for ind, instance in enumerate(data):
+    @staticmethod
+    def pad_audio(data: MutableSequence[np.ndarray], max_length: int) -> np.ndarray:
+        for i, instance in enumerate(data):
             if instance.shape[1] < max_length:
-                instance = np.concatenate([instance, np.zeros( (instance.shape[0],(max_length-instance.shape[1])))], axis=1)
-                data[ind] = instance
-            data[ind] = data[ind][:,:max_length]
-            data[ind] = data[ind].transpose()
+                instance = np.concatenate([instance, np.zeros((instance.shape[0], (max_length - instance.shape[1])))],
+                                          axis=1)
+                data[i] = instance
+            data[i] = data[i][:, :max_length]
+            data[i] = data[i].transpose()
         return np.array(data)
 
-
-    def getTargetAudio(self, mode=None):
-
-        audio = self.getData(self.TARGET_AUDIO_ID, mode, 
-                             "Set mode properly for TargetAudio method() : mode = train/test")
+    def get_target_audio(self, mode: str) -> np.ndarray:
+        audio = self.get_data(self.TARGET_AUDIO_ID, mode)
 
         if mode == "train":
-            self.audioMaxLength = self.getAudioMaxLength(audio)
+            self.audio_max_length = self.get_audio_max_length(audio)
 
-        audio = self.padAudio(audio, self.audioMaxLength)
+        audio = self.pad_audio(audio, self.audio_max_length)
 
         if mode == "train":
             self.config.audio_length = audio.shape[1]
@@ -620,22 +509,12 @@ class DataHelper:
 
         return audio
 
-    def getTargetAudioPool(self, mode=None):
-
-        audio = self.getData(self.TARGET_AUDIO_ID, mode, 
-                             "Set mode properly for TargetAudio method() : mode = train/test")
-
+    def get_target_audio_pool(self, mode: str) -> np.ndarray:
+        audio = self.get_data(self.TARGET_AUDIO_ID, mode)
         return np.array([np.mean(feature_vector, axis=1) for feature_vector in audio])
 
+    # ### Video related functions ####
 
-    #### Video related functions ####
-
-    def getTargetVideoPool(self, mode=None):
-        video = self.getData(self.TARGET_VIDEO_ID, mode,
-                             "Set mode properly for TargetVideo method() : mode = train/test")
-
+    def get_target_video_pool(self, mode: str) -> np.ndarray:
+        video = self.get_data(self.TARGET_VIDEO_ID, mode)
         return np.array([np.mean(feature_vector, axis=0) for feature_vector in video])
-
-
-if __name__ == "__main__":
-    dataLoader = DataLoader(config.Config())
