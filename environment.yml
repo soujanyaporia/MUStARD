@@ -1,19 +1,19 @@
 name: mustard
-channels:
-  - pytorch
 dependencies:
-  - cudatoolkit=10.0
-  - ffmpeg=4.0
-  - h5py=2.9.0
-  - nltk=3.4.1
-  - numpy=1.15.4
-  - pillow=5.4.1
-  - pip=19.0.3
-  - python=3.7.2
-  - pytorch=1.0.1
-  - scikit-learn=0.21.1
-  - torchvision=0.2.2
-  - tqdm=4.31.1
   - pip:
-    - jsonlines==1.2.0
-    - overrides==1.9
+    -            jsonlines==1.2.0
+    -            overrides==1.9
+  -              cudatoolkit=10.0
+  -              ffmpeg=4.0
+  -              h5py=2.9.0
+  - conda-forge::librosa=0.6.2
+  -              nltk=3.4.1
+  -              numba=0.41.0  # See https://github.com/librosa/librosa/issues/1160#issuecomment-643068317
+  -              numpy=1.15.4
+  -              pillow=5.4.1
+  -              pip=19.0.3
+  -              python=3.7.2
+  -     pytorch::pytorch=1.0.1
+  -              scikit-learn=0.21.1
+  -     pytorch::torchvision=0.2.2
+  -              tqdm=4.31.1
