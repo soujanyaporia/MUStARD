@@ -19,9 +19,6 @@ class Config:
     max_sent_length = 20
     max_context_length = 4  # Maximum sentences to take in context
     num_classes = 2  # Binary classification of sarcasm
-    epochs = 15
-    batch_size = 16
-    val_split = 0.1  # Percentage of data in validation set from training data
 
     svm_c = 10.0
     svm_scale = True
