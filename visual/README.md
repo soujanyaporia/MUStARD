@@ -23,6 +23,9 @@ This folder tackles the visual modality. It extracts features and provides some 
     ./extract_features.py resnet
     ``` 
 
-    If you extract C3D features, first download
+    * If you extract C3D features, first download
     [the Sports1M-pretrained C3D weights](http://imagelab.ing.unimore.it/files/c3d_pytorch/c3d.pickle)
     into `data/features/c3d.pickle`.
+    * If you extract I3D features, first download
+    [the ImageNet-and-Kinetics-400-pretrained I3D weights](https://github.com/piergiaj/pytorch-i3d/raw/master/models/rgb_imagenet.pt)
+    into `data/features/i3d.pt`.
