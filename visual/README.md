@@ -1,4 +1,4 @@
-# Feature extraction
+# Visual Feature Extraction
 
 Follow these steps to extract visual features from the MUStARD dataset videos.
 
