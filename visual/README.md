@@ -22,3 +22,7 @@ This folder tackles the visual modality. It extracts features and provides some 
     ```bash
     ./extract_features.py resnet
     ``` 
+
+    If you extract C3D features, first download
+    [the Sports1M-pretrained C3D weights](http://imagelab.ing.unimore.it/files/c3d_pytorch/c3d.pickle)
+    into `data/features/c3d.pickle`.
