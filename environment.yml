@@ -3,7 +3,7 @@ dependencies:
   - pip:
     -            jsonlines==1.2.0
     -            overrides==1.9
-  -              cudatoolkit=10.0
+  -              cudatoolkit=10.2
   -              ffmpeg=4.0
   -              h5py=2.9.0
   - conda-forge::librosa=0.6.2
@@ -13,7 +13,7 @@ dependencies:
   -              pillow=5.4.1
   -              pip=19.0.3
   -              python=3.7.2
-  -     pytorch::pytorch=1.0.1
+  -     pytorch::pytorch=1.5.1
   -              scikit-learn=0.21.1
-  -     pytorch::torchvision=0.2.2
+  -     pytorch::torchvision=0.6.1
   -              tqdm=4.31.1
